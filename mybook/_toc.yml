@@ -4,6 +4,6 @@
 format: jb-book
 root: intro
 chapters:
-- file: Profil Penulis
+# - file: Profil Penulis
 # - file: notebooks
 # - file: markdown-notebooks
