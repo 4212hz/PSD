@@ -1,11 +1,14 @@
-# Welcome to your Jupyter Book
+---
+title: Profil Penulis
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+---
 
-Check out the content pages bundled with this sample book to see more.
+# Profil Penulis
 
-```{tableofcontents}
-```
+Berikut adalah rincian data diri penulis:
+
+- **NIM:** 240411100079
+- **Nama:** Mohammad Aziz Huzaini
+- **Semester:** Ganjil 26/27
+- **Mata Kuliah:** Proyek Sain Data
+- **Kelas:** IF 5A
