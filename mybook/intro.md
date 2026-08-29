@@ -1,8 +1,3 @@
----
-title: Profil Penulis
-
----
-
 # Profil Penulis
 
 Berikut adalah rincian data diri penulis:
