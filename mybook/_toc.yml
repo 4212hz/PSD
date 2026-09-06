@@ -4,6 +4,6 @@
 format: jb-book
 root: intro
 chapters:
-- file: Data_Polutan_di_Kabupaten_Bangkalan
-# - file: notebooks
+- file: Kualitas_Udara_di_Kabupaten_Bangkalan
+- file: statistika_deskriptif_polutan
 # - file: markdown-notebooks
