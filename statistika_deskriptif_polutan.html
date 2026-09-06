@@ -666,7 +666,7 @@ $<span class="math notranslate nohighlight">\(Sum = \sum_{i=1}^{n} x_i\)</span>$
 <span class="c1"># 1. Membaca data polutan (dari CSV lokal atau koneksi SQL)</span>
 <span class="c1"># Jika file CSV tersedia di direktori proyek:</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Polutan_Bangkalan.csv&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./data/Polutan_Bangkalan.csv&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data Polutan berhasil dimuat:&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
@@ -675,7 +675,13 @@ $<span class="math notranslate nohighlight">\(Sum = \sum_{i=1}^{n} x_i\)</span>$
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File Polutan_Bangkalan.csv tidak ditemukan di direktori saat ini.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data Polutan berhasil dimuat:
+         date       NO2        CO       SO2        O3
+0  2025-08-25  0.000011  0.027763  0.000268  0.117165
+1  2025-08-26  0.000042       NaN -0.000083  0.116061
+2  2025-08-27  0.000034  0.030063 -0.000021  0.116226
+3  2025-08-28  0.000018  0.024119  0.000069  0.116316
+4  2025-08-29  0.000024  0.024893  0.000077  0.113419
 </pre></div>
 </div>
 </div>
@@ -720,26 +726,112 @@ $<span class="math notranslate nohighlight">\(Sum = \sum_{i=1}^{n} x_i\)</span>$
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">----------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">29</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># Hitung metrik polutan jika kolom tersedia</span>
-<span class="ne">---&gt; </span><span class="mi">29</span> <span class="n">pollutants</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">,</span> <span class="s1">&#39;no2&#39;</span><span class="p">,</span> <span class="s1">&#39;co&#39;</span><span class="p">,</span> <span class="s1">&#39;so2&#39;</span><span class="p">,</span> <span class="s1">&#39;o3&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">if</span> <span class="n">pollutants</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">stats_df</span> <span class="o">=</span> <span class="n">generate_descriptive_stats</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pollutants</span><span class="p">)</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">Cell In[2], line 29,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span> <span class="c1"># Hitung metrik polutan jika kolom tersedia</span>
-<span class="ne">---&gt; </span><span class="mi">29</span> <span class="n">pollutants</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2&#39;</span><span class="p">,</span> <span class="s1">&#39;O3&#39;</span><span class="p">,</span> <span class="s1">&#39;no2&#39;</span><span class="p">,</span> <span class="s1">&#39;co&#39;</span><span class="p">,</span> <span class="s1">&#39;so2&#39;</span><span class="p">,</span> <span class="s1">&#39;o3&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">if</span> <span class="n">pollutants</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="n">stats_df</span> <span class="o">=</span> <span class="n">generate_descriptive_stats</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pollutants</span><span class="p">)</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Variable</th>
+      <th>Min</th>
+      <th>Max</th>
+      <th>Mean</th>
+      <th>Median</th>
+      <th>Std. Deviation</th>
+      <th>Variance</th>
+      <th>Skewness</th>
+      <th>Kurtosis (Excess)</th>
+      <th>Overall Sum</th>
+      <th>No. missings</th>
+      <th>No. NaNs</th>
+      <th>No. +infs</th>
+      <th>No. -infs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NO2</td>
+      <td>-6.819737e-07</td>
+      <td>0.000077</td>
+      <td>0.000024</td>
+      <td>0.000023</td>
+      <td>0.000010</td>
+      <td>1.009444e-10</td>
+      <td>0.915587</td>
+      <td>2.380953</td>
+      <td>0.006692</td>
+      <td>87</td>
+      <td>87</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>CO</td>
+      <td>2.048735e-02</td>
+      <td>0.044761</td>
+      <td>0.028614</td>
+      <td>0.028324</td>
+      <td>0.002931</td>
+      <td>8.588895e-06</td>
+      <td>0.916502</td>
+      <td>3.059840</td>
+      <td>7.725676</td>
+      <td>94</td>
+      <td>94</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>SO2</td>
+      <td>-8.206095e-04</td>
+      <td>0.000592</td>
+      <td>0.000032</td>
+      <td>0.000031</td>
+      <td>0.000131</td>
+      <td>1.723923e-08</td>
+      <td>-0.839898</td>
+      <td>7.487747</td>
+      <td>0.009543</td>
+      <td>70</td>
+      <td>70</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>O3</td>
+      <td>1.103846e-01</td>
+      <td>0.122686</td>
+      <td>0.115767</td>
+      <td>0.115672</td>
+      <td>0.002253</td>
+      <td>5.074622e-06</td>
+      <td>0.322563</td>
+      <td>-0.052687</td>
+      <td>41.791724</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
