@@ -1,0 +1,1496 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Preprocessing dan Ekstraksi Fitur Data Polutan di Kecamatan Tanah Merah, Bangkalan &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Preprocessing_dan_Ekstraksi_Fitur_Data_Polutan_di_Kecamatan_Tanah_Merah';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Penjelasan Metrik Statistika Deskriptif" href="statistika_deskriptif_polutan.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Profil Penulis
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Kualitas_Udara_di_Kabupaten_Bangkalan.html">Data Polutan di Kabupaten Bangkalan</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="statistika_deskriptif_polutan.html">Penjelasan Metrik Statistika Deskriptif</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preprocessing dan Ekstraksi Fitur Data Polutan di Kecamatan Tanah Merah, Bangkalan</a></li>
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FPreprocessing_dan_Ekstraksi_Fitur_Data_Polutan_di_Kecamatan_Tanah_Merah.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Preprocessing_dan_Ekstraksi_Fitur_Data_Polutan_di_Kecamatan_Tanah_Merah.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Preprocessing dan Ekstraksi Fitur Data Polutan di Kecamatan Tanah Merah, Bangkalan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Preprocessing dan Ekstraksi Fitur Data Polutan di Kecamatan Tanah Merah, Bangkalan</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-mengetahui-kualitas-udara-di-daerah-masing-masing">1.  Tujuan Mengetahui Kualitas Udara di Daerah Masing-Masing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">2.  Manfaat</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur">Deskripsi Fitur</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-dan-ekstraksi-fitur">Preprocessing dan Ekstraksi Fitur</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-dan-autentikasi">1. Persiapan Lingkungan dan Autentikasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-autentikasi">Penjelasan kode autentikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-pemanggilan-data">Penjelasan kode pemanggilan data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-spasio-temporal-dan-eksekusi-server">3. Agregasi Spasio-Temporal dan Eksekusi Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-agregasi">Penjelasan kode agregasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-batch-job">Penjelasan kode batch job</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-data-netcdf-ke-csv">4. Transformasi Data (NetCDF ke CSV)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-eksplorasi-data">Penjelasan kode eksplorasi data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">6. Missing values</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-bagian-missing-values">Penjelasan bagian Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no2">NO2</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers">7. Outliers</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-deteksi-outlier">Penjelasan kode deteksi outlier</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-missing-value-penanganan-outlier">8. Imputasi Missing Value &amp; Penanganan Outlier</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-tahapan-imputasi-penanganan-outlier">Penjelasan Tahapan Imputasi &amp; Penanganan Outlier:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sempurna-bebas-outliers-missing-value">9. Data Sempurna (Bebas Outliers &amp; Missing Value)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-data-akhir">Verifikasi Data Akhir:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur-tsfel">Penjelasan Fitur tsfel</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-statistik-karakteristik-dasar-sinyal-statistical-temporal-domain">1. Domain Statistik &amp; Karakteristik Dasar Sinyal (Statistical &amp; Temporal Domain)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-dinamika-perubahan-titik-balik-temporal-dynamics-turning-points">2. Domain Dinamika Perubahan &amp; Titik Balik (Temporal Dynamics &amp; Turning Points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-distribusi-probabilitas-empiris-ecdf-features">3. Domain Distribusi Probabilitas Empiris (ECDF Features)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-fraktalitas-kompleksitas-non-linier-fractal-complexity-domain">4. Domain Fraktalitas &amp; Kompleksitas Non-Linier (Fractal &amp; Complexity Domain)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-frekuensi-spektral-spectral-frequency-domain">5. Domain Frekuensi &amp; Spektral (Spectral / Frequency Domain)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-transformasi-wavelet-wavelet-domain">6. Domain Transformasi Wavelet (Wavelet Domain)</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="preprocessing-dan-ekstraksi-fitur-data-polutan-di-kecamatan-tanah-merah-bangkalan">
+<h1>Preprocessing dan Ekstraksi Fitur Data Polutan di Kecamatan Tanah Merah, Bangkalan<a class="headerlink" href="#preprocessing-dan-ekstraksi-fitur-data-polutan-di-kecamatan-tanah-merah-bangkalan" title="Link to this heading">#</a></h1>
+<section id="tujuan-mengetahui-kualitas-udara-di-daerah-masing-masing">
+<h2>1.  Tujuan Mengetahui Kualitas Udara di Daerah Masing-Masing<a class="headerlink" href="#tujuan-mengetahui-kualitas-udara-di-daerah-masing-masing" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Pemantauan Kondisi Lingkungan: Mendapatkan gambaran akurat terkait tingkat polusi udara.</p></li>
+<li><p>Identifikasi Tren dan Pola: Mengetahui waktu dan lokasi terjadinya lonjakan polusi.</p></li>
+<li><p>Peringatan Dini (Early Warning System): Memberikan peringatan kepada masyarakat saat kualitas udara berbahaya.</p></li>
+<li><p>Evaluasi Kebijakan: Mengukur efektivitas kebijakan lingkungan yang sudah berjalan.</p></li>
+</ul>
+</section>
+<section id="manfaat">
+<h2>2.  Manfaat<a class="headerlink" href="#manfaat" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Bagi Masyarakat: Perlindungan kesehatan dari risiko penyakit pernapasan dan peningkatan kualitas hidup.</p></li>
+<li><p>Bagi Pemerintah: Menjadi dasar pembuatan regulasi (Data-Driven Policy) dan membantu pencapaian Sustainable Development Goals (SDGs).</p></li>
+<li><p>Bagi Bisnis &amp; Industri: Membantu kepatuhan standar lingkungan (ESG) dan membuka peluang inovasi (seperti air purifier dll).</p></li>
+<li><p>Bagi Akademisi &amp; Peneliti: Menyediakan dataset yang valid untuk keperluan riset lanjutan terkait iklim dan kesehatan.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
+<h1>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
+<p>Tahap prapemrosesan ini memanfaatkan platform OpenEO untuk memproses data satelit Sentinel-5P Level-2 secara cloud-based, mengurangi beban komputasi lokal dengan melakukan agregasi spasial dan temporal langsung di server.</p>
+<section id="deskripsi-fitur">
+<h2>Deskripsi Fitur<a class="headerlink" href="#deskripsi-fitur" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>NO2 (Nitrogen Dioksida):</strong> Gas berwarna coklat kemerahan dengan bau yang menyengat. Utamanya bersumber dari emisi kendaraan, pembangkit listrik, dan pembakaran bahan bakar fosil. Terpapar NO2 tingkat tinggi dapat merusak saluran pernapasan.</p></li>
+</ul>
+<p>Pengecekan anomali (data aneh) dan <em>missing values</em> akan dieksplorasi lebih lanjut menggunakan <em>library</em> Pandas pada langkah akhir.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="preprocessing-dan-ekstraksi-fitur">
+<h1>Preprocessing dan Ekstraksi Fitur<a class="headerlink" href="#preprocessing-dan-ekstraksi-fitur" title="Link to this heading">#</a></h1>
+<p>Tahap ini mencakup seluruh alur kerja mulai dari pemrosesan awal data mentah (<em>data preprocessing</em>) hingga pembentukan representasi data (<em>feature extraction</em>) berbasis deret waktu (<em>time series</em>):</p>
+<ol class="arabic simple">
+<li><p><strong>Persiapan Lingkungan &amp; Autentikasi Cloud (OpenEO):</strong> Mengakses infrastruktur komputasi awan <em>Copernicus Data Space Ecosystem</em> (CDSE) melalui OpenID Connect (OIDC) untuk pemrosesan citra satelit di sisi server.</p></li>
+<li><p><strong>Definisi Wilayah (AOI) &amp; Ingesti Data Satelit:</strong> Menentukan poligon koordinat spasial (<em>Area of Interest</em>) Kecamatan Tanah Merah (Kabupaten Bangkalan) dan memuat koleksi data satelit <strong>Sentinel-5P Level-2</strong> untuk polutan <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> rentang waktu 31 Agustus 2025 – 31 Agustus 2026.</p></li>
+<li><p><strong>Agregasi Spasio-Temporal &amp; Eksekusi Batch Job:</strong> Mereduksi observasi satelit menjadi nilai rata-rata harian (<em>temporal aggregation</em>) dan rata-rata per wilayah AOI (<em>spatial aggregation</em>), lalu mengeksekusi komputasi batch di server dan mengunduh hasilnya dalam format NetCDF (.nc).</p></li>
+<li><p><strong>Transformasi Format Data:</strong> Mengonversi struktur file multidimensi NetCDF menjadi format tabular <em>DataFrame</em> (CSV) dengan standardisasi format tanggal (YYYY-MM-DD).</p></li>
+<li><p><strong>Eksplorasi Kualitas Data &amp; Deteksi Anomali:</strong> Mengidentifikasi data hilang (<em>missing dates</em>) akibat orbit satelit/tutupan awan, serta mendeteksi nilai ekstrim (<em>outlier</em>) dan nilai konsentrasi negatif yang tidak valid secara fisik menggunakan algoritma <em>Isolation Forest</em>.</p></li>
+<li><p><strong>Imputasi Missing Values &amp; Pembersihan Outlier:</strong> Mengubah anomali menjadi NaN, merekonstruksi deret tanggal harian lengkap 366 hari, dan menerapkan <em>Linear Interpolation</em> serta <em>backward/forward fill</em> untuk menghasilkan data kontinu yang utuh.</p></li>
+<li><p><strong>Ekstraksi Fitur Deret Waktu (TSFEL):</strong> Mengekstrak 68 fitur karakteristik sinyal deret waktu <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> yang mencakup domain statistik/temporal, frekuensi/spektral, fraktal/kompleksitas, dan wavelet menjadi satu set vektor fitur tabular (.csv) yang siap digunakan untuk pemodelan <em>Machine Learning</em>.</p></li>
+</ol>
+<section id="persiapan-lingkungan-dan-autentikasi">
+<h2>1. Persiapan Lingkungan dan Autentikasi<a class="headerlink" href="#persiapan-lingkungan-dan-autentikasi" title="Link to this heading">#</a></h2>
+<p>Langkah pertama adalah menginstal pustaka yang dibutuhkan dan melakukan autentikasi ke server Copernicus Data Space Ecosystem (CDSE) menggunakan OpenID Connect (OIDC).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>openeo
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: openeo in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (0.51.0)
+Requirement already satisfied: requests&gt;=2.26.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from openeo) (2.32.5)
+Requirement already satisfied: urllib3&gt;=1.9.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from openeo) (2.6.3)
+Requirement already satisfied: shapely&gt;=1.6.4 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from openeo) (2.1.2)
+Requirement already satisfied: numpy&gt;=1.17.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from openeo) (2.4.3)
+Requirement already satisfied: xarray&lt;2025.01.2,&gt;=0.12.3 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from openeo) (2025.1.1)
+Requirement already satisfied: pandas&lt;3.0.0,&gt;0.20.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from openeo) (2.3.3)
+Requirement already satisfied: pystac&gt;=1.5.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from openeo) (1.15.2)
+Requirement already satisfied: deprecated&gt;=1.2.12 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from openeo) (1.3.1)
+Requirement already satisfied: oschmod&gt;=0.3.12 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from openeo) (0.3.12)
+Requirement already satisfied: geopandas&gt;=0.14 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from openeo) (1.1.4)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from pandas&lt;3.0.0,&gt;0.20.0-&gt;openeo) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pandas&lt;3.0.0,&gt;0.20.0-&gt;openeo) (2026.3.post1)
+Requirement already satisfied: tzdata&gt;=2022.7 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from pandas&lt;3.0.0,&gt;0.20.0-&gt;openeo) (2025.3)
+Requirement already satisfied: packaging&gt;=23.2 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from xarray&lt;2025.01.2,&gt;=0.12.3-&gt;openeo) (26.0)
+Requirement already satisfied: wrapt&lt;3,&gt;=1.10 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from deprecated&gt;=1.2.12-&gt;openeo) (2.4.0)
+Requirement already satisfied: pyogrio&gt;=0.7.2 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from geopandas&gt;=0.14-&gt;openeo) (0.13.0)
+Requirement already satisfied: pyproj&gt;=3.5.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from geopandas&gt;=0.14-&gt;openeo) (3.7.2)
+Requirement already satisfied: pywin32 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from oschmod&gt;=0.3.12-&gt;openeo) (312)
+Requirement already satisfied: certifi in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from pyogrio&gt;=0.7.2-&gt;geopandas&gt;=0.14-&gt;openeo) (2026.2.25)
+Requirement already satisfied: pystac-core&lt;2,&gt;=1.15.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.15.2)
+Requirement already satisfied: pystac-ext-classification in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (2.0.1)
+Requirement already satisfied: pystac-ext-datacube in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (2.2.1)
+Requirement already satisfied: pystac-ext-eo in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.1.1)
+Requirement already satisfied: pystac-ext-file in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (2.1.1)
+Requirement already satisfied: pystac-ext-grid in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.1.1)
+Requirement already satisfied: pystac-ext-item-assets in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.0.1)
+Requirement already satisfied: pystac-ext-label in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.0.2)
+Requirement already satisfied: pystac-ext-mgrs in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.0.1)
+Requirement already satisfied: pystac-ext-mlm in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.4.1)
+Requirement already satisfied: pystac-ext-pointcloud in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.0.1)
+Requirement already satisfied: pystac-ext-projection in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (2.0.1)
+Requirement already satisfied: pystac-ext-raster in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.1.1)
+Requirement already satisfied: pystac-ext-render in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (2.0.0)
+Requirement already satisfied: pystac-ext-sar in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.0.1)
+Requirement already satisfied: pystac-ext-sat in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.0.1)
+Requirement already satisfied: pystac-ext-scientific in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.0.1)
+Requirement already satisfied: pystac-ext-storage in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (2.0.1)
+Requirement already satisfied: pystac-ext-table in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.2.1)
+Requirement already satisfied: pystac-ext-timestamps in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.1.1)
+Requirement already satisfied: pystac-ext-version in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.2.1)
+Requirement already satisfied: pystac-ext-view in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.0.1)
+Requirement already satisfied: pystac-ext-xarray-assets in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pystac&gt;=1.5.0-&gt;openeo) (1.0.1)
+Requirement already satisfied: six&gt;=1.5 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&lt;3.0.0,&gt;0.20.0-&gt;openeo) (1.17.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from requests&gt;=2.26.0-&gt;openeo) (3.4.5)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from requests&gt;=2.26.0-&gt;openeo) (3.11)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 26.1.2 -&gt; 26.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openeo</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.dataspace.copernicus.eu&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using refresh token.
+</pre></div>
+</div>
+</div>
+</div>
+<section id="penjelasan-kode-autentikasi">
+<h3>Penjelasan kode autentikasi<a class="headerlink" href="#penjelasan-kode-autentikasi" title="Link to this heading">#</a></h3>
+<p>Kode sebelumnya mengimpor pustaka <code class="docutils literal notranslate"><span class="pre">openeo</span></code>, kemudian membuat koneksi ke layanan OpenEO Copernicus Data Space. Fungsi <code class="docutils literal notranslate"><span class="pre">authenticate_oidc()</span></code> melakukan autentikasi menggunakan OpenID Connect sehingga notebook dapat mengakses koleksi data Sentinel-5P dan mengirim proses analisis ke server.</p>
+<p><img alt="peta.png" src="_images/peta_tamer.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aoi</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Polygon&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span>
+             <span class="p">[</span>
+              <span class="mf">112.8447397</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1349584</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.9225718</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1349584</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.9225718</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.043894916150407</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.8447397</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.043894916150407</span>
+            <span class="p">],</span>
+            <span class="p">[</span>
+              <span class="mf">112.8447397</span><span class="p">,</span>
+              <span class="o">-</span><span class="mf">7.1349584</span>
+            <span class="p">]</span>
+          <span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">s5NO2</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">load_collection</span><span class="p">(</span>
+    <span class="s2">&quot;SENTINEL_5P_L2&quot;</span><span class="p">,</span>
+    <span class="n">temporal_extent</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;2025-08-31&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-08-31&quot;</span><span class="p">],</span>
+    <span class="n">spatial_extent</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;west&quot;</span><span class="p">:</span> <span class="mf">112.68</span><span class="p">,</span>
+        <span class="s2">&quot;south&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">7.20</span><span class="p">,</span>
+        <span class="s2">&quot;east&quot;</span><span class="p">:</span> <span class="mf">113.09</span><span class="p">,</span>
+        <span class="s2">&quot;north&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">6.89</span>
+    <span class="p">},</span>
+    <span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="penjelasan-kode-pemanggilan-data">
+<h3>Penjelasan kode pemanggilan data<a class="headerlink" href="#penjelasan-kode-pemanggilan-data" title="Link to this heading">#</a></h3>
+<p>Variabel <code class="docutils literal notranslate"><span class="pre">aoi</span></code> menyimpan batas wilayah Kabupaten Bangkalan dalam format GeoJSON Polygon. Fungsi <code class="docutils literal notranslate"><span class="pre">load_collection()</span></code> mengambil koleksi <code class="docutils literal notranslate"><span class="pre">SENTINEL_5P_L2</span></code> berdasarkan rentang waktu, batas koordinat, dan nama band polutan. Objek data dibuat untuk NO2 agar proses analisis dilakukan secara terpisah.</p>
+</section>
+</section>
+<section id="agregasi-spasio-temporal-dan-eksekusi-server">
+<h2>3. Agregasi Spasio-Temporal dan Eksekusi Server<a class="headerlink" href="#agregasi-spasio-temporal-dan-eksekusi-server" title="Link to this heading">#</a></h2>
+<p>Data satelit resolusi tinggi direduksi (diagregasi) menjadi nilai rata-rata harian (temporal) dan nilai rata-rata per wilayah AOI (spasial). Proses ini kemudian dikirim sebagai batch job untuk dieksekusi di server dan diunduh sebagai file NetCDF (.nc).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># agregasi berdasarkan hari untuk menghindari adanya beberapa data per hari</span>
+<span class="n">s5p_NO2_daily</span> <span class="o">=</span> <span class="n">s5NO2</span><span class="o">.</span><span class="n">aggregate_temporal_period</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="s2">&quot;day&quot;</span><span class="p">)</span>
+<span class="c1"># agregasi untuk menghasilkan data deret waktu rata-rata</span>
+<span class="n">s5p_NO2_aoi</span> <span class="o">=</span> <span class="n">s5p_NO2_daily</span><span class="o">.</span><span class="n">aggregate_spatial</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="n">geometries</span><span class="o">=</span><span class="n">aoi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="penjelasan-kode-agregasi">
+<h3>Penjelasan kode agregasi<a class="headerlink" href="#penjelasan-kode-agregasi" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">aggregate_temporal_period(reducer=&quot;mean&quot;,</span> <span class="pre">period=&quot;day&quot;)</span></code> menghitung rata-rata data pada setiap hari. Setelah itu, <code class="docutils literal notranslate"><span class="pre">aggregate_spatial(reducer=&quot;mean&quot;,</span> <span class="pre">geometries=aoi)</span></code> menghitung rata-rata nilai di dalam wilayah AOI. Hasilnya adalah deret waktu harian yang mewakili kondisi rata-rata Kabupaten Bangkalan untuk setiap polutan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eksekusi batch job dan unduh hasil ke format NetCDF (.nc)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">s5p_NO2_aoi</span><span class="o">.</span><span class="n">execute_batch</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;NO2 in Tanah Merah terbaru&quot;</span><span class="p">,</span> <span class="n">outputfile</span><span class="o">=</span><span class="s2">&quot;NO2TanahMerah Terbaru.nc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: send &#39;start&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:03 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: created (progress 0%)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:09 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: queued (progress 0%)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:16 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: queued (progress 0%)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:24 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: queued (progress 0%)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="penjelasan-kode-batch-job">
+<h3>Penjelasan kode batch job<a class="headerlink" href="#penjelasan-kode-batch-job" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">execute_batch()</span></code> mengirim proses pengolahan data ke server OpenEO. Parameter <code class="docutils literal notranslate"><span class="pre">title</span></code> memberi nama pekerjaan, sedangkan <code class="docutils literal notranslate"><span class="pre">outputfile</span></code> menentukan nama file NetCDF yang diunduh setelah proses selesai.</p>
+</section>
+</section>
+<section id="transformasi-data-netcdf-ke-csv">
+<h2>4. Transformasi Data (NetCDF ke CSV)<a class="headerlink" href="#transformasi-data-netcdf-ke-csv" title="Link to this heading">#</a></h2>
+<p>Membaca file multi-dimensi NetCDF hasil unduhan, mengekstrak nilai polutan beserta atribut waktunya, melakukan penyesuaian format tanggal (YYYY-MM-DD), dan merestrukturisasinya menjadi format DataFrame menggunakan Pandas untuk disimpan sebagai CSV.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>netCDF4
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: netCDF4 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (1.7.4)
+Requirement already satisfied: cftime in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from netCDF4) (1.6.5)
+Requirement already satisfied: certifi in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from netCDF4) (2026.2.25)
+Requirement already satisfied: numpy&gt;=1.21.2 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from netCDF4) (2.4.3)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 26.1.2 -&gt; 26.2.1
+[notice] To update, run: C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">safe_date_list</span><span class="p">(</span><span class="n">time_values</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">units</span><span class="p">:</span>
+            <span class="n">dates</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time_values</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dates</span> <span class="o">=</span> <span class="n">time_values</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">dates</span> <span class="o">=</span> <span class="n">time_values</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dates</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;strftime&quot;</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">):</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="n">dsNO2</span> <span class="o">=</span> <span class="n">netCDF4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;NO2TanahMerah Terbaru.nc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">dsNO2</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;NO2&quot;</span><span class="p">][:])</span>
+<span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+
+<span class="n">timeNO2</span> <span class="o">=</span> <span class="n">dsNO2</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">][:]</span>
+<span class="n">unitsNO2</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dsNO2</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">],</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">dates</span> <span class="o">=</span> <span class="n">safe_date_list</span><span class="p">(</span><span class="n">timeNO2</span><span class="p">,</span> <span class="n">unitsNO2</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+    <span class="n">dates</span> <span class="o">=</span> <span class="n">dates</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span>
+    <span class="s2">&quot;NO2&quot;</span><span class="p">:</span> <span class="n">values</span>
+<span class="p">})</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;NO2_TanahMerah_timeseries_terbaru.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df_no2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;NO2_TanahMerah_timeseries_terbaru.csv&quot;</span><span class="p">)</span>
+<span class="n">df_no2</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_no2</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+<span class="n">df_no2</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_no2</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== Pengecekan Missing Values ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_no2</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">========== Pengecekan Data Aneh (Deskripsi Statistik) ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_no2</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== Pengecekan Missing Values ==========
+date    0
+NO2     0
+dtype: int64
+
+========== Pengecekan Data Aneh (Deskripsi Statistik) ==========
+                                date         NO2
+count                            187  187.000000
+mean   2026-04-01 10:31:26.631015936    0.000024
+min              2025-08-31 00:00:00   -0.000007
+25%              2025-12-24 00:00:00    0.000015
+50%              2026-05-05 00:00:00    0.000024
+75%              2026-07-07 12:00:00    0.000030
+max              2026-08-30 00:00:00    0.000063
+std                              NaN    0.000012
+</pre></div>
+</div>
+</div>
+</div>
+<section id="penjelasan-kode-eksplorasi-data">
+<h3>Penjelasan kode eksplorasi data<a class="headerlink" href="#penjelasan-kode-eksplorasi-data" title="Link to this heading">#</a></h3>
+<p>File CSV NO2 dibaca menggunakan Pandas dan nilai polutan dikonversi menjadi numerik dengan <code class="docutils literal notranslate"><span class="pre">errors=&quot;coerce&quot;</span></code> sehingga teks yang tidak valid berubah menjadi nilai kosong. <code class="docutils literal notranslate"><span class="pre">isnull().sum()</span></code> menghitung data yang hilang, sedangkan <code class="docutils literal notranslate"><span class="pre">describe()</span></code> menampilkan jumlah data, rata-rata, standar deviasi, nilai minimum, kuartil, dan maksimum.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="missing-values">
+<h1>6. Missing values<a class="headerlink" href="#missing-values" title="Link to this heading">#</a></h1>
+<section id="penjelasan-bagian-missing-values">
+<h2>Penjelasan bagian Missing Values<a class="headerlink" href="#penjelasan-bagian-missing-values" title="Link to this heading">#</a></h2>
+<p>Missing value adalah data yang tidak memiliki nilai pengamatan atau bernilai kosong. Pemeriksaan pada bagian ini dilakukan dengan dua cara:</p>
+<ol class="arabic simple">
+<li><p><strong>Pengecekan tanggal yang hilang:</strong> <code class="docutils literal notranslate"><span class="pre">pd.date_range()</span></code> membuat daftar tanggal harian lengkap dari <strong>31 Agustus 2025 sampai 31 Agustus 2026</strong>. Method <code class="docutils literal notranslate"><span class="pre">difference()</span></code> membandingkan daftar tersebut dengan kolom <code class="docutils literal notranslate"><span class="pre">date</span></code> untuk menemukan tanggal yang tidak tersedia pada data NO2.</p></li>
+<li><p><strong>Pengecekan nilai kosong:</strong> <code class="docutils literal notranslate"><span class="pre">isna().sum()</span></code> menghitung jumlah nilai kosong pada kolom konsentrasi NO2. Nilai kosong dapat terjadi karena tidak ada observasi satelit yang valid pada tanggal atau wilayah tertentu akibat tutupan awan atau jadwal orbit.</p></li>
+</ol>
+</section>
+<section id="no2">
+<h2>NO2<a class="headerlink" href="#no2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;NO2_TanahMerah_timeseries_terbaru.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="c1"># Buat rentang tanggal lengkap sesuai periode pengambilan data (31-08-2025 s/d 31-08-2026)</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2025-08-31&quot;</span>
+<span class="n">end_date</span>   <span class="o">=</span> <span class="s2">&quot;2026-08-31&quot;</span>
+<span class="n">full_range</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+
+<span class="c1"># Cek tanggal yang hilang</span>
+<span class="n">missing_dates</span> <span class="o">=</span> <span class="n">full_range</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rentang Analisis: </span><span class="si">{</span><span class="n">start_date</span><span class="si">}</span><span class="s2"> s/d </span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Hari Diharapkan: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">full_range</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah Hari Ada Data : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah Hari Missing  : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">missing_dates</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Beberapa Contoh Tanggal Missing:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing_dates</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rentang Analisis: 2025-08-31 s/d 2026-08-31
+Total Hari Diharapkan: 366
+Jumlah Hari Ada Data : 187
+Jumlah Hari Missing  : 179
+
+Beberapa Contoh Tanggal Missing:
+DatetimeIndex([&#39;2025-09-02&#39;, &#39;2025-09-10&#39;, &#39;2025-09-16&#39;, &#39;2025-09-17&#39;,
+               &#39;2025-09-18&#39;, &#39;2025-09-19&#39;, &#39;2025-09-20&#39;, &#39;2025-09-21&#39;,
+               &#39;2025-09-29&#39;, &#39;2025-09-30&#39;],
+              dtype=&#39;datetime64[ns]&#39;, freq=None)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="outliers">
+<h1>7. Outliers<a class="headerlink" href="#outliers" title="Link to this heading">#</a></h1>
+<p>NO2</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">IsolationForest</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;NO2_TanahMerah_timeseries_terbaru.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span><span class="n">contamination</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]])</span>
+
+<span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;is_outlier&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span>
+<span class="n">jumlah_outlier</span> <span class="o">=</span> <span class="p">(</span><span class="n">pred</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah outlier terdeteksi:&quot;</span><span class="p">,</span> <span class="n">jumlah_outlier</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contoh data outlier:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;is_outlier&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah outlier terdeteksi: 10
+
+Contoh data outlier:
+         date       NO2  is_outlier
+0  2025-08-31 -0.000007          -1
+29 2025-10-17 -0.000006          -1
+35 2025-11-25  0.000053          -1
+51 2026-01-08  0.000063          -1
+70 2026-03-09  0.000060          -1
+</pre></div>
+</div>
+</div>
+</div>
+<section id="penjelasan-kode-deteksi-outlier">
+<h2>Penjelasan kode deteksi outlier<a class="headerlink" href="#penjelasan-kode-deteksi-outlier" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">dropna()</span></code> menghapus baris yang tidak memiliki nilai polutan. <code class="docutils literal notranslate"><span class="pre">IsolationForest</span></code> kemudian dilatih menggunakan satu kolom polutan untuk mengidentifikasi nilai yang berbeda jauh dari pola umum. Hasil <code class="docutils literal notranslate"><span class="pre">-1</span></code> dianggap sebagai outlier, sedangkan hasil <code class="docutils literal notranslate"><span class="pre">1</span></code> dianggap sebagai data normal. Parameter <code class="docutils literal notranslate"><span class="pre">contamination=0.05</span></code> memperkirakan sekitar 5% data sebagai outlier.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="imputasi-missing-value-penanganan-outlier">
+<h1>8. Imputasi Missing Value &amp; Penanganan Outlier<a class="headerlink" href="#imputasi-missing-value-penanganan-outlier" title="Link to this heading">#</a></h1>
+<section id="penjelasan-tahapan-imputasi-penanganan-outlier">
+<h2>Penjelasan Tahapan Imputasi &amp; Penanganan Outlier:<a class="headerlink" href="#penjelasan-tahapan-imputasi-penanganan-outlier" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Penanganan Outlier &amp; Nilai Negatif</strong>: Nilai fisik konsentrasi polutan NO2 troposferik tidak boleh negatif. Nilai negatif dan data outlier yang terdeteksi oleh <em>Isolation Forest</em> diubah menjadi <code class="docutils literal notranslate"><span class="pre">NaN</span></code> agar dapat diestimasi ulang secara akurat.</p></li>
+<li><p><strong>Reindexing Deret Waktu Harian</strong>: Deret tanggal direstrukturisasi menjadi tanggal harian penuh dari <strong>31-08-2025 sampai 31-08-2026</strong> (366 hari).</p></li>
+<li><p><strong>Imputasi Deret Waktu</strong>: Nilai kosong (<code class="docutils literal notranslate"><span class="pre">NaN</span></code>) diisi menggunakan <strong>Interpolasi Linier Deret Waktu</strong> (Linear Interpolation) serta <em>backward/forward fill</em> untuk batas rentang data.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">IsolationForest</span>
+
+<span class="c1"># 1. Membaca data time-series asli</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;NO2_TanahMerah_timeseries_terbaru.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 2. Penanganan Nilai Negatif &amp; Deteksi Outliers</span>
+<span class="c1"># Nilai negatif polutan diubah menjadi NaN</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># Deteksi Outlier dengan Isolation Forest</span>
+<span class="n">valid_idx</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">iso</span> <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span><span class="n">contamination</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">iso</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">valid_idx</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]])</span>
+<span class="n">outlier_idx</span> <span class="o">=</span> <span class="n">valid_idx</span><span class="p">[</span><span class="n">preds</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Ubah outlier menjadi NaN untuk diimputasi</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">outlier_idx</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># 3. Pembentukan Deret Tanggal Lengkap (31-08-2025 s/d 31-08-2026)</span>
+<span class="n">full_dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2025-08-31&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2026-08-31&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+<span class="n">df_imputed</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">full_dates</span><span class="p">)</span>
+<span class="n">df_imputed</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
+<span class="n">df_imputed</span> <span class="o">=</span> <span class="n">df_imputed</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># 4. Imputasi Missing Values menggunakan Linear Interpolation</span>
+<span class="n">df_imputed</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_imputed</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+<span class="n">df_imputed</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_imputed</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proses imputasi missing value dan pembersihan outlier berhasil dilakukan!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proses imputasi missing value dan pembersihan outlier berhasil dilakukan!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-sempurna-bebas-outliers-missing-value">
+<h1>9. Data Sempurna (Bebas Outliers &amp; Missing Value)<a class="headerlink" href="#data-sempurna-bebas-outliers-missing-value" title="Link to this heading">#</a></h1>
+<section id="verifikasi-data-akhir">
+<h2>Verifikasi Data Akhir:<a class="headerlink" href="#verifikasi-data-akhir" title="Link to this heading">#</a></h2>
+<p>Memastikan dataset deret waktu telah lengkap (31-08-2025 s/d 31-08-2026), tidak memiliki <em>missing values</em>, tidak ada nilai anomali/negatif, dan menyimpan hasil akhir ke file <code class="docutils literal notranslate"><span class="pre">Polutan_Bangkalan.csv</span></code> serta <code class="docutils literal notranslate"><span class="pre">NO2_TanahMerah_timeseries_clean.csv</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== VERIFIKASI DATA SEMPURNA ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1. Rentang Tanggal : </span><span class="si">{</span><span class="n">df_imputed</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> s/d </span><span class="si">{</span><span class="n">df_imputed</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2. Total Hari      : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_imputed</span><span class="p">)</span><span class="si">}</span><span class="s2"> hari (Lengkap 100%)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;3. Missing Values  : </span><span class="si">{</span><span class="n">df_imputed</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> (Bebas Missing Value)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;4. Nilai Negatif   : </span><span class="si">{</span><span class="p">(</span><span class="n">df_imputed</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> (Bebas Nilai Negatif)&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">========== DESKRIPSI STATISTIK DATA BERSIH ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_imputed</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="c1"># Simpan dataset final yang sempurna</span>
+<span class="n">df_imputed</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;Polutan_Bangkalan.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_imputed</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;NO2_TanahMerah_timeseries_clean.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Dataset sempurna berhasil disimpan ke &#39;Polutan_Bangkalan.csv&#39; dan &#39;NO2_TanahMerah_timeseries_clean.csv&#39;!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== VERIFIKASI DATA SEMPURNA ==========
+1. Rentang Tanggal : 2025-08-31 s/d 2026-08-31
+2. Total Hari      : 366 hari (Lengkap 100%)
+3. Missing Values  : 0 (Bebas Missing Value)
+4. Nilai Negatif   : 0 (Bebas Nilai Negatif)
+
+========== DESKRIPSI STATISTIK DATA BERSIH ==========
+                                date         NO2
+count                            366  366.000000
+mean   2026-03-01 12:00:00.000000256    0.000025
+min              2025-08-31 00:00:00    0.000003
+25%              2025-11-30 06:00:00    0.000020
+50%              2026-03-01 12:00:00    0.000026
+75%              2026-05-31 18:00:00    0.000031
+max              2026-08-31 00:00:00    0.000047
+std                              NaN    0.000008
+
+Dataset sempurna berhasil disimpan ke &#39;Polutan_Bangkalan.csv&#39; dan &#39;NO2_TanahMerah_timeseries_clean.csv&#39;!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== 5 BARIS PERTAMA DATA SEMPURNA ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_imputed</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">========== 5 BARIS TERAKHIR DATA SEMPURNA ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_imputed</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== 5 BARIS PERTAMA DATA SEMPURNA ==========
+        date       NO2
+0 2025-08-31  0.000015
+1 2025-09-01  0.000015
+2 2025-09-02  0.000014
+3 2025-09-03  0.000013
+4 2025-09-04  0.000004
+
+========== 5 BARIS TERAKHIR DATA SEMPURNA ==========
+          date       NO2
+361 2026-08-27  0.000043
+362 2026-08-28  0.000027
+363 2026-08-29  0.000027
+364 2026-08-30  0.000027
+365 2026-08-31  0.000027
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>tsfel
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: tsfel in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (0.2.0)
+Requirement already satisfied: ipython&gt;=7.4.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from tsfel) (9.10.0)
+Requirement already satisfied: numpy&gt;=1.18.5 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from tsfel) (2.4.3)
+Requirement already satisfied: pandas&gt;=1.5.3 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from tsfel) (2.3.3)
+Requirement already satisfied: PyWavelets&gt;=1.4.1 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from tsfel) (1.9.0)
+Requirement already satisfied: requests&gt;=2.31.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from tsfel) (2.32.5)
+Requirement already satisfied: scikit-learn&gt;=0.21.3 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from tsfel) (1.8.0)
+Requirement already satisfied: scipy&gt;=1.7.3 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from tsfel) (1.17.1)
+Requirement already satisfied: setuptools&gt;=47.1.1 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from tsfel) (65.5.0)
+Requirement already satisfied: statsmodels&gt;=0.12.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from tsfel) (0.15.0)
+Requirement already satisfied: colorama&gt;=0.4.4 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (0.4.6)
+Requirement already satisfied: decorator&gt;=4.3.2 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (5.2.1)
+Requirement already satisfied: ipython-pygments-lexers&gt;=1.0.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (1.1.1)
+Requirement already satisfied: jedi&gt;=0.18.1 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (0.19.2)
+Requirement already satisfied: matplotlib-inline&gt;=0.1.5 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (0.2.1)
+Requirement already satisfied: prompt_toolkit&lt;3.1.0,&gt;=3.0.41 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (3.0.52)
+Requirement already satisfied: pygments&gt;=2.11.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (2.19.2)
+Requirement already satisfied: stack_data&gt;=0.6.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (0.6.3)
+Requirement already satisfied: traitlets&gt;=5.13.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (5.14.3)
+Requirement already satisfied: typing_extensions&gt;=4.6 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (4.15.0)
+Requirement already satisfied: wcwidth in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from prompt_toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=7.4.0-&gt;tsfel) (0.6.0)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from jedi&gt;=0.18.1-&gt;ipython&gt;=7.4.0-&gt;tsfel) (0.8.6)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from pandas&gt;=1.5.3-&gt;tsfel) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from pandas&gt;=1.5.3-&gt;tsfel) (2026.3.post1)
+Requirement already satisfied: tzdata&gt;=2022.7 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from pandas&gt;=1.5.3-&gt;tsfel) (2025.3)
+Requirement already satisfied: six&gt;=1.5 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.5.3-&gt;tsfel) (1.17.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from requests&gt;=2.31.0-&gt;tsfel) (3.4.5)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from requests&gt;=2.31.0-&gt;tsfel) (3.11)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from requests&gt;=2.31.0-&gt;tsfel) (2.6.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from requests&gt;=2.31.0-&gt;tsfel) (2026.2.25)
+Requirement already satisfied: joblib&gt;=1.3.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from scikit-learn&gt;=0.21.3-&gt;tsfel) (1.5.3)
+Requirement already satisfied: threadpoolctl&gt;=3.2.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from scikit-learn&gt;=0.21.3-&gt;tsfel) (3.6.0)
+Requirement already satisfied: executing&gt;=1.2.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from stack_data&gt;=0.6.0-&gt;ipython&gt;=7.4.0-&gt;tsfel) (2.2.1)
+Requirement already satisfied: asttokens&gt;=2.1.0 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from stack_data&gt;=0.6.0-&gt;ipython&gt;=7.4.0-&gt;tsfel) (3.0.1)
+Requirement already satisfied: pure-eval in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from stack_data&gt;=0.6.0-&gt;ipython&gt;=7.4.0-&gt;tsfel) (0.2.3)
+Requirement already satisfied: patsy&gt;=0.5.6 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from statsmodels&gt;=0.12.0-&gt;tsfel) (1.0.3)
+Requirement already satisfied: packaging&gt;=21.3 in C:\Users\HYPE AMD\AppData\Roaming\Python\Python311\site-packages (from statsmodels&gt;=0.12.0-&gt;tsfel) (26.0)
+Requirement already satisfied: formulaic&gt;=1.1.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from statsmodels&gt;=0.12.0-&gt;tsfel) (1.2.2)
+Requirement already satisfied: interface-meta&gt;=1.2.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from formulaic&gt;=1.1.0-&gt;statsmodels&gt;=0.12.0-&gt;tsfel) (2.0.1)
+Requirement already satisfied: narwhals&gt;=1.17 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from formulaic&gt;=1.1.0-&gt;statsmodels&gt;=0.12.0-&gt;tsfel) (2.22.0)
+Requirement already satisfied: wrapt&gt;=1.0 in C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\Lib\site-packages (from formulaic&gt;=1.1.0-&gt;statsmodels&gt;=0.12.0-&gt;tsfel) (2.4.0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 26.1.2 -&gt; 26.2.1
+[notice] To update, run: C:\Users\HYPE AMD\AppData\Local\Programs\Python\Python311\python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tsfel_features</span>
+
+<span class="c1"># ---------- 1. Muat dan bersihkan data ----------</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;NO2_TanahMerah_timeseries_clean.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">target_pollutant</span> <span class="o">=</span> <span class="s1">&#39;NO2&#39;</span>
+
+<span class="c1"># --- FIX: paksa kolom target jadi numerik, nilai yang gagal dikonversi -&gt; NaN ---</span>
+<span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+<span class="n">n_missing_before</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah nilai non-numerik/kosong yang dikonversi jadi NaN: </span><span class="si">{</span><span class="n">n_missing_before</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># ---------- 2. Daftar PERSIS fitur yang diminta ----------</span>
+<span class="n">FEATURE_LIST</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;abs_energy auc autocorr average_power calc_centroid calc_max calc_mean</span>
+<span class="s2">calc_median calc_min calc_std calc_var dfa distance ecdf ecdf_percentile ecdf_percentile_count</span>
+<span class="s2">ecdf_slope entropy fundamental_frequency higuchi_fractal_dimension hist_mode human_range_energy</span>
+<span class="s2">hurst_exponent interq_range kurtosis lempel_ziv lpcc max_frequency max_power_spectrum</span>
+<span class="s2">maximum_fractal_length mean_abs_deviation mean_abs_diff mean_diff median_abs_deviation</span>
+<span class="s2">median_abs_diff median_diff median_frequency mfcc mse negative_turning neighbourhood_peaks</span>
+<span class="s2">petrosian_fractal_dimension pk_pk_distance positive_turning power_bandwidth rms skewness slope</span>
+<span class="s2">spectral_centroid spectral_decrease spectral_distance spectral_entropy spectral_kurtosis</span>
+<span class="s2">spectral_positive_turning spectral_roll_off spectral_roll_on spectral_skewness spectral_slope</span>
+<span class="s2">spectral_spread spectral_variation spectrogram_mean_coeff sum_abs_diff wavelet_abs_mean</span>
+<span class="s2">wavelet_energy wavelet_entropy wavelet_std wavelet_var zero_cross&quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah fitur yang diminta:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;values&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tsfel_features</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+    <span class="k">if</span> <span class="s2">&quot;fs&quot;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+
+<span class="n">row</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">fn_name</span> <span class="ow">in</span> <span class="n">FEATURE_LIST</span><span class="p">:</span>
+    <span class="n">row</span><span class="p">[</span><span class="n">fn_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal_1d</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+<span class="n">extracted_features_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">row</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Berhasil! Jumlah fitur yang dihasilkan untuk </span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">extracted_features_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">extracted_features_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">target_pollutant</span><span class="si">}</span><span class="s1">_TanahMerah_TSFEL.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah nilai non-numerik/kosong yang dikonversi jadi NaN: 0
+Jumlah fitur yang diminta: 68
+Berhasil! Jumlah fitur yang dihasilkan untuk NO2: 68
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="penjelasan-fitur-tsfel">
+<h1>Penjelasan Fitur tsfel<a class="headerlink" href="#penjelasan-fitur-tsfel" title="Link to this heading">#</a></h1>
+<p>Berikut adalah penjelasan lengkap mengenai <strong>68 fitur deret waktu (<em>time series features</em>)</strong> yang diekstrak menggunakan pustaka <strong>TSFEL (<em>Time Series Feature Extraction Library</em>)</strong> untuk analisis konsentrasi polutan NO2:</p>
+<hr class="docutils" />
+<section id="domain-statistik-karakteristik-dasar-sinyal-statistical-temporal-domain">
+<h2>1. Domain Statistik &amp; Karakteristik Dasar Sinyal (Statistical &amp; Temporal Domain)<a class="headerlink" href="#domain-statistik-karakteristik-dasar-sinyal-statistical-temporal-domain" title="Link to this heading">#</a></h2>
+<p>Fitur-fitur ini mendeskripsikan distribusi nilai, pusat data, dispersi, dan energi keseluruhan dari deret waktu:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (Mean):</strong> Nilai rata-rata konsentrasi polutan NO2 selama periode pengamatan.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">calc_median</span></code> (Median):</strong> Nilai tengah data setelah diurutkan, tahan terhadap pencilan (<em>outliers</em>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">calc_min</span></code> (Minimum):</strong> Nilai konsentrasi NO2 terendah yang tercatat.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">calc_max</span></code> (Maximum):</strong> Nilai konsentrasi NO2 tertinggi yang tercatat.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">calc_std</span></code> (Standard Deviation):</strong> Mengukur dispersi atau seberapa jauh data tersebar dari nilai rata-rata.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">calc_var</span></code> (Variance):</strong> Varians data (kuadrat standar deviasi), menggambarkan volatilitas polutan.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">calc_centroid</span></code> (Centroid):</strong> Titik pusat massa distribusi waktu dari sinyal.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">skewness</span></code> (Kemencengan):</strong> Derajat asimetri distribusi data terhadap nilai rata-ratanya.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">kurtosis</span></code> (Keruncingan):</strong> Tingkat keruncingan distribusi dan ketebalan ekor data (<em>tail risk</em>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">interq_range</span></code> (Interquartile Range / IQR):</strong> Rentang interkuartil (Q3 - Q1), mengukur sebaran data pada 50% data tengah.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">hist_mode</span></code> (Histogram Mode):</strong> Nilai konsentrasi yang paling sering muncul berdasarkan binning histogram.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">rms</span></code> (Root Mean Square):</strong> Nilai akar kuadrat rata-rata kuadrat sinyal, mengukur magnitudo kekuatan sinyal.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">abs_energy</span></code> (Absolute Energy):</strong> Jumlah kuadrat dari seluruh nilai sinyal, menunjukkan total energi NO2.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">average_power</span></code> (Average Power):</strong> Rata-rata daya sinyal (total energi dibagi dengan panjang data).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">auc</span></code> (Area Under Curve):</strong> Total luas area di bawah kurva deret waktu menggunakan integrasi numerik trapesium.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">autocorr</span></code> (Autocorrelation):</strong> Tingkat korelasi sinyal dengan dirinya sendiri pada jeda waktu (<em>lag</em>), menunjukkan memori deret waktu.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mean_abs_deviation</span></code> (Mean Absolute Deviation):</strong> Rata-rata simpangan mutlak setiap titik terhadap nilai rata-rata (<em>mean</em>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">median_abs_deviation</span></code> (Median Absolute Deviation):</strong> Median dari simpangan mutlak setiap titik terhadap median.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="domain-dinamika-perubahan-titik-balik-temporal-dynamics-turning-points">
+<h2>2. Domain Dinamika Perubahan &amp; Titik Balik (Temporal Dynamics &amp; Turning Points)<a class="headerlink" href="#domain-dinamika-perubahan-titik-balik-temporal-dynamics-turning-points" title="Link to this heading">#</a></h2>
+<p>Fitur-fitur ini mengukur laju variasi harian, kestabilan perubahan, dan bentuk lintasan sinyal:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mean_diff</span></code> (Mean First Difference):</strong> Rata-rata selisih perubahan harian antar-titik waktu berurutan (<span class="math notranslate nohighlight">\(x_t - x_{t-1}\)</span>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mean_abs_diff</span></code> (Mean Absolute First Difference):</strong> Rata-rata perubahan absolut harian (<span class="math notranslate nohighlight">\(|x_t - x_{t-1}|\)</span>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">median_diff</span></code> (Median First Difference):</strong> Median dari selisih perubahan antar-waktu berurutan.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">median_abs_diff</span></code> (Median Absolute First Difference):</strong> Median dari perubahan absolut harian.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">sum_abs_diff</span></code> (Sum of Absolute Differences):</strong> Akumulasi total seluruh perubahan absolut sepanjang periode.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">distance</span></code> (Cumulative Distance):</strong> Total jarak lintasan sinyal titik demi titik sepanjang kurva.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">slope</span></code> (Linear Trend Slope):</strong> Kemiringan garis regresi linier yang menunjukkan arah tren jangka panjang NO2 (naik/turun).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">positive_turning</span></code> (Positive Turning Points):</strong> Jumlah titik belok lokal puncak (perubahan arah dari naik menjadi turun).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">negative_turning</span></code> (Negative Turning Points):</strong> Jumlah titik belok lokal lembah (perubahan arah dari turun menjadi naik).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">neighbourhood_peaks</span></code> (Neighbourhood Peaks):</strong> Jumlah puncak lokal yang menonjol dibandingkan tetangga sekitarnya.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pk_pk_distance</span></code> (Peak-to-Peak Distance):</strong> Selisih rentang absolut antara nilai puncak tertinggi dan lembah terendah (<span class="math notranslate nohighlight">\(x_{max} - x_{min}\)</span>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">zero_cross</span></code> (Zero Crossing Rate):</strong> Frekuensi sinyal melintasi garis nol atau nilai referensi tengah.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="domain-distribusi-probabilitas-empiris-ecdf-features">
+<h2>3. Domain Distribusi Probabilitas Empiris (ECDF Features)<a class="headerlink" href="#domain-distribusi-probabilitas-empiris-ecdf-features" title="Link to this heading">#</a></h2>
+<p>Mengkarakterisasi fungsi distribusi kumulatif empiris (<em>Empirical Cumulative Distribution Function</em>):</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ecdf</span></code> (ECDF Mean):</strong> Nilai rata-rata integral dari fungsi distribusi kumulatif empiris.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ecdf_percentile</span></code> (ECDF Percentile):</strong> Nilai kuantil/persentil tertentu pada kurva ECDF.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ecdf_percentile_count</span></code> (ECDF Percentile Count):</strong> Jumlah sampel data yang berada di bawah persentil tertentu kurva ECDF.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ecdf_slope</span></code> (ECDF Slope):</strong> Kemiringan kurva ECDF yang merefleksikan laju akumulasi probabilitas konsentrasi.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="domain-fraktalitas-kompleksitas-non-linier-fractal-complexity-domain">
+<h2>4. Domain Fraktalitas &amp; Kompleksitas Non-Linier (Fractal &amp; Complexity Domain)<a class="headerlink" href="#domain-fraktalitas-kompleksitas-non-linier-fractal-complexity-domain" title="Link to this heading">#</a></h2>
+<p>Mengukur keteraturan, ketidakpastian, dan struktur skala fraktal sinyal:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">entropy</span></code> (Shannon Entropy):</strong> Mengukur tingkat keacakan, ketidakpastian, atau kekacauan informasi dalam sinyal.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">hurst_exponent</span></code> (Hurst Exponent):</strong> Eksponen Hurst yang mengukur persistensi tren deret waktu (<span class="math notranslate nohighlight">\(H &gt; 0.5\)</span> mengindikasikan persistensi tren, <span class="math notranslate nohighlight">\(H = 0.5\)</span> gerak acak, <span class="math notranslate nohighlight">\(H &lt; 0.5\)</span> mean-reverting).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">dfa</span></code> (Detrended Fluctuation Analysis):</strong> Mengukur korelasi jangka panjang (<em>long-range auto-correlation</em>) pada sinyal non-stasioner.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">higuchi_fractal_dimension</span></code> (Higuchi Fractal Dimension):</strong> Dimensi fraktal Higuchi untuk mengukur kekasaran dan kompleksitas geometrik kurva deret waktu.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">petrosian_fractal_dimension</span></code> (Petrosian Fractal Dimension):</strong> Dimensi fraktal Petrosian berdasarkan perubahan tanda turunan pertama sinyal.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">maximum_fractal_length</span></code> (Maximum Fractal Length):</strong> Panjang kurva fraktal maksimum yang diukur pada skala analisis tertentu.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">lempel_ziv</span></code> (Lempel-Ziv Complexity):</strong> Mengukur laju kemunculan pola atau subunit baru di dalam deret waktu.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mse</span></code> (Mean Squared Error / Multiscale Complexity):</strong> Mengukur variasi energi kesalahan rata-rata pada skala sinyal.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="domain-frekuensi-spektral-spectral-frequency-domain">
+<h2>5. Domain Frekuensi &amp; Spektral (Spectral / Frequency Domain)<a class="headerlink" href="#domain-frekuensi-spektral-spectral-frequency-domain" title="Link to this heading">#</a></h2>
+<p>Menggambarkan karakteristik periodisitas, kerapatan spektral daya (<em>Power Spectral Density</em>), dan distribusi frekuensi:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fundamental_frequency</span></code> (Fundamental Frequency):</strong> Frekuensi dasar terendah yang paling dominan dalam sinyal NO2.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">max_frequency</span></code> (Maximum Frequency):</strong> Frekuensi yang memiliki amplitudo/respon spektral tertinggi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">median_frequency</span></code> (Median Frequency):</strong> Frekuensi yang membagi dua spektrum daya secara seimbang (50% daya di bawah dan 50% di atas).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">max_power_spectrum</span></code> (Max Power Spectrum):</strong> Kerapatan spektral daya maksimum (<em>peak power density</em>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">power_bandwidth</span></code> (Power Bandwidth):</strong> Lebar pita frekuensi (<em>bandwidth</em>) yang mencakup sebagian besar energi spektrum.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_centroid</span></code> (Spectral Centroid):</strong> Pusat massa frekuensi dari spektrum daya (<em>center of mass</em> frekuensi).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_spread</span></code> (Spectral Spread):</strong> Lebar sebaran spektral di sekitar centroid frekuensi (varians spektral).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_skewness</span></code> (Spectral Skewness):</strong> Derajat asimetri distribusi energi spektrum daya.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_kurtosis</span></code> (Spectral Kurtosis):</strong> Keruncingan distribusi energi spektral frekuensi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code> (Spectral Entropy):</strong> Mengukur kerataan distribusi spektral (apakah acak seperti <em>white noise</em> atau terpusat pada frekuensi tertentu).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_slope</span></code> (Spectral Slope):</strong> Kemiringan garis penurunan spektrum daya terhadap peningkatan frekuensi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_decrease</span></code> (Spectral Decrease):</strong> Laju penurunan energi spektrum pada pita frekuensi tinggi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_distance</span></code> (Spectral Distance):</strong> Jarak penyimpangan distribusi spektral terhadap profil spektrum acuan.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_roll_off</span></code> (Spectral Roll-off):</strong> Frekuensi batas bawah di mana 85-95% total energi spektral terkonsentrasi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_roll_on</span></code> (Spectral Roll-on):</strong> Frekuensi awal di mana energi spektral mulai terkumpul.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_variation</span></code> (Spectral Variation):</strong> Fluktuasi/variasi bentuk energi spektral antar-frekuensi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectral_positive_turning</span></code> (Spectral Positive Turning Points):</strong> Jumlah puncak/titik balik positif pada kurva spektrum daya.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">spectrogram_mean_coeff</span></code> (Spectrogram Mean Coefficient):</strong> Rata-rata koefisien dari matriks spektrogram waktu-frekuensi.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">human_range_energy</span></code> (Human Range Energy):</strong> Rasio energi sinyal pada rentang frekuensi tertentu yang relevan.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">lpcc</span></code> (Linear Prediction Cepstral Coefficients):</strong> Koefisien kepstral hasil pemodelan linier untuk mendeskripsikan amplop spektrum.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mfcc</span></code> (Mel-Frequency Cepstral Coefficients):</strong> Koefisien kepstral frekuensi Mel yang memetakan energi spektral non-linier.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="domain-transformasi-wavelet-wavelet-domain">
+<h2>6. Domain Transformasi Wavelet (Wavelet Domain)<a class="headerlink" href="#domain-transformasi-wavelet-wavelet-domain" title="Link to this heading">#</a></h2>
+<p>Menganalisis sinyal multiskala menggunakan dekomposisi koefisien wavelet (<em>Wavelet Transform</em>):</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_energy</span></code> (Wavelet Energy):</strong> Total akumulasi energi dari koefisien dekomposisi wavelet.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_entropy</span></code> (Wavelet Entropy):</strong> Tingkat entropi/ketidakteraturan distribusi energi koefisien wavelet multiskala.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_abs_mean</span></code> (Wavelet Absolute Mean):</strong> Rata-rata nilai absolut koefisien wavelet.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_std</span></code> (Wavelet Standard Deviation):</strong> Standar deviasi dari koefisien wavelet, menggambarkan dispersi energi gelombang.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">wavelet_var</span></code> (Wavelet Variance):</strong> Varians koefisien wavelet.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="statistika_deskriptif_polutan.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Penjelasan Metrik Statistika Deskriptif</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Preprocessing dan Ekstraksi Fitur Data Polutan di Kecamatan Tanah Merah, Bangkalan</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-mengetahui-kualitas-udara-di-daerah-masing-masing">1.  Tujuan Mengetahui Kualitas Udara di Daerah Masing-Masing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">2.  Manfaat</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur">Deskripsi Fitur</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-dan-ekstraksi-fitur">Preprocessing dan Ekstraksi Fitur</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-dan-autentikasi">1. Persiapan Lingkungan dan Autentikasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-autentikasi">Penjelasan kode autentikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-pemanggilan-data">Penjelasan kode pemanggilan data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregasi-spasio-temporal-dan-eksekusi-server">3. Agregasi Spasio-Temporal dan Eksekusi Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-agregasi">Penjelasan kode agregasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-batch-job">Penjelasan kode batch job</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-data-netcdf-ke-csv">4. Transformasi Data (NetCDF ke CSV)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-eksplorasi-data">Penjelasan kode eksplorasi data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">6. Missing values</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-bagian-missing-values">Penjelasan bagian Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#no2">NO2</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers">7. Outliers</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-kode-deteksi-outlier">Penjelasan kode deteksi outlier</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#imputasi-missing-value-penanganan-outlier">8. Imputasi Missing Value &amp; Penanganan Outlier</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-tahapan-imputasi-penanganan-outlier">Penjelasan Tahapan Imputasi &amp; Penanganan Outlier:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sempurna-bebas-outliers-missing-value">9. Data Sempurna (Bebas Outliers &amp; Missing Value)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#verifikasi-data-akhir">Verifikasi Data Akhir:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-fitur-tsfel">Penjelasan Fitur tsfel</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-statistik-karakteristik-dasar-sinyal-statistical-temporal-domain">1. Domain Statistik &amp; Karakteristik Dasar Sinyal (Statistical &amp; Temporal Domain)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-dinamika-perubahan-titik-balik-temporal-dynamics-turning-points">2. Domain Dinamika Perubahan &amp; Titik Balik (Temporal Dynamics &amp; Turning Points)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-distribusi-probabilitas-empiris-ecdf-features">3. Domain Distribusi Probabilitas Empiris (ECDF Features)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-fraktalitas-kompleksitas-non-linier-fractal-complexity-domain">4. Domain Fraktalitas &amp; Kompleksitas Non-Linier (Fractal &amp; Complexity Domain)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-frekuensi-spektral-spectral-frequency-domain">5. Domain Frekuensi &amp; Spektral (Spectral / Frequency Domain)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-transformasi-wavelet-wavelet-domain">6. Domain Transformasi Wavelet (Wavelet Domain)</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mohammad Aziz Huzaini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
