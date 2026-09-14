@@ -625,7 +625,7 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 <section id="penjelasan-kode-autentikasi">
 <h3>Penjelasan kode autentikasi<a class="headerlink" href="#penjelasan-kode-autentikasi" title="Link to this heading">#</a></h3>
 <p>Kode sebelumnya mengimpor pustaka <code class="docutils literal notranslate"><span class="pre">openeo</span></code>, kemudian membuat koneksi ke layanan OpenEO Copernicus Data Space. Fungsi <code class="docutils literal notranslate"><span class="pre">authenticate_oidc()</span></code> melakukan autentikasi menggunakan OpenID Connect sehingga notebook dapat mengakses koleksi data Sentinel-5P dan mengirim proses analisis ke server.</p>
-<p><img alt="peta.png" src="_images/peta_tamer.png" /></p>
+<p><img alt="Screenshot 2026-09-12 204241.png" src="attachment:Screenshot%202026-09-12%20204241.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aoi</span> <span class="o">=</span> <span class="p">{</span>
@@ -701,19 +701,19 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: send &#39;start&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-26091400510542a4900ae8388f5c6a3e&#39;: send &#39;start&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:03 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: created (progress 0%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:03 Job &#39;j-26091400510542a4900ae8388f5c6a3e&#39;: queued (progress 0%)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:09 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: queued (progress 0%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:09 Job &#39;j-26091400510542a4900ae8388f5c6a3e&#39;: queued (progress 0%)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:16 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: queued (progress 0%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:15 Job &#39;j-26091400510542a4900ae8388f5c6a3e&#39;: queued (progress 0%)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:24 Job &#39;j-2609131347244185a37fbe39d51f03c3&#39;: queued (progress 0%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:24 Job &#39;j-26091400510542a4900ae8388f5c6a3e&#39;: queued (progress 0%)
 </pre></div>
 </div>
 </div>
@@ -1211,6 +1211,179 @@ Berhasil! Jumlah fitur yang dihasilkan untuk NO2: 68
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Menampilkan tabel hasil ekstraksi fitur TSFEL</span>
+<span class="n">df_tsfel</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;NO2_TanahMerah_TSFEL.csv&#39;</span><span class="p">)</span>
+<span class="n">df_tsfel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>abs_energy</th>
+      <th>auc</th>
+      <th>autocorr</th>
+      <th>average_power</th>
+      <th>calc_centroid</th>
+      <th>calc_max</th>
+      <th>calc_mean</th>
+      <th>calc_median</th>
+      <th>calc_min</th>
+      <th>calc_std</th>
+      <th>calc_var</th>
+      <th>dfa</th>
+      <th>distance</th>
+      <th>ecdf</th>
+      <th>ecdf_percentile</th>
+      <th>ecdf_percentile_count</th>
+      <th>ecdf_slope</th>
+      <th>entropy</th>
+      <th>fundamental_frequency</th>
+      <th>higuchi_fractal_dimension</th>
+      <th>hist_mode</th>
+      <th>human_range_energy</th>
+      <th>hurst_exponent</th>
+      <th>interq_range</th>
+      <th>kurtosis</th>
+      <th>lempel_ziv</th>
+      <th>lpcc</th>
+      <th>max_frequency</th>
+      <th>max_power_spectrum</th>
+      <th>maximum_fractal_length</th>
+      <th>mean_abs_deviation</th>
+      <th>mean_abs_diff</th>
+      <th>mean_diff</th>
+      <th>median_abs_deviation</th>
+      <th>median_abs_diff</th>
+      <th>median_diff</th>
+      <th>median_frequency</th>
+      <th>mfcc</th>
+      <th>mse</th>
+      <th>negative_turning</th>
+      <th>neighbourhood_peaks</th>
+      <th>petrosian_fractal_dimension</th>
+      <th>pk_pk_distance</th>
+      <th>positive_turning</th>
+      <th>power_bandwidth</th>
+      <th>rms</th>
+      <th>skewness</th>
+      <th>slope</th>
+      <th>spectral_centroid</th>
+      <th>spectral_decrease</th>
+      <th>spectral_distance</th>
+      <th>spectral_entropy</th>
+      <th>spectral_kurtosis</th>
+      <th>spectral_positive_turning</th>
+      <th>spectral_roll_off</th>
+      <th>spectral_roll_on</th>
+      <th>spectral_skewness</th>
+      <th>spectral_slope</th>
+      <th>spectral_spread</th>
+      <th>spectral_variation</th>
+      <th>spectrogram_mean_coeff</th>
+      <th>sum_abs_diff</th>
+      <th>wavelet_abs_mean</th>
+      <th>wavelet_energy</th>
+      <th>wavelet_entropy</th>
+      <th>wavelet_std</th>
+      <th>wavelet_var</th>
+      <th>zero_cross</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.608035e-07</td>
+      <td>0.009258</td>
+      <td>4.0</td>
+      <td>7.145301e-10</td>
+      <td>170.256154</td>
+      <td>0.000047</td>
+      <td>0.000025</td>
+      <td>0.000026</td>
+      <td>0.000004</td>
+      <td>0.000008</td>
+      <td>6.979190e-11</td>
+      <td>1.146748</td>
+      <td>365.0</td>
+      <td>0.015027</td>
+      <td>0.000025</td>
+      <td>182.5</td>
+      <td>52791.11553</td>
+      <td>0.996792</td>
+      <td>0.002732</td>
+      <td>1.847039</td>
+      <td>0.000027</td>
+      <td>0.0</td>
+      <td>0.8231</td>
+      <td>0.000011</td>
+      <td>-0.15595</td>
+      <td>0.163934</td>
+      <td>0.737113</td>
+      <td>0.42623</td>
+      <td>55.971131</td>
+      <td>-2.721974</td>
+      <td>0.000007</td>
+      <td>0.000004</td>
+      <td>3.165045e-08</td>
+      <td>0.000005</td>
+      <td>0.000002</td>
+      <td>-1.386292e-07</td>
+      <td>0.057377</td>
+      <td>20.297615</td>
+      <td>1.044248</td>
+      <td>52.0</td>
+      <td>12.0</td>
+      <td>1.018922</td>
+      <td>0.000043</td>
+      <td>52.0</td>
+      <td>0.297814</td>
+      <td>0.000027</td>
+      <td>-0.038668</td>
+      <td>-1.669431e-08</td>
+      <td>0.122597</td>
+      <td>-2.420345</td>
+      <td>-1.44336</td>
+      <td>0.739665</td>
+      <td>2.787968</td>
+      <td>54.0</td>
+      <td>0.42623</td>
+      <td>0.0</td>
+      <td>1.026317</td>
+      <td>-0.032876</td>
+      <td>0.145286</td>
+      <td>0.36294</td>
+      <td>9.636304e-11</td>
+      <td>0.001437</td>
+      <td>0.000001</td>
+      <td>0.000012</td>
+      <td>2.14052</td>
+      <td>0.000012</td>
+      <td>1.625591e-10</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 </section>
