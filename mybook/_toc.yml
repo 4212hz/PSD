@@ -4,10 +4,9 @@
 format: jb-book
 root: intro
 chapters:
-- file: Kualitas_Udara_di_Kabupaten_Bangkalan
-- file: statistika_deskriptif_polutan
-- file: Preprocessing_dan_Ekstraksi_Fitur_Data_Polutan_di_Kecamatan_Tanah_Merah
-chapters:
+  - file: Kualitas_Udara_di_Kabupaten_Bangkalan
+  - file: statistika_deskriptif_polutan
+  - file: Preprocessing_dan_Ekstraksi_Fitur_Data_Polutan_di_Kecamatan_Tanah_Merah
   - file: Analisis_Polutan
     sections:
       - file: clustering_k-means
