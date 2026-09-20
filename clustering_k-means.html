@@ -442,15 +442,12 @@
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clustering Polutan Menggunakan K-Means</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-k-means-menggunakan-python-scikit-learn">1. Penerapan K-Means Menggunakan Python (Scikit-Learn)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-jumlah-cluster-dengan-elbow-method">1.1 Menentukan Jumlah Cluster dengan Elbow Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-scatter-plot-pca-dan-analisis-profil-cluster">1.2 Visualisasi Scatter Plot PCA dan Analisis Profil Cluster</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-code">Contoh Code</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-scatter-plot-pca-dan-analisis-profil-cluster">1.2 Visualisasi Scatter Plot PCA dan Analisis Profil Cluster</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contoh code</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-code">Contoh code</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-workflow-clustering-pada-knime">2. Tahapan Workflow Clustering pada KNIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil-clustering-melalui-scatter-plot">3. Interpretasi Hasil Clustering melalui Scatter Plot</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polutan-no2-6-klaster">3.1 Polutan NO2 (6 Klaster)</a><ul class="nav section-nav flex-column">
@@ -526,11 +523,9 @@ Requirement already satisfied: six&gt;=1.5 in C:\Users\HYPE AMD\AppData\Roaming\
 </div>
 </div>
 </div>
-</section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="contoh-code">
-<h1>Contoh Code<a class="headerlink" href="#contoh-code" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>NO2</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -555,7 +550,7 @@ Requirement already satisfied: six&gt;=1.5 in C:\Users\HYPE AMD\AppData\Roaming\
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K_range</span><span class="p">,</span> <span class="n">inertia</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Evaluasi Jumlah Cluster dengan Elbow Method&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Evaluasi Jumlah Cluster dengan Elbow Method (NO2)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (K)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Inersia (Jarak Kuadrat)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -630,45 +625,6 @@ Requirement already satisfied: six&gt;=1.5 in C:\Users\HYPE AMD\AppData\Roaming\
 <span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;./psd_data/ekstraksi_fitur_no2.csv&#39;
 </pre></div>
 </div>
-</div>
-</div>
-<ol class="arabic simple">
-<li><p>NO2</p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./psd_data/ekstraksi_fitur_no2.csv&#39;</span><span class="p">)</span>
-<span class="n">fitur</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;nama&#39;</span><span class="p">,</span> <span class="s1">&#39;daerah&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-<span class="n">fitur_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fitur</span><span class="p">)</span>
-<span class="n">fitur_pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fitur_scaled</span><span class="p">)</span>
-
-<span class="n">inertia</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">K_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">K_range</span><span class="p">:</span>
-    <span class="n">kmeans_temp</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">kmeans_temp</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fitur_pca</span><span class="p">)</span>
-    <span class="n">inertia</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans_temp</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">K_range</span><span class="p">,</span> <span class="n">inertia</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Evaluasi Jumlah Cluster dengan Elbow Method (NO2)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cluster (K)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Inersia (Jarak Kuadrat)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/b0166e09b9003163da411c515ee8de3b61da155ba313b14d50b8a1107281ec71.png" src="_images/b0166e09b9003163da411c515ee8de3b61da155ba313b14d50b8a1107281ec71.png" />
 </div>
 </div>
 <blockquote>
@@ -774,13 +730,15 @@ Requirement already satisfied: six&gt;=1.5 in C:\Users\HYPE AMD\AppData\Roaming\
 </ul>
 </div></blockquote>
 <p><em>Catatan: Grafik di atas akan memperlihatkan titik perubahan kemiringan yang menyerupai siku (elbow). Apabila perubahan paling jelas terjadi pada angka 6, maka nilai <span class="math notranslate nohighlight">\(K=6\)</span> dapat dipilih sebagai jumlah cluster.</em></p>
+</section>
 <section id="visualisasi-scatter-plot-pca-dan-analisis-profil-cluster">
-<h2>1.2 Visualisasi Scatter Plot PCA dan Analisis Profil Cluster<a class="headerlink" href="#visualisasi-scatter-plot-pca-dan-analisis-profil-cluster" title="Link to this heading">#</a></h2>
+<h3>1.2 Visualisasi Scatter Plot PCA dan Analisis Profil Cluster<a class="headerlink" href="#visualisasi-scatter-plot-pca-dan-analisis-profil-cluster" title="Link to this heading">#</a></h3>
 <p>Setelah jumlah cluster ditetapkan sebesar <span class="math notranslate nohighlight">\(K=6\)</span>, algoritma K-Means akhir dijalankan. Selanjutnya, dibuat <strong>Scatter Plot PCA</strong> dengan menggunakan PCA 1 dan PCA 2 untuk mengamati pemisahan antarcluster secara matematis.</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Contoh code<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="contoh-code">
+<h1>Contoh code<a class="headerlink" href="#contoh-code" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -1264,15 +1222,12 @@ Node ini berfungsi menampilkan hasil pengelompokan K-Means dalam bentuk visual s
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clustering Polutan Menggunakan K-Means</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-k-means-menggunakan-python-scikit-learn">1. Penerapan K-Means Menggunakan Python (Scikit-Learn)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-jumlah-cluster-dengan-elbow-method">1.1 Menentukan Jumlah Cluster dengan Elbow Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-scatter-plot-pca-dan-analisis-profil-cluster">1.2 Visualisasi Scatter Plot PCA dan Analisis Profil Cluster</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-code">Contoh Code</a><ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-scatter-plot-pca-dan-analisis-profil-cluster">1.2 Visualisasi Scatter Plot PCA dan Analisis Profil Cluster</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contoh code</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-code">Contoh code</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-workflow-clustering-pada-knime">2. Tahapan Workflow Clustering pada KNIME</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil-clustering-melalui-scatter-plot">3. Interpretasi Hasil Clustering melalui Scatter Plot</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polutan-no2-6-klaster">3.1 Polutan NO2 (6 Klaster)</a><ul class="nav section-nav flex-column">
