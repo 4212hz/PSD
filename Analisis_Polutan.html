@@ -566,31 +566,7 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ConnectionResetError</span><span class="g g-Whitespace">                      </span>Traceback (most recent call last)
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:787,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="c1"># Make the request on the HTTPConnection object</span>
-<span class="ne">--&gt; </span><span class="mi">787</span> <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">788</span>     <span class="n">conn</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">789</span>     <span class="n">method</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>     <span class="n">url</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">791</span>     <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_obj</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">792</span>     <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">793</span>     <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span>     <span class="n">chunked</span><span class="o">=</span><span class="n">chunked</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">795</span>     <span class="n">retries</span><span class="o">=</span><span class="n">retries</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">796</span>     <span class="n">response_conn</span><span class="o">=</span><span class="n">response_conn</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span>     <span class="n">preload_content</span><span class="o">=</span><span class="n">preload_content</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span>     <span class="n">decode_content</span><span class="o">=</span><span class="n">decode_content</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">799</span>     <span class="o">**</span><span class="n">response_kw</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">800</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">802</span> <span class="c1"># Everything went great!</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:488,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
-<span class="g g-Whitespace">    </span><span class="mi">487</span>         <span class="n">new_e</span> <span class="o">=</span> <span class="n">_wrap_proxy_error</span><span class="p">(</span><span class="n">new_e</span><span class="p">,</span> <span class="n">conn</span><span class="o">.</span><span class="n">proxy</span><span class="o">.</span><span class="n">scheme</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">488</span>     <span class="k">raise</span> <span class="n">new_e</span>
-<span class="g g-Whitespace">    </span><span class="mi">490</span> <span class="c1"># conn.request() calls http.client.*.request, not the method in</span>
-<span class="g g-Whitespace">    </span><span class="mi">491</span> <span class="c1"># urllib3.request. It also calls makefile (recv) on the socket.</span>
-
+<span class="ne">TimeoutError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
 <span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:464,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
 <span class="g g-Whitespace">    </span><span class="mi">463</span> <span class="k">try</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">464</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_validate_conn</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
@@ -675,11 +651,11 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 <span class="ne">-&gt; </span><span class="mi">1382</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
 <span class="g g-Whitespace">   </span><span class="mi">1383</span> <span class="k">finally</span><span class="p">:</span>
 
-<span class="ne">ConnectionResetError</span>: [WinError 10054] An existing connection was forcibly closed by the remote host
+<span class="ne">TimeoutError</span>: _ssl.c:989: The handshake operation timed out
 
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
 
-<span class="ne">ProtocolError</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="ne">ReadTimeoutError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
 <span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\requests\adapters.py:644,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
 <span class="g g-Whitespace">    </span><span class="mi">643</span> <span class="k">try</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">644</span>     <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
@@ -709,10 +685,10 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 <span class="ne">--&gt; </span><span class="mi">490</span>     <span class="k">raise</span> <span class="n">reraise</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">error</span><span class="p">),</span> <span class="n">error</span><span class="p">,</span> <span class="n">_stacktrace</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">491</span> <span class="k">elif</span> <span class="n">read</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\util\util.py:38,</span> in <span class="ni">reraise</span><span class="nt">(tp, value, tb)</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">__traceback__</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">tb</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">38</span>     <span class="k">raise</span> <span class="n">value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="k">raise</span> <span class="n">value</span>
+<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\util\util.py:39,</span> in <span class="ni">reraise</span><span class="nt">(tp, value, tb)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>         <span class="k">raise</span> <span class="n">value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">39</span>     <span class="k">raise</span> <span class="n">value</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="k">finally</span><span class="p">:</span>
 
 <span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:787,</span> in <span class="ni">HTTPConnectionPool.urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)</span>
 <span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="c1"># Make the request on the HTTPConnection object</span>
@@ -738,95 +714,23 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 <span class="g g-Whitespace">    </span><span class="mi">490</span> <span class="c1"># conn.request() calls http.client.*.request, not the method in</span>
 <span class="g g-Whitespace">    </span><span class="mi">491</span> <span class="c1"># urllib3.request. It also calls makefile (recv) on the socket.</span>
 
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:464,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">464</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_validate_conn</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:466,</span> in <span class="ni">HTTPConnectionPool._make_request</span><span class="nt">(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)</span>
 <span class="g g-Whitespace">    </span><span class="mi">465</span> <span class="k">except</span> <span class="p">(</span><span class="n">SocketTimeout</span><span class="p">,</span> <span class="n">BaseSSLError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">466</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_raise_timeout</span><span class="p">(</span><span class="n">err</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout_value</span><span class="o">=</span><span class="n">conn</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">467</span>     <span class="k">raise</span>
 
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:1093,</span> in <span class="ni">HTTPSConnectionPool._validate_conn</span><span class="nt">(self, conn)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1092</span> <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">is_closed</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1093</span>     <span class="n">conn</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1095</span> <span class="c1"># TODO revise this, see https://github.com/urllib3/urllib3/issues/2791</span>
+<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connectionpool.py:367,</span> in <span class="ni">HTTPConnectionPool._raise_timeout</span><span class="nt">(self, err, url, timeout_value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">SocketTimeout</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">367</span>     <span class="k">raise</span> <span class="n">ReadTimeoutError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span>         <span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Read timed out. (read timeout=</span><span class="si">{</span><span class="n">timeout_value</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">369</span>     <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span> <span class="c1"># See the above comment about EAGAIN in Python 3.</span>
 
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connection.py:796,</span> in <span class="ni">HTTPSConnection.connect</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">794</span> <span class="n">server_hostname_rm_dot</span> <span class="o">=</span> <span class="n">server_hostname</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">796</span> <span class="n">sock_and_verified</span> <span class="o">=</span> <span class="n">_ssl_wrap_socket_and_match_hostname</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">797</span>     <span class="n">sock</span><span class="o">=</span><span class="n">sock</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span>     <span class="n">cert_reqs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert_reqs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">799</span>     <span class="n">ssl_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssl_version</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">800</span>     <span class="n">ssl_minimum_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssl_minimum_version</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">801</span>     <span class="n">ssl_maximum_version</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssl_maximum_version</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">802</span>     <span class="n">ca_certs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_certs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">803</span>     <span class="n">ca_cert_dir</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_cert_dir</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">804</span>     <span class="n">ca_cert_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ca_cert_data</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">805</span>     <span class="n">cert_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cert_file</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">806</span>     <span class="n">key_file</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">key_file</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">807</span>     <span class="n">key_password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">key_password</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">808</span>     <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname_rm_dot</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">809</span>     <span class="n">ssl_context</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ssl_context</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">810</span>     <span class="n">tls_in_tls</span><span class="o">=</span><span class="n">tls_in_tls</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">811</span>     <span class="n">assert_hostname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">assert_hostname</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">812</span>     <span class="n">assert_fingerprint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">assert_fingerprint</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">813</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">814</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">sock_and_verified</span><span class="o">.</span><span class="n">socket</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\connection.py:975,</span> in <span class="ni">_ssl_wrap_socket_and_match_hostname</span><span class="nt">(sock, cert_reqs, ssl_version, ssl_minimum_version, ssl_maximum_version, cert_file, key_file, key_password, ca_certs, ca_cert_dir, ca_cert_data, assert_hostname, assert_fingerprint, server_hostname, ssl_context, tls_in_tls)</span>
-<span class="g g-Whitespace">    </span><span class="mi">973</span>         <span class="n">server_hostname</span> <span class="o">=</span> <span class="n">normalized</span>
-<span class="ne">--&gt; </span><span class="mi">975</span> <span class="n">ssl_sock</span> <span class="o">=</span> <span class="n">ssl_wrap_socket</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">976</span>     <span class="n">sock</span><span class="o">=</span><span class="n">sock</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">977</span>     <span class="n">keyfile</span><span class="o">=</span><span class="n">key_file</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">978</span>     <span class="n">certfile</span><span class="o">=</span><span class="n">cert_file</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">979</span>     <span class="n">key_password</span><span class="o">=</span><span class="n">key_password</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">980</span>     <span class="n">ca_certs</span><span class="o">=</span><span class="n">ca_certs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">981</span>     <span class="n">ca_cert_dir</span><span class="o">=</span><span class="n">ca_cert_dir</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">982</span>     <span class="n">ca_cert_data</span><span class="o">=</span><span class="n">ca_cert_data</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">983</span>     <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">984</span>     <span class="n">ssl_context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">985</span>     <span class="n">tls_in_tls</span><span class="o">=</span><span class="n">tls_in_tls</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">986</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">988</span> <span class="k">try</span><span class="p">:</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\util\ssl_.py:483,</span> in <span class="ni">ssl_wrap_socket</span><span class="nt">(sock, keyfile, certfile, cert_reqs, ca_certs, server_hostname, ssl_version, ciphers, ssl_context, ca_cert_dir, key_password, ca_cert_data, tls_in_tls)</span>
-<span class="g g-Whitespace">    </span><span class="mi">481</span> <span class="n">context</span><span class="o">.</span><span class="n">set_alpn_protocols</span><span class="p">(</span><span class="n">ALPN_PROTOCOLS</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">483</span> <span class="n">ssl_sock</span> <span class="o">=</span> <span class="n">_ssl_wrap_socket_impl</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">tls_in_tls</span><span class="p">,</span> <span class="n">server_hostname</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">484</span> <span class="k">return</span> <span class="n">ssl_sock</span>
-
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\urllib3\util\ssl_.py:527,</span> in <span class="ni">_ssl_wrap_socket_impl</span><span class="nt">(sock, ssl_context, tls_in_tls, server_hostname)</span>
-<span class="g g-Whitespace">    </span><span class="mi">525</span>     <span class="k">return</span> <span class="n">SSLTransport</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">ssl_context</span><span class="p">,</span> <span class="n">server_hostname</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">527</span> <span class="k">return</span> <span class="n">ssl_context</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\ssl.py:517,</span> in <span class="ni">SSLContext.wrap_socket</span><span class="nt">(self, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, session)</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span> <span class="k">def</span><span class="w"> </span><span class="nf">wrap_socket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sock</span><span class="p">,</span> <span class="n">server_side</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">512</span>                 <span class="n">do_handshake_on_connect</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">513</span>                 <span class="n">suppress_ragged_eofs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">514</span>                 <span class="n">server_hostname</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">515</span>     <span class="c1"># SSLSocket class handles server_hostname encoding before it calls</span>
-<span class="g g-Whitespace">    </span><span class="mi">516</span>     <span class="c1"># ctx._wrap_socket()</span>
-<span class="ne">--&gt; </span><span class="mi">517</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sslsocket_class</span><span class="o">.</span><span class="n">_create</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">518</span>         <span class="n">sock</span><span class="o">=</span><span class="n">sock</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">server_side</span><span class="o">=</span><span class="n">server_side</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>         <span class="n">do_handshake_on_connect</span><span class="o">=</span><span class="n">do_handshake_on_connect</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">521</span>         <span class="n">suppress_ragged_eofs</span><span class="o">=</span><span class="n">suppress_ragged_eofs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>         <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span>         <span class="n">context</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span>         <span class="n">session</span><span class="o">=</span><span class="n">session</span>
-<span class="g g-Whitespace">    </span><span class="mi">525</span>     <span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\ssl.py:1104,</span> in <span class="ni">SSLSocket._create</span><span class="nt">(cls, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, context, session)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1103</span>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;do_handshake_on_connect should not be specified for non-blocking sockets&quot;</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1104</span>             <span class="bp">self</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1105</span> <span class="k">except</span><span class="p">:</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\ssl.py:1382,</span> in <span class="ni">SSLSocket.do_handshake</span><span class="nt">(self, block)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1381</span>         <span class="bp">self</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1382</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1383</span> <span class="k">finally</span><span class="p">:</span>
-
-<span class="ne">ProtocolError</span>: (&#39;Connection aborted.&#39;, ConnectionResetError(10054, &#39;An existing connection was forcibly closed by the remote host&#39;, None, 10054, None))
+<span class="ne">ReadTimeoutError</span>: HTTPSConnectionPool(host=&#39;identity.dataspace.copernicus.eu&#39;, port=443): Read timed out. (read timeout=20)
 
 <span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
 
-<span class="ne">ConnectionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="ne">ReadTimeout</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
 <span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\openeo\rest\auth\oidc.py:276,</span> in <span class="ni">OidcProviderInfo.__init__</span><span class="nt">(self, issuer, discovery_url, scopes, provider_id, title, default_clients, requests_session, authorization_parameters)</span>
 <span class="g g-Whitespace">    </span><span class="mi">275</span> <span class="k">try</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">276</span>     <span class="n">discovery_resp</span> <span class="o">=</span> <span class="n">requests_session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">discovery_url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
@@ -846,12 +750,12 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 <span class="ne">--&gt; </span><span class="mi">703</span> <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="c1"># Total elapsed time of the request (approximately)</span>
 
-<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\requests\adapters.py:659,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">658</span> <span class="k">except</span> <span class="p">(</span><span class="n">ProtocolError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">659</span>     <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">661</span> <span class="k">except</span> <span class="n">MaxRetryError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="nn">File ~\AppData\Roaming\Python\Python311\site-packages\requests\adapters.py:690,</span> in <span class="ni">HTTPAdapter.send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">689</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">ReadTimeoutError</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">690</span>     <span class="k">raise</span> <span class="n">ReadTimeout</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">691</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">_InvalidHeader</span><span class="p">):</span>
 
-<span class="ne">ConnectionError</span>: (&#39;Connection aborted.&#39;, ConnectionResetError(10054, &#39;An existing connection was forcibly closed by the remote host&#39;, None, 10054, None))
+<span class="ne">ReadTimeout</span>: HTTPSConnectionPool(host=&#39;identity.dataspace.copernicus.eu&#39;, port=443): Read timed out. (read timeout=20)
 
 <span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
 
@@ -916,7 +820,7 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 <span class="g g-Whitespace">    </span><span class="mi">281</span> <span class="bp">self</span><span class="o">.</span><span class="n">issuer</span> <span class="o">=</span> <span class="n">issuer</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;issuer&quot;</span><span class="p">]</span>
 <span class="g g-Whitespace">    </span><span class="mi">282</span> <span class="c1"># Minimal set of scopes to request</span>
 
-<span class="ne">OidcException</span>: Failed to obtain OIDC discovery document from &#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/.well-known/openid-configuration&#39;: ConnectionError(ProtocolError(&#39;Connection aborted.&#39;, ConnectionResetError(10054, &#39;An existing connection was forcibly closed by the remote host&#39;, None, 10054, None)))
+<span class="ne">OidcException</span>: Failed to obtain OIDC discovery document from &#39;https://identity.dataspace.copernicus.eu/auth/realms/CDSE/.well-known/openid-configuration&#39;: ReadTimeout(ReadTimeoutError(&quot;HTTPSConnectionPool(host=&#39;identity.dataspace.copernicus.eu&#39;, port=443): Read timed out. (read timeout=20)&quot;))
 </pre></div>
 </div>
 </div>
@@ -1022,21 +926,20 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: send &#39;start&#39;
-0:00:04 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: queued (progress 0%)
-0:00:09 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: queued (progress 0%)
-0:00:16 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: queued (progress 0%)
-0:00:24 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: queued (progress 0%)
-0:00:34 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: queued (progress 0%)
-0:00:47 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: queued (progress 0%)
-0:01:02 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: queued (progress 0%)
-0:01:22 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: running (progress N/A)
-0:01:46 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: running (progress N/A)
-0:02:16 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: running (progress N/A)
-0:02:54 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: running (progress N/A)
-0:03:41 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: running (progress N/A)
-0:04:39 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: running (progress N/A)
-0:05:39 Job &#39;j-26091809151048ff9fd32eab8dbf80a5&#39;: finished (progress 100%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: send &#39;start&#39;
+0:00:02 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
+0:00:07 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
+0:00:14 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
+0:00:22 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
+0:00:32 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
+0:00:45 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
+0:01:01 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
+0:01:20 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
+0:01:44 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
+0:02:14 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
+0:02:52 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
+0:03:39 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
+0:04:38 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: finished (progress 100%)
 </pre></div>
 </div>
 </div>
@@ -1048,19 +951,19 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: send &#39;start&#39;
-0:00:04 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: queued (progress 0%)
-0:00:09 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: queued (progress 0%)
-0:00:16 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: queued (progress 0%)
-0:00:24 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: queued (progress 0%)
-0:00:34 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: queued (progress 0%)
-0:00:46 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: queued (progress 0%)
-0:01:02 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: queued (progress 0%)
-0:01:21 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: running (progress N/A)
-0:01:46 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: running (progress N/A)
-0:02:16 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: running (progress N/A)
-0:02:53 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: running (progress N/A)
-0:03:40 Job &#39;j-260918092101466f84b8054f6fdc1db0&#39;: finished (progress 100%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: send &#39;start&#39;
+0:00:02 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
+0:00:07 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
+0:00:14 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
+0:00:22 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
+0:00:32 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
+0:00:45 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
+0:01:04 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
+0:01:23 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
+0:01:47 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
+0:02:18 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
+0:02:55 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
+0:03:42 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: finished (progress 100%)
 </pre></div>
 </div>
 </div>
@@ -1072,20 +975,19 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: send &#39;start&#39;
-0:00:04 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: queued (progress 0%)
-0:00:10 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: queued (progress 0%)
-0:00:16 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: queued (progress 0%)
-0:00:24 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: queued (progress 0%)
-0:00:34 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: queued (progress 0%)
-0:00:47 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: queued (progress 0%)
-0:01:03 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: queued (progress 0%)
-0:01:22 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: queued (progress 0%)
-0:01:47 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: running (progress N/A)
-0:02:17 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: running (progress N/A)
-0:02:54 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: running (progress N/A)
-0:03:41 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: running (progress N/A)
-0:04:40 Job &#39;j-26091809245247c3b1d4d6ba9733f144&#39;: finished (progress 100%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: send &#39;start&#39;
+0:00:03 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
+0:00:08 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
+0:00:15 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
+0:00:23 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
+0:00:33 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
+0:00:46 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
+0:01:01 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
+0:01:21 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: running (progress N/A)
+0:01:45 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: running (progress N/A)
+0:02:15 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: running (progress N/A)
+0:02:53 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: running (progress N/A)
+0:03:40 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: finished (progress 100%)
 </pre></div>
 </div>
 </div>
@@ -2001,10 +1903,6 @@ Berhasil! Jumlah fitur yang dihasilkan untuk CO: 68
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah nilai non-numerik/kosong yang dikonversi jadi NaN: 0
 Jumlah fitur yang diminta: 68
 Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\HYPE AMD\AppData\Local\Programs\Python\Python313\Lib\site-packages\tsfel\feature_extraction\features_utils.py:534: RuntimeWarning: invalid value encountered in divide
-  rs = np.divide(r, s)
 </pre></div>
 </div>
 </div>
