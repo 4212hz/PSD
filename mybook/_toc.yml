@@ -12,3 +12,5 @@ chapters:
   - file: Penjelasan_dan_Perhitungan_TSFEL
   - file: Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Linear
   - file: Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Polinomial
+  - file: Ekstraksi_Fitur_TSFEL_pada_3_Polutan
+  - file: Klasifikasi_Spasial_Sawah_Non_Sawah

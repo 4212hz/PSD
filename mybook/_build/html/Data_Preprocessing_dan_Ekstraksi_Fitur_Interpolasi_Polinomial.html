@@ -64,6 +64,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Eksperimen Reduksi Dimensi, Analisis Silhouette, dan Pemetaan Segmentasi Wilayah Multi-Polutan Menggunakan KNIME" href="Ekstraksi_Fitur_TSFEL_pada_3_Polutan.html" />
     <link rel="prev" title="Data Preprocessing dan Ekstraksi Fitur (Interpolasi Linear)" href="Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Linear.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -254,6 +255,7 @@
 
 
 
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Preprocessing dan Ekstraksi Fitur (Interpolasi Polinomial)</a></li>
 
 
@@ -261,6 +263,9 @@
 
 
 
+
+<li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_TSFEL_pada_3_Polutan.html">Eksperimen Reduksi Dimensi, Analisis Silhouette, dan Pemetaan Segmentasi Wilayah Multi-Polutan Menggunakan KNIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Klasifikasi_Spasial_Sawah_Non_Sawah.html">Klasifikasi Spasial Sawah dan Non-Sawah Berbasis Citra Sentinel-2A</a></li>
 </ul>
 
     </div>
@@ -474,6 +479,10 @@
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries-pada-setiap-data-polutan">Timeseries Pada Setiap Data Polutan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-tsfel-multivariat-gabungan-seluruh-polutan">Ekstraksi Fitur TSFEL Multivariat (Gabungan Seluruh Polutan)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-alur-pemrosesan-pada-kode">Rincian Alur Pemrosesan pada Kode:</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -688,19 +697,19 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-261004143251462d9437204693e21068&#39;: send &#39;start&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2610041759184250ac04256da124b61c&#39;: send &#39;start&#39;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:02 Job &#39;j-261004143251462d9437204693e21068&#39;: queued (progress 0%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:02 Job &#39;j-2610041759184250ac04256da124b61c&#39;: created (progress 0%)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:08 Job &#39;j-261004143251462d9437204693e21068&#39;: queued (progress 0%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:08 Job &#39;j-2610041759184250ac04256da124b61c&#39;: queued (progress 0%)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:14 Job &#39;j-261004143251462d9437204693e21068&#39;: queued (progress 0%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:14 Job &#39;j-2610041759184250ac04256da124b61c&#39;: queued (progress 0%)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:23 Job &#39;j-261004143251462d9437204693e21068&#39;: running (progress N/A)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:22 Job &#39;j-2610041759184250ac04256da124b61c&#39;: queued (progress 0%)
 </pre></div>
 </div>
 </div>
@@ -2240,6 +2249,14 @@ Freq: D, Name: SO2, dtype: float64
 </table>
 </div></div></div>
 </div>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="ekstraksi-fitur-tsfel-multivariat-gabungan-seluruh-polutan">
+<h1>Ekstraksi Fitur TSFEL Multivariat (Gabungan Seluruh Polutan)<a class="headerlink" href="#ekstraksi-fitur-tsfel-multivariat-gabungan-seluruh-polutan" title="Link to this heading">#</a></h1>
+<p>Pada tahap ini, dilakukan proses ekstraksi fitur deret waktu secara terintegrasi untuk ketiga polutan (<strong>NO2</strong>, <strong>SO2</strong>, dan <strong>CO</strong>) langsung dari file utama <code class="docutils literal notranslate"><span class="pre">Polutan_Bangkalan.csv</span></code> ke dalam satu kesatuan data fitur multivariat.</p>
+<section id="rincian-alur-pemrosesan-pada-kode">
+<h2>Rincian Alur Pemrosesan pada Kode:<a class="headerlink" href="#rincian-alur-pemrosesan-pada-kode" title="Link to this heading">#</a></h2>
+<p>Proses dimulai dengan membaca data Polutan_Bangkalan.csv dan mengurutkannya berdasarkan tanggal agar data tersusun secara kronologis. Selanjutnya, digunakan 68 fitur TSFEL untuk menganalisis data dari tiga polutan, yaitu NO₂, SO₂, dan CO. Data kemudian dibersihkan dengan mengubah nilai yang tidak valid menjadi NaN, mendeteksi outlier menggunakan metode IQR, serta mengisi nilai yang hilang menggunakan interpolasi linear berbasis waktu. Setelah data bersih, 68 fitur TSFEL diekstraksi dari masing-masing polutan dan diberi nama sesuai jenis polutannya, seperti NO2_calc_mean dan CO_entropy. Hasil ekstraksi dari ketiga polutan kemudian digabungkan menjadi 204 fitur dan disimpan dalam file All-Pollutants-TanahMerah-TSFEL.csv untuk digunakan pada analisis atau pemodelan selanjutnya.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -2442,6 +2459,7 @@ File berhasil disimpan sebagai: All-Pollutants-TanahMerah-TSFEL.csv
 </div></div></div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -2482,6 +2500,15 @@ File berhasil disimpan sebagai: All-Pollutants-TanahMerah-TSFEL.csv
         <p class="prev-next-title">Data Preprocessing dan Ekstraksi Fitur (Interpolasi Linear)</p>
       </div>
     </a>
+    <a class="right-next"
+       href="Ekstraksi_Fitur_TSFEL_pada_3_Polutan.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Eksperimen Reduksi Dimensi, Analisis Silhouette, dan Pemetaan Segmentasi Wilayah Multi-Polutan Menggunakan KNIME</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -2521,6 +2548,10 @@ File berhasil disimpan sebagai: All-Pollutants-TanahMerah-TSFEL.csv
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#timeseries-pada-setiap-data-polutan">Timeseries Pada Setiap Data Polutan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-tsfel-multivariat-gabungan-seluruh-polutan">Ekstraksi Fitur TSFEL Multivariat (Gabungan Seluruh Polutan)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rincian-alur-pemrosesan-pada-kode">Rincian Alur Pemrosesan pada Kode:</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>

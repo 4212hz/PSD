@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a5fa26f928ae31a917cb25a63508411a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed;
+        bottom: 45px;
+        left: 20px;
+        z-index: 9999;
+        background-color: white;
+        padding: 16px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.20);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-width: 250px;
+    ">
+        <div style="font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px;">
+            Segmentasi Spasial Multi-Polutan
+        </div>
+        <div style="font-size: 12px; color: #666; margin-bottom: 12px;">
+            Dataset: Polinomial PCA-37 | k=2 | Silhouette = 0.634
+        </div>
+        
+        <div style="display: flex; align-items: center; margin-bottom: 6px; font-size: 13px; color: #333;">
+            <span style="display:inline-block; width: 14px; height: 14px; border-radius: 50%; background-color: #e53935; margin-right: 10px;"></span>
+            <span>Cluster 0 &mdash; <b>29 wilayah</b></span>
+        </div>
+        
+        <div style="display: flex; align-items: center; margin-bottom: 6px; font-size: 13px; color: #333;">
+            <span style="display:inline-block; width: 14px; height: 14px; border-radius: 50%; background-color: #1e88e5; margin-right: 10px;"></span>
+            <span>Cluster 1 &mdash; <b>6 wilayah</b></span>
+        </div>
+        
+        <div style="font-size: 11px; color: #888; margin-top: 10px;">
+            Klik marker lokasi untuk detail wilayah
+        </div>
+    </div>
+    
+    
+            <div class="folium-map" id="map_a5fa26f928ae31a917cb25a63508411a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a5fa26f928ae31a917cb25a63508411a = L.map(
+                "map_a5fa26f928ae31a917cb25a63508411a",
+                {
+                    center: [-7.2, 113.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_a5fa26f928ae31a917cb25a63508411a);
+
+            
+
+        
+    
+            var tile_layer_e66dff3ee48340f1ba1794c3fc5e729c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e66dff3ee48340f1ba1794c3fc5e729c.addTo(map_a5fa26f928ae31a917cb25a63508411a);
+        
+    
+            var tile_layer_165acf9084faa800a4cbb78c9592a719 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_165acf9084faa800a4cbb78c9592a719.addTo(map_a5fa26f928ae31a917cb25a63508411a);
+        
+    
+            var tile_layer_bd96a06d4034336c9ce85666e86f3b05 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_bd96a06d4034336c9ce85666e86f3b05.addTo(map_a5fa26f928ae31a917cb25a63508411a);
+        
+    
+            var feature_group_72b80a460f6cd12d058988d3a74cdced = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_10c63224a14379fe0617d6048909b249 = L.marker(
+                [-7.60183559488218, 112.06655568099117],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_c58165268d5cc37e36973cca0ddbdf24 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_cefee1c2cec42fdc7d1ed49fba60b7df = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_bf720b7a2b93d606299f21b6b1ad7d24 = $(`<div id="html_bf720b7a2b93d606299f21b6b1ad7d24" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Baron Nganjuk</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.6018, 112.0666         </div>         </div>`)[0];
+                popup_cefee1c2cec42fdc7d1ed49fba60b7df.setContent(html_bf720b7a2b93d606299f21b6b1ad7d24);
+            
+        
+
+        marker_10c63224a14379fe0617d6048909b249.bindPopup(popup_cefee1c2cec42fdc7d1ed49fba60b7df)
+        ;
+
+        
+    
+    
+            marker_10c63224a14379fe0617d6048909b249.bindTooltip(
+                `<div>
+                     Baron Nganjuk (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_10c63224a14379fe0617d6048909b249.setIcon(div_icon_c58165268d5cc37e36973cca0ddbdf24);
+            
+    
+            var marker_476af713f4784a8fa60c3ec1fabe9071 = L.marker(
+                [-7.163375498261228, 112.71851063282745],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_c852aa894a988c426b375aada71760ca = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_3f59659f91cbeb8d21d7230c58d2bcb2 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6ce9bd5942c8ee6f57130ea48cedcecb = $(`<div id="html_6ce9bd5942c8ee6f57130ea48cedcecb" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Banyuajuh kamal, Bangkalan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1634, 112.7185         </div>         </div>`)[0];
+                popup_3f59659f91cbeb8d21d7230c58d2bcb2.setContent(html_6ce9bd5942c8ee6f57130ea48cedcecb);
+            
+        
+
+        marker_476af713f4784a8fa60c3ec1fabe9071.bindPopup(popup_3f59659f91cbeb8d21d7230c58d2bcb2)
+        ;
+
+        
+    
+    
+            marker_476af713f4784a8fa60c3ec1fabe9071.bindTooltip(
+                `<div>
+                     Banyuajuh kamal, Bangkalan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_476af713f4784a8fa60c3ec1fabe9071.setIcon(div_icon_c852aa894a988c426b375aada71760ca);
+            
+    
+            var marker_2944675369a39cd76b2ef7d14ab57d4e = L.marker(
+                [-6.999015535950886, 113.53149486890577],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_60e477823271c311c5e008af675e065e = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_82230911c4614f054cd8c572468556d5 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_e1cf7c1d7a3f491a01e171620c92b509 = $(`<div id="html_e1cf7c1d7a3f491a01e171620c92b509" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Warudoyong, Kota Sukabumi</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -6.9990, 113.5315         </div>         </div>`)[0];
+                popup_82230911c4614f054cd8c572468556d5.setContent(html_e1cf7c1d7a3f491a01e171620c92b509);
+            
+        
+
+        marker_2944675369a39cd76b2ef7d14ab57d4e.bindPopup(popup_82230911c4614f054cd8c572468556d5)
+        ;
+
+        
+    
+    
+            marker_2944675369a39cd76b2ef7d14ab57d4e.bindTooltip(
+                `<div>
+                     Warudoyong, Kota Sukabumi (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2944675369a39cd76b2ef7d14ab57d4e.setIcon(div_icon_60e477823271c311c5e008af675e065e);
+            
+    
+            var marker_9194e1b5ee54713a3d9b899f7162d80b = L.marker(
+                [-7.048813769102182, 112.73041029836367],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_6cb1de8a65fc2b3ea3803e976d6cb7a9 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_e97dc6238e9f763bef3272e7567692b4 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_8ff17ce5452076aed65a55d6b961d1d2 = $(`<div id="html_8ff17ce5452076aed65a55d6b961d1d2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Bangkalan, Bangkalan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.0488, 112.7304         </div>         </div>`)[0];
+                popup_e97dc6238e9f763bef3272e7567692b4.setContent(html_8ff17ce5452076aed65a55d6b961d1d2);
+            
+        
+
+        marker_9194e1b5ee54713a3d9b899f7162d80b.bindPopup(popup_e97dc6238e9f763bef3272e7567692b4)
+        ;
+
+        
+    
+    
+            marker_9194e1b5ee54713a3d9b899f7162d80b.bindTooltip(
+                `<div>
+                     Bangkalan, Bangkalan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9194e1b5ee54713a3d9b899f7162d80b.setIcon(div_icon_6cb1de8a65fc2b3ea3803e976d6cb7a9);
+            
+    
+            var marker_55e18166a6f9e1403de0fc1fe40171aa = L.marker(
+                [-7.126665485564425, 112.79288525021701],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_cb272065a14fe9d045b5b1e9dc24beee = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_afa7eb8625e6fceea58dfcb149d9ed91 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_cafbf01304b71f9f87ca0410e7a722ae = $(`<div id="html_cafbf01304b71f9f87ca0410e7a722ae" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Labang, Bangkalan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1267, 112.7929         </div>         </div>`)[0];
+                popup_afa7eb8625e6fceea58dfcb149d9ed91.setContent(html_cafbf01304b71f9f87ca0410e7a722ae);
+            
+        
+
+        marker_55e18166a6f9e1403de0fc1fe40171aa.bindPopup(popup_afa7eb8625e6fceea58dfcb149d9ed91)
+        ;
+
+        
+    
+    
+            marker_55e18166a6f9e1403de0fc1fe40171aa.bindTooltip(
+                `<div>
+                     Labang, Bangkalan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_55e18166a6f9e1403de0fc1fe40171aa.setIcon(div_icon_cb272065a14fe9d045b5b1e9dc24beee);
+            
+    
+            var marker_c27f40873406b62215e34908ba21fc06 = L.marker(
+                [-7.100358482293912, 112.87296322556853],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_fb6689eda860f2bbfcc56e95d799ef0e = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_43924c8fb9cefddf3fbad576f20d0373 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d4f1e1237609059ee917be39820ef427 = $(`<div id="html_d4f1e1237609059ee917be39820ef427" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Tanah Merah, Bangkalan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1004, 112.8730         </div>         </div>`)[0];
+                popup_43924c8fb9cefddf3fbad576f20d0373.setContent(html_d4f1e1237609059ee917be39820ef427);
+            
+        
+
+        marker_c27f40873406b62215e34908ba21fc06.bindPopup(popup_43924c8fb9cefddf3fbad576f20d0373)
+        ;
+
+        
+    
+    
+            marker_c27f40873406b62215e34908ba21fc06.bindTooltip(
+                `<div>
+                     Tanah Merah, Bangkalan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c27f40873406b62215e34908ba21fc06.setIcon(div_icon_fb6689eda860f2bbfcc56e95d799ef0e);
+            
+    
+            var marker_8e835da5285c619bee756d2ad3d9bb35 = L.marker(
+                [-7.081900587060678, 112.72210757384428],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_9593c18987fb6a2262c0df8861d0544f = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_96fe53123f381dc3bef3b03a9dabc1c2 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5e8f0ace8a09b6cbf80e734c74a23ac1 = $(`<div id="html_5e8f0ace8a09b6cbf80e734c74a23ac1" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Socah, Bangkalan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.0819, 112.7221         </div>         </div>`)[0];
+                popup_96fe53123f381dc3bef3b03a9dabc1c2.setContent(html_5e8f0ace8a09b6cbf80e734c74a23ac1);
+            
+        
+
+        marker_8e835da5285c619bee756d2ad3d9bb35.bindPopup(popup_96fe53123f381dc3bef3b03a9dabc1c2)
+        ;
+
+        
+    
+    
+            marker_8e835da5285c619bee756d2ad3d9bb35.bindTooltip(
+                `<div>
+                     Socah, Bangkalan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8e835da5285c619bee756d2ad3d9bb35.setIcon(div_icon_9593c18987fb6a2262c0df8861d0544f);
+            
+    
+            var marker_6471676b4eae02040cf6e13f72902bd8 = L.marker(
+                [-7.005179924022281, 113.87459218531455],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_48f7f368c63c2d3dc2381d6ddc3d722f = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_be0de60aa6429bcaf9e265ffd5bf09ae = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_08670e8de657088b6d38df0094aa3565 = $(`<div id="html_08670e8de657088b6d38df0094aa3565" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Kota Sumenep, Sumenep</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.0052, 113.8746         </div>         </div>`)[0];
+                popup_be0de60aa6429bcaf9e265ffd5bf09ae.setContent(html_08670e8de657088b6d38df0094aa3565);
+            
+        
+
+        marker_6471676b4eae02040cf6e13f72902bd8.bindPopup(popup_be0de60aa6429bcaf9e265ffd5bf09ae)
+        ;
+
+        
+    
+    
+            marker_6471676b4eae02040cf6e13f72902bd8.bindTooltip(
+                `<div>
+                     Kota Sumenep, Sumenep (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6471676b4eae02040cf6e13f72902bd8.setIcon(div_icon_48f7f368c63c2d3dc2381d6ddc3d722f);
+            
+    
+            var marker_73954b39c83f8a747267c6ba681e2c16 = L.marker(
+                [-7.258600463308244, 112.71608408696221],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_c87383f7ac140d0c0287938b6d7afb4a = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_350e5182a453ae69ea0d48806bfef4a7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5ccea5b1b4a413eb4fc063b7882958b6 = $(`<div id="html_5ccea5b1b4a413eb4fc063b7882958b6" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Asemrowo, Surabaya</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.2586, 112.7161         </div>         </div>`)[0];
+                popup_350e5182a453ae69ea0d48806bfef4a7.setContent(html_5ccea5b1b4a413eb4fc063b7882958b6);
+            
+        
+
+        marker_73954b39c83f8a747267c6ba681e2c16.bindPopup(popup_350e5182a453ae69ea0d48806bfef4a7)
+        ;
+
+        
+    
+    
+            marker_73954b39c83f8a747267c6ba681e2c16.bindTooltip(
+                `<div>
+                     Asemrowo, Surabaya (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_73954b39c83f8a747267c6ba681e2c16.setIcon(div_icon_c87383f7ac140d0c0287938b6d7afb4a);
+            
+    
+            var marker_7ac91a09246ac8ff73fa7165b6ee833a = L.marker(
+                [-7.302722182145597, 112.7421990266408],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_e5b11dfe33835b523bce7eae3df737b3 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_86fbd65102a6560e303d83adc903f75a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_dbba6de1512cb158248935b7c36b5029 = $(`<div id="html_dbba6de1512cb158248935b7c36b5029" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Wonokromo, Surabaya</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.3027, 112.7422         </div>         </div>`)[0];
+                popup_86fbd65102a6560e303d83adc903f75a.setContent(html_dbba6de1512cb158248935b7c36b5029);
+            
+        
+
+        marker_7ac91a09246ac8ff73fa7165b6ee833a.bindPopup(popup_86fbd65102a6560e303d83adc903f75a)
+        ;
+
+        
+    
+    
+            marker_7ac91a09246ac8ff73fa7165b6ee833a.bindTooltip(
+                `<div>
+                     Wonokromo, Surabaya (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7ac91a09246ac8ff73fa7165b6ee833a.setIcon(div_icon_e5b11dfe33835b523bce7eae3df737b3);
+            
+    
+            var marker_6c070f9a6c16ca49c233b96613decedd = L.marker(
+                [-6.933949922370938, 111.89628729256825],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_bcd62758cfcdcb8057fc6f5a4e893e7d = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_469415c89adefa03474a42e013ddf3ab = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_7a54db00974953747bf07c277c18e9a2 = $(`<div id="html_7a54db00974953747bf07c277c18e9a2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Kerek, Tuban</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -6.9339, 111.8963         </div>         </div>`)[0];
+                popup_469415c89adefa03474a42e013ddf3ab.setContent(html_7a54db00974953747bf07c277c18e9a2);
+            
+        
+
+        marker_6c070f9a6c16ca49c233b96613decedd.bindPopup(popup_469415c89adefa03474a42e013ddf3ab)
+        ;
+
+        
+    
+    
+            marker_6c070f9a6c16ca49c233b96613decedd.bindTooltip(
+                `<div>
+                     Kerek, Tuban (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6c070f9a6c16ca49c233b96613decedd.setIcon(div_icon_bcd62758cfcdcb8057fc6f5a4e893e7d);
+            
+    
+            var marker_5cddc79ef03d2b55a825b14accdeb67c = L.marker(
+                [-7.151731172835184, 112.65306511020607],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_3fc84f11d96154af69e221e0316bd4ec = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_c6f2ae3cf04ef325f66f0060780eab33 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_e6bc0ae6e9f4dcfd0ba443c9985fdb7e = $(`<div id="html_e6bc0ae6e9f4dcfd0ba443c9985fdb7e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Cerme, Gresik</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1517, 112.6531         </div>         </div>`)[0];
+                popup_c6f2ae3cf04ef325f66f0060780eab33.setContent(html_e6bc0ae6e9f4dcfd0ba443c9985fdb7e);
+            
+        
+
+        marker_5cddc79ef03d2b55a825b14accdeb67c.bindPopup(popup_c6f2ae3cf04ef325f66f0060780eab33)
+        ;
+
+        
+    
+    
+            marker_5cddc79ef03d2b55a825b14accdeb67c.bindTooltip(
+                `<div>
+                     Cerme, Gresik (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5cddc79ef03d2b55a825b14accdeb67c.setIcon(div_icon_3fc84f11d96154af69e221e0316bd4ec);
+            
+    
+            var marker_04acdbd56e85843d00114797577ae889 = L.marker(
+                [-7.156755587452153, 112.66675892900683],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_73484263c06c0f497996be7f82120160 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_ddbfcd96cc299a56b0d7a5105d6669ba = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d3fc0e82eb5089ee6cccb5258014213d = $(`<div id="html_d3fc0e82eb5089ee6cccb5258014213d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Dukun, Gresik</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1568, 112.6668         </div>         </div>`)[0];
+                popup_ddbfcd96cc299a56b0d7a5105d6669ba.setContent(html_d3fc0e82eb5089ee6cccb5258014213d);
+            
+        
+
+        marker_04acdbd56e85843d00114797577ae889.bindPopup(popup_ddbfcd96cc299a56b0d7a5105d6669ba)
+        ;
+
+        
+    
+    
+            marker_04acdbd56e85843d00114797577ae889.bindTooltip(
+                `<div>
+                     Dukun, Gresik (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_04acdbd56e85843d00114797577ae889.setIcon(div_icon_73484263c06c0f497996be7f82120160);
+            
+    
+            var marker_eaad9de990ba2b3969489b2a71846665 = L.marker(
+                [-7.150502114047363, 112.86368841704454],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_cad4a42cf6a88c8ae168d2b7ce6eb0c7 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_d20358dd8887b9e80fe5aa02f0c2b5c9 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_bd011dc5048f77a03b7ab2ee5ba913b2 = $(`<div id="html_bd011dc5048f77a03b7ab2ee5ba913b2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Kwanyar, Bangkalan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1505, 112.8637         </div>         </div>`)[0];
+                popup_d20358dd8887b9e80fe5aa02f0c2b5c9.setContent(html_bd011dc5048f77a03b7ab2ee5ba913b2);
+            
+        
+
+        marker_eaad9de990ba2b3969489b2a71846665.bindPopup(popup_d20358dd8887b9e80fe5aa02f0c2b5c9)
+        ;
+
+        
+    
+    
+            marker_eaad9de990ba2b3969489b2a71846665.bindTooltip(
+                `<div>
+                     Kwanyar, Bangkalan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_eaad9de990ba2b3969489b2a71846665.setIcon(div_icon_cad4a42cf6a88c8ae168d2b7ce6eb0c7);
+            
+    
+            var marker_dc6412f3c5de244d6efa3ffa52a2c8c9 = L.marker(
+                [-7.451691954269507, 112.60723278615946],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_992c54890759ed551472f72c9f513322 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_74c7e788882b8b51e0fd79692712887e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5d8b19740c81a1381cf0655f702e8854 = $(`<div id="html_5d8b19740c81a1381cf0655f702e8854" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Sidoarjo, Wonoayu</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.4517, 112.6072         </div>         </div>`)[0];
+                popup_74c7e788882b8b51e0fd79692712887e.setContent(html_5d8b19740c81a1381cf0655f702e8854);
+            
+        
+
+        marker_dc6412f3c5de244d6efa3ffa52a2c8c9.bindPopup(popup_74c7e788882b8b51e0fd79692712887e)
+        ;
+
+        
+    
+    
+            marker_dc6412f3c5de244d6efa3ffa52a2c8c9.bindTooltip(
+                `<div>
+                     Sidoarjo, Wonoayu (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dc6412f3c5de244d6efa3ffa52a2c8c9.setIcon(div_icon_992c54890759ed551472f72c9f513322);
+            
+    
+            var marker_593386531e3a2488b747981fad65e79e = L.marker(
+                [-7.2411880711808525, 112.25405174762534],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_15a1c0be5e4f45e642612f0c8bb6baa2 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_203b18acc9b3f0086fc367a8d414ac1c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_adc9f22a6ea80c4bec3810f01c3a02d1 = $(`<div id="html_adc9f22a6ea80c4bec3810f01c3a02d1" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>sambeng, lamongan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.2412, 112.2541         </div>         </div>`)[0];
+                popup_203b18acc9b3f0086fc367a8d414ac1c.setContent(html_adc9f22a6ea80c4bec3810f01c3a02d1);
+            
+        
+
+        marker_593386531e3a2488b747981fad65e79e.bindPopup(popup_203b18acc9b3f0086fc367a8d414ac1c)
+        ;
+
+        
+    
+    
+            marker_593386531e3a2488b747981fad65e79e.bindTooltip(
+                `<div>
+                     sambeng, lamongan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_593386531e3a2488b747981fad65e79e.setIcon(div_icon_15a1c0be5e4f45e642612f0c8bb6baa2);
+            
+    
+            var marker_b14260c86b811dd74604d8c0363385e7 = L.marker(
+                [-7.6308726629525925, 112.28798254385693],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_8494a3166dd629ef9b793880ac3706e5 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_44bb2054b34cf6cab5e65ffe506f739d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_c1d7a6356857713beb013025f4d170e0 = $(`<div id="html_c1d7a6356857713beb013025f4d170e0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Bandung - Jogoroto, Jombang</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.6309, 112.2880         </div>         </div>`)[0];
+                popup_44bb2054b34cf6cab5e65ffe506f739d.setContent(html_c1d7a6356857713beb013025f4d170e0);
+            
+        
+
+        marker_b14260c86b811dd74604d8c0363385e7.bindPopup(popup_44bb2054b34cf6cab5e65ffe506f739d)
+        ;
+
+        
+    
+    
+            marker_b14260c86b811dd74604d8c0363385e7.bindTooltip(
+                `<div>
+                     Bandung - Jogoroto, Jombang (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b14260c86b811dd74604d8c0363385e7.setIcon(div_icon_8494a3166dd629ef9b793880ac3706e5);
+            
+    
+            var marker_8fbdfc440f861be025f48601fe6f2696 = L.marker(
+                [-7.211918770191055, 113.07660726948347],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_fa7a4971a2b05214ae461448b0e12681 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_1c4bd12780ea8a4196334de6d0d6699d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d0d00ba5043059d86b2ed31fdf050921 = $(`<div id="html_d0d00ba5043059d86b2ed31fdf050921" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Sreseh, Sampang</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.2119, 113.0766         </div>         </div>`)[0];
+                popup_1c4bd12780ea8a4196334de6d0d6699d.setContent(html_d0d00ba5043059d86b2ed31fdf050921);
+            
+        
+
+        marker_8fbdfc440f861be025f48601fe6f2696.bindPopup(popup_1c4bd12780ea8a4196334de6d0d6699d)
+        ;
+
+        
+    
+    
+            marker_8fbdfc440f861be025f48601fe6f2696.bindTooltip(
+                `<div>
+                     Sreseh, Sampang (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8fbdfc440f861be025f48601fe6f2696.setIcon(div_icon_fa7a4971a2b05214ae461448b0e12681);
+            
+    
+            var marker_676f716f3854bcd750662990e9de6265 = L.marker(
+                [-7.13074483618347, 112.58644432216101],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_1af0f1602850b0d4bee55e2a2252cd8b = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_1dcfcef376419d317c3708fb4d70203d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9c0caf9090c29a06731630b9685bad2c = $(`<div id="html_9c0caf9090c29a06731630b9685bad2c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Manyar, Gresik</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1307, 112.5864         </div>         </div>`)[0];
+                popup_1dcfcef376419d317c3708fb4d70203d.setContent(html_9c0caf9090c29a06731630b9685bad2c);
+            
+        
+
+        marker_676f716f3854bcd750662990e9de6265.bindPopup(popup_1dcfcef376419d317c3708fb4d70203d)
+        ;
+
+        
+    
+    
+            marker_676f716f3854bcd750662990e9de6265.bindTooltip(
+                `<div>
+                     Manyar, Gresik (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_676f716f3854bcd750662990e9de6265.setIcon(div_icon_1af0f1602850b0d4bee55e2a2252cd8b);
+            
+    
+            var marker_3e9c326473d8aa30c346fe6deae9bf42 = L.marker(
+                [-7.16326603748517, 112.72202538588202],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_0cd3de9a850a63a6525e0d1aadaf9a2a = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_93f971da2426d77745871eff6f29a6f7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_222e961f38cac4b57311ee7647e12157 = $(`<div id="html_222e961f38cac4b57311ee7647e12157" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Kamal, Bangkalan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1633, 112.7220         </div>         </div>`)[0];
+                popup_93f971da2426d77745871eff6f29a6f7.setContent(html_222e961f38cac4b57311ee7647e12157);
+            
+        
+
+        marker_3e9c326473d8aa30c346fe6deae9bf42.bindPopup(popup_93f971da2426d77745871eff6f29a6f7)
+        ;
+
+        
+    
+    
+            marker_3e9c326473d8aa30c346fe6deae9bf42.bindTooltip(
+                `<div>
+                     Kamal, Bangkalan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3e9c326473d8aa30c346fe6deae9bf42.setIcon(div_icon_0cd3de9a850a63a6525e0d1aadaf9a2a);
+            
+    
+            var marker_c244927e54ed159a7ba4248884d166c3 = L.marker(
+                [-7.174402273693406, 112.20718544299714],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_e2bc59981dc07a187983addd8def7e3c = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_32cf9eed707fb593787125884f88dc26 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_4ead73a53e015c1a0709b29c8bed7942 = $(`<div id="html_4ead73a53e015c1a0709b29c8bed7942" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Kedungpring Lamongan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1744, 112.2072         </div>         </div>`)[0];
+                popup_32cf9eed707fb593787125884f88dc26.setContent(html_4ead73a53e015c1a0709b29c8bed7942);
+            
+        
+
+        marker_c244927e54ed159a7ba4248884d166c3.bindPopup(popup_32cf9eed707fb593787125884f88dc26)
+        ;
+
+        
+    
+    
+            marker_c244927e54ed159a7ba4248884d166c3.bindTooltip(
+                `<div>
+                     Kedungpring Lamongan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c244927e54ed159a7ba4248884d166c3.setIcon(div_icon_e2bc59981dc07a187983addd8def7e3c);
+            
+    
+            var marker_a6ee317e79d7c461f5b3c389927330a9 = L.marker(
+                [-6.993321144021061, 112.16349143771434],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_a2d2eea096265241f05c8c23073abe70 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_fd0d1cf57f642b9c60173bf16245fff2 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_661e9a6044ee28f6d6285d06adfce7ea = $(`<div id="html_661e9a6044ee28f6d6285d06adfce7ea" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Widang, Tuban</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -6.9933, 112.1635         </div>         </div>`)[0];
+                popup_fd0d1cf57f642b9c60173bf16245fff2.setContent(html_661e9a6044ee28f6d6285d06adfce7ea);
+            
+        
+
+        marker_a6ee317e79d7c461f5b3c389927330a9.bindPopup(popup_fd0d1cf57f642b9c60173bf16245fff2)
+        ;
+
+        
+    
+    
+            marker_a6ee317e79d7c461f5b3c389927330a9.bindTooltip(
+                `<div>
+                     Widang, Tuban (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a6ee317e79d7c461f5b3c389927330a9.setIcon(div_icon_a2d2eea096265241f05c8c23073abe70);
+            
+    
+            var marker_6c93ca1fe5fd2e50802583295cd89f78 = L.marker(
+                [-7.004359239133565, 113.51188968184253],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_2b73fba94872fbd8d61f01645794a661 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_10130aa0f4094b5164c8736c0077ba7c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9a648b00a383922700539d63675aa9fe = $(`<div id="html_9a648b00a383922700539d63675aa9fe" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Waru, Pamekasan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.0044, 113.5119         </div>         </div>`)[0];
+                popup_10130aa0f4094b5164c8736c0077ba7c.setContent(html_9a648b00a383922700539d63675aa9fe);
+            
+        
+
+        marker_6c93ca1fe5fd2e50802583295cd89f78.bindPopup(popup_10130aa0f4094b5164c8736c0077ba7c)
+        ;
+
+        
+    
+    
+            marker_6c93ca1fe5fd2e50802583295cd89f78.bindTooltip(
+                `<div>
+                     Waru, Pamekasan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6c93ca1fe5fd2e50802583295cd89f78.setIcon(div_icon_2b73fba94872fbd8d61f01645794a661);
+            
+    
+            var marker_b13c47b9a1762fabd6cfeea5d9915b6f = L.marker(
+                [-7.1714376000997655, 112.65349572735614],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_b49f1ff5c8a895eb9c89e1a26f813ff5 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_6b53cfcec028f28097ea5b725a20899d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_63bba907457cdd3d33fc103502dcbae3 = $(`<div id="html_63bba907457cdd3d33fc103502dcbae3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Gresik Kota, Gresik</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1714, 112.6535         </div>         </div>`)[0];
+                popup_6b53cfcec028f28097ea5b725a20899d.setContent(html_63bba907457cdd3d33fc103502dcbae3);
+            
+        
+
+        marker_b13c47b9a1762fabd6cfeea5d9915b6f.bindPopup(popup_6b53cfcec028f28097ea5b725a20899d)
+        ;
+
+        
+    
+    
+            marker_b13c47b9a1762fabd6cfeea5d9915b6f.bindTooltip(
+                `<div>
+                     Gresik Kota, Gresik (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b13c47b9a1762fabd6cfeea5d9915b6f.setIcon(div_icon_b49f1ff5c8a895eb9c89e1a26f813ff5);
+            
+    
+            var marker_9bce6b6f5441a78a4340e746b1d8ee93 = L.marker(
+                [-7.589670274968639, 112.08403171340659],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_251087dfa2e48ac4f56565d004248303 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_ac83dec600f0616501dd3d8d00f6fcbf = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_ac92f9c6cf5255155241113a9a66145e = $(`<div id="html_ac92f9c6cf5255155241113a9a66145e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Kertosono, Nganjuk</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.5897, 112.0840         </div>         </div>`)[0];
+                popup_ac83dec600f0616501dd3d8d00f6fcbf.setContent(html_ac92f9c6cf5255155241113a9a66145e);
+            
+        
+
+        marker_9bce6b6f5441a78a4340e746b1d8ee93.bindPopup(popup_ac83dec600f0616501dd3d8d00f6fcbf)
+        ;
+
+        
+    
+    
+            marker_9bce6b6f5441a78a4340e746b1d8ee93.bindTooltip(
+                `<div>
+                     Kertosono, Nganjuk (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9bce6b6f5441a78a4340e746b1d8ee93.setIcon(div_icon_251087dfa2e48ac4f56565d004248303);
+            
+    
+            var marker_b9274fa92e6ede4a694eb4ac24518d83 = L.marker(
+                [-7.157708998899722, 112.6687917680894],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_615489e5480d0839dc86c5af392f7bac = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_808bb41afc9eac30a8369cde7dcdc5c3 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_664eaed73f502e24b20f1a2a90ce7ebe = $(`<div id="html_664eaed73f502e24b20f1a2a90ce7ebe" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Menganti, Gresik</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1577, 112.6688         </div>         </div>`)[0];
+                popup_808bb41afc9eac30a8369cde7dcdc5c3.setContent(html_664eaed73f502e24b20f1a2a90ce7ebe);
+            
+        
+
+        marker_b9274fa92e6ede4a694eb4ac24518d83.bindPopup(popup_808bb41afc9eac30a8369cde7dcdc5c3)
+        ;
+
+        
+    
+    
+            marker_b9274fa92e6ede4a694eb4ac24518d83.bindTooltip(
+                `<div>
+                     Menganti, Gresik (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b9274fa92e6ede4a694eb4ac24518d83.setIcon(div_icon_615489e5480d0839dc86c5af392f7bac);
+            
+    
+            var marker_88ce3697d06b04cb5b2cf5c7e0dd88bf = L.marker(
+                [-7.156862784174626, 112.71650616077773],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_9690aca3c16b624869c621352e15bec9 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_68e2ff2c8409b634a7f05237e24a214a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3e319257d7194180be8d394e2f6eae7b = $(`<div id="html_3e319257d7194180be8d394e2f6eae7b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Banyu Ajuh, Perumnas, Kamal</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.1569, 112.7165         </div>         </div>`)[0];
+                popup_68e2ff2c8409b634a7f05237e24a214a.setContent(html_3e319257d7194180be8d394e2f6eae7b);
+            
+        
+
+        marker_88ce3697d06b04cb5b2cf5c7e0dd88bf.bindPopup(popup_68e2ff2c8409b634a7f05237e24a214a)
+        ;
+
+        
+    
+    
+            marker_88ce3697d06b04cb5b2cf5c7e0dd88bf.bindTooltip(
+                `<div>
+                     Banyu Ajuh, Perumnas, Kamal (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_88ce3697d06b04cb5b2cf5c7e0dd88bf.setIcon(div_icon_9690aca3c16b624869c621352e15bec9);
+            
+    
+            var marker_5db4f3cf3035cb8f085a0dfe839b8902 = L.marker(
+                [-6.878488029051044, 112.35329710949935],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_ccfeb6b6aad68d3dc4b0d44634aab5df = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_0ef590adcadb4cfc6aa62dd4d1d36fa1 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6d5925368cdda6379afdbd6224eda5b0 = $(`<div id="html_6d5925368cdda6379afdbd6224eda5b0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Paciran, Lamongan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -6.8785, 112.3533         </div>         </div>`)[0];
+                popup_0ef590adcadb4cfc6aa62dd4d1d36fa1.setContent(html_6d5925368cdda6379afdbd6224eda5b0);
+            
+        
+
+        marker_5db4f3cf3035cb8f085a0dfe839b8902.bindPopup(popup_0ef590adcadb4cfc6aa62dd4d1d36fa1)
+        ;
+
+        
+    
+    
+            marker_5db4f3cf3035cb8f085a0dfe839b8902.bindTooltip(
+                `<div>
+                     Paciran, Lamongan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5db4f3cf3035cb8f085a0dfe839b8902.setIcon(div_icon_ccfeb6b6aad68d3dc4b0d44634aab5df);
+            
+    
+            var marker_702b876cc09dff69448bf614bf411246 = L.marker(
+                [-7.039541284244643, 112.72879807516532],
+                {
+  "zIndexOffset": 100,
+}
+            ).addTo(feature_group_72b80a460f6cd12d058988d3a74cdced);
+        
+    
+            var div_icon_6f8b9f6132c683e11375285bad481e79 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #e53935;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC0\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_cddc08f97e8614b2bf6dc3f617511ee1 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_34d40a657caac29253a0e648843ce1bd = $(`<div id="html_34d40a657caac29253a0e648843ce1bd" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Kecamatan Bangkalan,Bangkalan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#e53935; font-weight:bold;">Cluster 0 (C0)</span><br>             <b>Koordinat:</b> -7.0395, 112.7288         </div>         </div>`)[0];
+                popup_cddc08f97e8614b2bf6dc3f617511ee1.setContent(html_34d40a657caac29253a0e648843ce1bd);
+            
+        
+
+        marker_702b876cc09dff69448bf614bf411246.bindPopup(popup_cddc08f97e8614b2bf6dc3f617511ee1)
+        ;
+
+        
+    
+    
+            marker_702b876cc09dff69448bf614bf411246.bindTooltip(
+                `<div>
+                     Kecamatan Bangkalan,Bangkalan (C0)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_702b876cc09dff69448bf614bf411246.setIcon(div_icon_6f8b9f6132c683e11375285bad481e79);
+            
+    
+            feature_group_72b80a460f6cd12d058988d3a74cdced.addTo(map_a5fa26f928ae31a917cb25a63508411a);
+        
+    
+            var feature_group_2ad142a7008e80f904e1e7431beeedba = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_238eee708b78ce0076d8842c189f7ee9 = L.marker(
+                [-7.547430622562336, 112.76719092030538],
+                {
+  "zIndexOffset": 1000,
+}
+            ).addTo(feature_group_2ad142a7008e80f904e1e7431beeedba);
+        
+    
+            var div_icon_76f1288cac414d67ec08ff79d8ad4891 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #1e88e5;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC1\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_107b0ca266ee22ca39e1c94df5e15b2c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_ec5b557b30815564fa0c949c3a8d1c35 = $(`<div id="html_ec5b557b30815564fa0c949c3a8d1c35" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Jabon, Sidoarjo</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#1e88e5; font-weight:bold;">Cluster 1 (C1)</span><br>             <b>Koordinat:</b> -7.5474, 112.7672         </div>         </div>`)[0];
+                popup_107b0ca266ee22ca39e1c94df5e15b2c.setContent(html_ec5b557b30815564fa0c949c3a8d1c35);
+            
+        
+
+        marker_238eee708b78ce0076d8842c189f7ee9.bindPopup(popup_107b0ca266ee22ca39e1c94df5e15b2c)
+        ;
+
+        
+    
+    
+            marker_238eee708b78ce0076d8842c189f7ee9.bindTooltip(
+                `<div>
+                     Jabon, Sidoarjo (C1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_238eee708b78ce0076d8842c189f7ee9.setIcon(div_icon_76f1288cac414d67ec08ff79d8ad4891);
+            
+    
+            var marker_33e69d386e6e229eb175d7d0c45cfec5 = L.marker(
+                [-7.504467967439523, 111.67244136130186],
+                {
+  "zIndexOffset": 1000,
+}
+            ).addTo(feature_group_2ad142a7008e80f904e1e7431beeedba);
+        
+    
+            var div_icon_a5f853cdccea79c38e3711bfc371fd41 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #1e88e5;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC1\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_6f3f0072d9a1e6064a52578fee7f9e4c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5ec9721635c62f6121d76cca55a667d5 = $(`<div id="html_5ec9721635c62f6121d76cca55a667d5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Pilangkenceng, Madiun</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#1e88e5; font-weight:bold;">Cluster 1 (C1)</span><br>             <b>Koordinat:</b> -7.5045, 111.6724         </div>         </div>`)[0];
+                popup_6f3f0072d9a1e6064a52578fee7f9e4c.setContent(html_5ec9721635c62f6121d76cca55a667d5);
+            
+        
+
+        marker_33e69d386e6e229eb175d7d0c45cfec5.bindPopup(popup_6f3f0072d9a1e6064a52578fee7f9e4c)
+        ;
+
+        
+    
+    
+            marker_33e69d386e6e229eb175d7d0c45cfec5.bindTooltip(
+                `<div>
+                     Pilangkenceng, Madiun (C1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_33e69d386e6e229eb175d7d0c45cfec5.setIcon(div_icon_a5f853cdccea79c38e3711bfc371fd41);
+            
+    
+            var marker_c8752ba87f34e5600fd149780cdc9b0b = L.marker(
+                [1.477309933171594, 124.84656363828786],
+                {
+  "zIndexOffset": 1000,
+}
+            ).addTo(feature_group_2ad142a7008e80f904e1e7431beeedba);
+        
+    
+            var div_icon_d8fd33c11addbbeb9596b9abb389f017 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #1e88e5;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC1\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_86795d21f49bee3139316c89e55163b4 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_4faab1a1587d91fcf0cbce679a9d2f0c = $(`<div id="html_4faab1a1587d91fcf0cbce679a9d2f0c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Tikala, Manado</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#1e88e5; font-weight:bold;">Cluster 1 (C1)</span><br>             <b>Koordinat:</b> 1.4773, 124.8466         </div>         </div>`)[0];
+                popup_86795d21f49bee3139316c89e55163b4.setContent(html_4faab1a1587d91fcf0cbce679a9d2f0c);
+            
+        
+
+        marker_c8752ba87f34e5600fd149780cdc9b0b.bindPopup(popup_86795d21f49bee3139316c89e55163b4)
+        ;
+
+        
+    
+    
+            marker_c8752ba87f34e5600fd149780cdc9b0b.bindTooltip(
+                `<div>
+                     Tikala, Manado (C1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c8752ba87f34e5600fd149780cdc9b0b.setIcon(div_icon_d8fd33c11addbbeb9596b9abb389f017);
+            
+    
+            var marker_1fc6eef29585bb5a9ce54528455ca316 = L.marker(
+                [-7.407449187236049, 111.24491954088569],
+                {
+  "zIndexOffset": 1000,
+}
+            ).addTo(feature_group_2ad142a7008e80f904e1e7431beeedba);
+        
+    
+            var div_icon_c38b94a7f3dd8a524638b6a1ee825495 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #1e88e5;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC1\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_be3a839165745fdb55f14df13c1e9c2f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_341eed2da263aa7fe9c3a147f5bbc888 = $(`<div id="html_341eed2da263aa7fe9c3a147f5bbc888" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Widodaren, Ngawi</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#1e88e5; font-weight:bold;">Cluster 1 (C1)</span><br>             <b>Koordinat:</b> -7.4074, 111.2449         </div>         </div>`)[0];
+                popup_be3a839165745fdb55f14df13c1e9c2f.setContent(html_341eed2da263aa7fe9c3a147f5bbc888);
+            
+        
+
+        marker_1fc6eef29585bb5a9ce54528455ca316.bindPopup(popup_be3a839165745fdb55f14df13c1e9c2f)
+        ;
+
+        
+    
+    
+            marker_1fc6eef29585bb5a9ce54528455ca316.bindTooltip(
+                `<div>
+                     Widodaren, Ngawi (C1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1fc6eef29585bb5a9ce54528455ca316.setIcon(div_icon_c38b94a7f3dd8a524638b6a1ee825495);
+            
+    
+            var marker_4290b9a60ef986f592785106985d5eef = L.marker(
+                [-7.037095179641363, 113.93148554096261],
+                {
+  "zIndexOffset": 1000,
+}
+            ).addTo(feature_group_2ad142a7008e80f904e1e7431beeedba);
+        
+    
+            var div_icon_d9e55ede6d3b1eb6b5902b9cde29eea8 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #1e88e5;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC1\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_d26911d3fd586b32760dfc8ba749818e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_0226dd4189f341920e87215f4a4dda5d = $(`<div id="html_0226dd4189f341920e87215f4a4dda5d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Kec. Kalianget, Sumenep</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#1e88e5; font-weight:bold;">Cluster 1 (C1)</span><br>             <b>Koordinat:</b> -7.0371, 113.9315         </div>         </div>`)[0];
+                popup_d26911d3fd586b32760dfc8ba749818e.setContent(html_0226dd4189f341920e87215f4a4dda5d);
+            
+        
+
+        marker_4290b9a60ef986f592785106985d5eef.bindPopup(popup_d26911d3fd586b32760dfc8ba749818e)
+        ;
+
+        
+    
+    
+            marker_4290b9a60ef986f592785106985d5eef.bindTooltip(
+                `<div>
+                     Kec. Kalianget, Sumenep (C1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4290b9a60ef986f592785106985d5eef.setIcon(div_icon_d9e55ede6d3b1eb6b5902b9cde29eea8);
+            
+    
+            var marker_3a641c045e628c742cf36e05e8c6ed99 = L.marker(
+                [4.131936203565421, 117.6792214291923],
+                {
+  "zIndexOffset": 1000,
+}
+            ).addTo(feature_group_2ad142a7008e80f904e1e7431beeedba);
+        
+    
+            var div_icon_31a2895d60526219aa9a288f744ac6e4 = L.divIcon({
+  "html": "\n        \u003cdiv style=\"\n            background-color: #1e88e5;\n            color: white;\n            border-radius: 50%;\n            width: 30px;\n            height: 30px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            font-family: Arial, sans-serif;\n            font-size: 11px;\n            font-weight: bold;\n            border: 2px solid white;\n            box-shadow: 0 2px 6px rgba(0,0,0,0.45);\n        \"\u003eC1\u003c/div\u003e\n        ",
+  "iconSize": [30, 30],
+  "iconAnchor": [15, 15],
+  "className": "empty",
+});
+        
+    
+        var popup_2a4ea5f66ba8aeb6e056f9052f4f750e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_4fd2cb536eccda4ab87745e4aad6132a = $(`<div id="html_4fd2cb536eccda4ab87745e4aad6132a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 170px;">             <b>Nunukan</b><hr style="margin: 4px 0;">             <b>Klaster:</b> <span style="color:#1e88e5; font-weight:bold;">Cluster 1 (C1)</span><br>             <b>Koordinat:</b> 4.1319, 117.6792         </div>         </div>`)[0];
+                popup_2a4ea5f66ba8aeb6e056f9052f4f750e.setContent(html_4fd2cb536eccda4ab87745e4aad6132a);
+            
+        
+
+        marker_3a641c045e628c742cf36e05e8c6ed99.bindPopup(popup_2a4ea5f66ba8aeb6e056f9052f4f750e)
+        ;
+
+        
+    
+    
+            marker_3a641c045e628c742cf36e05e8c6ed99.bindTooltip(
+                `<div>
+                     Nunukan (C1)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3a641c045e628c742cf36e05e8c6ed99.setIcon(div_icon_31a2895d60526219aa9a288f744ac6e4);
+            
+    
+            feature_group_2ad142a7008e80f904e1e7431beeedba.addTo(map_a5fa26f928ae31a917cb25a63508411a);
+        
+    
+            var tile_layer_efd0db0d8a7f7aec55177657fafe920c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_c6bc8b0ac7e87ce7f2f830ac68ad4706 = new L.Control.MiniMap(
+                tile_layer_efd0db0d8a7f7aec55177657fafe920c,
+                {
+  "position": "bottomright",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": true,
+  "autoToggleDisplay": false,
+  "minimized": false,
+}
+            );
+            map_a5fa26f928ae31a917cb25a63508411a.addControl(mini_map_c6bc8b0ac7e87ce7f2f830ac68ad4706);
+        
+    
+            var layer_control_91a11b2fb8425fb965622f624579df12_layers = {
+                base_layers : {
+                    "OpenStreetMap (Default)" : tile_layer_e66dff3ee48340f1ba1794c3fc5e729c,
+                    "Esri Street Map" : tile_layer_165acf9084faa800a4cbb78c9592a719,
+                    "Citra Satelit (Esri)" : tile_layer_bd96a06d4034336c9ce85666e86f3b05,
+                },
+                overlays :  {
+                    "Cluster 0" : feature_group_72b80a460f6cd12d058988d3a74cdced,
+                    "Cluster 1" : feature_group_2ad142a7008e80f904e1e7431beeedba,
+                },
+            };
+            let layer_control_91a11b2fb8425fb965622f624579df12 = L.control.layers(
+                layer_control_91a11b2fb8425fb965622f624579df12_layers.base_layers,
+                layer_control_91a11b2fb8425fb965622f624579df12_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_a5fa26f928ae31a917cb25a63508411a);
+
+        
+</script>
+</html>
