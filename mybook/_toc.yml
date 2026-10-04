@@ -10,3 +10,5 @@ chapters:
   - file: Analisis_Polutan
   - file: clustering_k-means
   - file: Penjelasan_dan_Perhitungan_TSFEL
+  - file: Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Linear
+  - file: Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Polinomial

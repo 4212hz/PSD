@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ANALISIS POLUTAN &#8212; My sample book</title>
+    <title>Data Preprocessing dan Ekstraksi Fitur (Interpolasi Polinomial) &#8212; My sample book</title>
   
   
   
@@ -60,12 +60,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Analisis_Polutan';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Polinomial';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Clustering Polutan Menggunakan K-Means" href="clustering_k-means.html" />
-    <link rel="prev" title="Preprocessing dan Ekstraksi Fitur Data Polutan di Kecamatan Tanah Merah, Bangkalan" href="Preprocessing_dan_Ekstraksi_Fitur_Data_Polutan_di_Kecamatan_Tanah_Merah.html" />
+    <link rel="prev" title="Data Preprocessing dan Ekstraksi Fitur (Interpolasi Linear)" href="Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Linear.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -238,7 +237,7 @@
 
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">ANALISIS POLUTAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Analisis_Polutan.html">ANALISIS POLUTAN</a></li>
 
 
 
@@ -255,7 +254,7 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Polinomial.html">Data Preprocessing dan Ekstraksi Fitur (Interpolasi Polinomial)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Preprocessing dan Ekstraksi Fitur (Interpolasi Polinomial)</a></li>
 
 
 
@@ -338,7 +337,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FAnalisis_Polutan.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FData_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Polinomial.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +367,7 @@
       
       
       
-      <li><a href="_sources/Analisis_Polutan.ipynb" target="_blank"
+      <li><a href="_sources/Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Polinomial.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -444,7 +443,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>ANALISIS POLUTAN</h1>
+    <h1>Data Preprocessing dan Ekstraksi Fitur (Interpolasi Polinomial)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -454,7 +453,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ANALISIS POLUTAN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Preprocessing dan Ekstraksi Fitur (Interpolasi Polinomial)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-penanganan-outlier-dan-interpolasi-polinomial">Preprocessing: Penanganan Outlier dan Interpolasi Polinomial</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-1-ekstraksi-fitur-no2-co-so2">Tahap 1: Ekstraksi Fitur NO2, CO, SO2</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-dan-autentikasi">1. Persiapan Lingkungan dan Autentikasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-area-aoi-dan-pemanggilan-dataset">2. Definisi Area (AOI) dan Pemanggilan Dataset</a></li>
@@ -484,16 +486,17 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="analisis-polutan">
-<h1>ANALISIS POLUTAN<a class="headerlink" href="#analisis-polutan" title="Link to this heading">#</a></h1>
-<p>Notebook ini memuat seluruh alur kerja pemrosesan data deret waktu polutan udara (NO2, CO, SO2) Kecamatan Tanah Merah Kabupaten Bangkalan yang terbagi ke dalam 5 tahapan utama:</p>
-<ul class="simple">
-<li><p><strong>Tahap 1:</strong> Ekstraksi Fitur NO2, CO, SO2</p></li>
-<li><p><strong>Tahap 2:</strong> Deteksi Outliers (Pencilan) dengan Metode IQR</p></li>
-<li><p><strong>Tahap 3:</strong> Imputasi Missing Value</p></li>
-<li><p><strong>Tahap 4:</strong> Persiapan Data untuk TSFEL</p></li>
-<li><p><strong>Tahap 5:</strong> Eksekusi TSFEL dan Penyimpanan Hasil</p></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="data-preprocessing-dan-ekstraksi-fitur-interpolasi-polinomial">
+<h1>Data Preprocessing dan Ekstraksi Fitur (Interpolasi Polinomial)<a class="headerlink" href="#data-preprocessing-dan-ekstraksi-fitur-interpolasi-polinomial" title="Link to this heading">#</a></h1>
+<section id="preprocessing-penanganan-outlier-dan-interpolasi-polinomial">
+<h2>Preprocessing: Penanganan Outlier dan Interpolasi Polinomial<a class="headerlink" href="#preprocessing-penanganan-outlier-dan-interpolasi-polinomial" title="Link to this heading">#</a></h2>
+<p>Pada tahap Data Understanding, ditemukan adanya kemungkinan nilai outlier pada data deret waktu. Untuk mengatasi masalah tersebut sekaligus mempersiapkan data agar proses ekstraksi fitur dapat berjalan dengan baik, dilakukan pembersihan data secara iteratif menggunakan metode Rentang Interkuartil (IQR). Selanjutnya, nilai yang hilang diisi atau diimputasi menggunakan metode interpolasi polinomial.</p>
+<p><strong>Mengapa Menggunakan Interpolasi Polinomial?</strong>
+Interpolasi polinomial dengan parameter method=’polynomial’ dan order=1 digunakan sebagai alternatif dari interpolasi linier maupun interpolasi berbasis waktu. Secara matematis, polinomial orde 1 memiliki karakteristik yang hampir sama dengan garis lurus karena menyesuaikan nilai berdasarkan rentang indeks data yang kosong. Dengan memanfaatkan fungsi bawaan pandas, nilai yang hilang akibat penghapusan outlier dapat diperkirakan dan diisi secara proporsional.</p>
+<p>Metode ini membantu mempertahankan kesinambungan (continuity) pola temporal pada data tanpa menimbulkan anomali baru dalam distribusi nilai harian.</p>
+<p>Proses pendeteksian outlier dan imputasi menggunakan interpolasi polinomial dilakukan secara berulang melalui blok loop. Perulangan ini dijalankan hingga distribusi data benar-benar bersih. Tahapan iteratif diperlukan karena nilai hasil interpolasi dapat sedikit mengubah batas bawah dan batas atas dalam perhitungan IQR. Oleh karena itu, pemeriksaan tambahan dilakukan agar seluruh outlier dapat ditangani dengan tuntas.</p>
+<p>Pada tahap akhir imputasi, metode backward fill (bfill) dan forward fill (ffill) digunakan untuk menangani nilai kosong yang berada di bagian tepi data, termasuk pada awal dan akhir deret waktu. Nilai-nilai tersebut tidak dapat diinterpolasi secara polinomial karena tidak memiliki dua titik data pembanding di sekitarnya.</p>
+</section>
 </section>
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="tahap-1-ekstraksi-fitur-no2-co-so2">
@@ -575,6 +578,11 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">connection</span> <span class="o">=</span> <span class="n">openeo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;openeo.dataspace.copernicus.eu&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">authenticate_oidc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authenticated using refresh token.
 </pre></div>
 </div>
 </div>
@@ -680,20 +688,19 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: send &#39;start&#39;
-0:00:02 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
-0:00:07 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
-0:00:14 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
-0:00:22 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
-0:00:32 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
-0:00:45 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: queued (progress 0%)
-0:01:01 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
-0:01:20 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
-0:01:44 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
-0:02:14 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
-0:02:52 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
-0:03:39 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: running (progress N/A)
-0:04:38 Job &#39;j-2609271146214cabb3c5627c2e863275&#39;: finished (progress 100%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-261004143251462d9437204693e21068&#39;: send &#39;start&#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:02 Job &#39;j-261004143251462d9437204693e21068&#39;: queued (progress 0%)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:08 Job &#39;j-261004143251462d9437204693e21068&#39;: queued (progress 0%)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:14 Job &#39;j-261004143251462d9437204693e21068&#39;: queued (progress 0%)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:23 Job &#39;j-261004143251462d9437204693e21068&#39;: running (progress N/A)
 </pre></div>
 </div>
 </div>
@@ -705,19 +712,20 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: send &#39;start&#39;
-0:00:02 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
-0:00:07 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
-0:00:14 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
-0:00:22 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
-0:00:32 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
-0:00:45 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: queued (progress 0%)
-0:01:04 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
-0:01:23 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
-0:01:47 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
-0:02:18 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
-0:02:55 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: running (progress N/A)
-0:03:42 Job &#39;j-2609271151094ab3a2256c3633ae3485&#39;: finished (progress 100%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: send &#39;start&#39;
+0:00:06 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: queued (progress 0%)
+0:00:12 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: queued (progress 0%)
+0:00:19 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: queued (progress 0%)
+0:00:28 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: queued (progress 0%)
+0:00:39 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: queued (progress 0%)
+0:00:52 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: running (progress N/A)
+0:01:10 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: running (progress N/A)
+0:01:29 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: running (progress N/A)
+0:01:54 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: running (progress N/A)
+0:02:25 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: running (progress N/A)
+0:03:04 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: running (progress N/A)
+0:03:56 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: running (progress N/A)
+0:04:56 Job &#39;j-2610020831314b219c07ad3f1e1bcab3&#39;: finished (progress 100%)
 </pre></div>
 </div>
 </div>
@@ -729,19 +737,20 @@ Requirement already satisfied: idna&lt;4,&gt;=2.5 in C:\Users\HYPE AMD\AppData\R
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: send &#39;start&#39;
-0:00:03 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
-0:00:08 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
-0:00:15 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
-0:00:23 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
-0:00:33 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
-0:00:46 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
-0:01:01 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: queued (progress 0%)
-0:01:21 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: running (progress N/A)
-0:01:45 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: running (progress N/A)
-0:02:15 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: running (progress N/A)
-0:02:53 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: running (progress N/A)
-0:03:40 Job &#39;j-2609271155014ddb9881767282d73bfc&#39;: finished (progress 100%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0:00:00 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: send &#39;start&#39;
+0:00:03 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:00:09 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:00:18 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:00:26 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:00:36 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:00:49 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:01:06 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:01:26 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:01:51 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:02:24 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: queued (progress 0%)
+0:03:07 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: running (progress N/A)
+0:03:54 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: running (progress N/A)
+0:04:54 Job &#39;j-261002083645406b88de41831a97cc4e&#39;: finished (progress 100%)
 </pre></div>
 </div>
 </div>
@@ -921,11 +930,11 @@ Requirement already satisfied: numpy&gt;=1.21.2 in C:\Users\HYPE AMD\AppData\Loc
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">no2_missing_idx</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span>
 <span class="n">no2_fill_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">no2_missing_idx</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">no2_missing_idx</span><span class="p">)</span> <span class="o">-</span> <span class="mi">29</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df_combined</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">no2_fill_idx</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">no2_fill_idx</span><span class="p">]</span>
+<span class="n">df_combined</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">no2_fill_idx</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">no2_fill_idx</span><span class="p">]</span>
 
 <span class="n">co_missing_idx</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span>
 <span class="n">co_fill_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">co_missing_idx</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">co_missing_idx</span><span class="p">)</span> <span class="o">-</span> <span class="mi">26</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">df_combined</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">co_fill_idx</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">co_fill_idx</span><span class="p">]</span>
+<span class="n">df_combined</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">co_fill_idx</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">co_fill_idx</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">df_combined</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
 </pre></div>
@@ -933,15 +942,15 @@ Requirement already satisfied: numpy&gt;=1.21.2 in C:\Users\HYPE AMD\AppData\Loc
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Jumlah Missing Values pada Hasil Crawling ===
-NO2 : 0 missing value(s) dari 187 data
-CO  : 0 missing value(s) dari 200 data
-SO2 : 0 missing value(s) dari 228 data
+NO2 : 0 missing value(s) dari 185 data
+CO  : 0 missing value(s) dari 197 data
+SO2 : 0 missing value(s) dari 232 data
 
 === Missing Values pada Data Gabungan (Berdasarkan Tanggal) ===
 date     0
 NO2     29
 CO      26
-SO2     23
+SO2     19
 dtype: int64
 </pre></div>
 </div>
@@ -961,11 +970,11 @@ dtype: int64
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
     <span class="n">no2_missing_idx</span> <span class="o">=</span> <span class="n">df_combined_raw</span><span class="p">[</span><span class="n">df_combined_raw</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span>
     <span class="n">no2_fill_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">no2_missing_idx</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">no2_missing_idx</span><span class="p">)</span> <span class="o">-</span> <span class="mi">29</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">df_combined_raw</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">no2_fill_idx</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_combined_raw</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">no2_fill_idx</span><span class="p">]</span>
+    <span class="n">df_combined_raw</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">no2_fill_idx</span><span class="p">,</span> <span class="s1">&#39;NO2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_combined_raw</span><span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">no2_fill_idx</span><span class="p">]</span>
 
     <span class="n">co_missing_idx</span> <span class="o">=</span> <span class="n">df_combined_raw</span><span class="p">[</span><span class="n">df_combined_raw</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span><span class="o">.</span><span class="n">index</span>
     <span class="n">co_fill_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">co_missing_idx</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">co_missing_idx</span><span class="p">)</span> <span class="o">-</span> <span class="mi">26</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">df_combined_raw</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">co_fill_idx</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_combined_raw</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">co_fill_idx</span><span class="p">]</span>
+    <span class="n">df_combined_raw</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">co_fill_idx</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_combined_raw</span><span class="p">[</span><span class="s1">&#39;CO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">co_fill_idx</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== INFORMASI DATA GABUNGAN HASIL CRAWLING ===&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_combined_raw</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
@@ -1001,7 +1010,7 @@ Data columns (total 4 columns):
  0   date    251 non-null    object 
  1   NO2     222 non-null    float64
  2   CO      225 non-null    float64
- 3   SO2     228 non-null    float64
+ 3   SO2     232 non-null    float64
 dtypes: float64(3), object(1)
 memory usage: 8.0+ KB
 None
@@ -1052,8 +1061,8 @@ None
       <th>2</th>
       <td>SO2</td>
       <td>251</td>
-      <td>23</td>
-      <td>9.16%</td>
+      <td>19</td>
+      <td>7.57%</td>
     </tr>
   </tbody>
 </table>
@@ -1092,20 +1101,20 @@ None
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== Pengecekan Missing Values (3 Polutan) ==========
-NO2    64
-CO     51
-SO2    23
+NO2    66
+CO     54
+SO2    19
 dtype: int64
 
 ========== Pengecekan Data Aneh (Deskripsi Statistik 3 Polutan) ==========
               NO2          CO         SO2
-count  187.000000  200.000000  228.000000
-mean     0.000024    0.028182    0.000032
-std      0.000012    0.003514    0.000207
+count  185.000000  197.000000  232.000000
+mean     0.000024    0.028146    0.000029
+std      0.000012    0.003477    0.000208
 min     -0.000007    0.019911   -0.000963
-25%      0.000015    0.025920   -0.000068
-50%      0.000024    0.027938    0.000039
-75%      0.000030    0.030110    0.000142
+25%      0.000015    0.025924   -0.000070
+50%      0.000024    0.027922    0.000039
+75%      0.000030    0.030041    0.000142
 max      0.000063    0.046880    0.000790
 </pre></div>
 </div>
@@ -1153,7 +1162,7 @@ Contoh data outlier:
 29 2025-10-17 -0.000006
 35 2025-11-25  0.000053
 51 2026-01-08  0.000063
-70 2026-03-09  0.000060
+68 2026-03-09  0.000060
 
 --- Polutan: CO ---
 Jumlah outlier terdeteksi: 10
@@ -1163,17 +1172,17 @@ Contoh data outlier:
 15 2025-09-24  0.037709
 24 2025-10-07  0.046880
 34 2025-11-06  0.020574
-53 2026-01-21  0.022276
+52 2026-01-21  0.022276
 
 --- Polutan: SO2 ---
 Jumlah outlier terdeteksi: 12
 Contoh data outlier:
           date       SO2
 10  2025-09-11 -0.000963
-60  2025-12-28  0.000477
-61  2025-12-29  0.000451
-64  2026-01-06 -0.000612
-128 2026-05-14 -0.000384
+66  2025-12-28  0.000477
+67  2025-12-29  0.000451
+70  2026-01-06 -0.000612
+132 2026-05-14 -0.000384
 </pre></div>
 </div>
 </div>
@@ -1182,7 +1191,7 @@ Contoh data outlier:
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="tahap-3-imputasi-missing-value">
 <h1>Tahap 3: Imputasi Missing Value<a class="headerlink" href="#tahap-3-imputasi-missing-value" title="Link to this heading">#</a></h1>
-<p><em>Penanganan nilai pencilan dan negatif, pembentukan rentang tanggal lengkap satu tahun penuh (366 hari), imputasi data kosong menggunakan Interpolasi Waktu/Linier, serta verifikasi dan penyimpanan dataset bersih.</em></p>
+<p><em>Penanganan nilai pencilan dan negatif, pembentukan rentang tanggal lengkap satu tahun penuh (366 hari), imputasi data kosong menggunakan Interpolasi Polinomial, serta verifikasi dan penyimpanan dataset bersih.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -1224,9 +1233,9 @@ Contoh data outlier:
 <span class="n">df_imputed</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;date&#39;</span>
 <span class="n">df_imputed</span> <span class="o">=</span> <span class="n">df_imputed</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
-<span class="c1"># 4. Imputasi Missing Values menggunakan Linear Interpolation untuk setiap polutan</span>
+<span class="c1"># 4. Imputasi Missing Values menggunakan Interpolasi Polinomial untuk setiap polutan</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">pollutants</span><span class="p">:</span>
-    <span class="n">df_imputed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_imputed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+    <span class="n">df_imputed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_imputed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">df_imputed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_imputed</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Proses imputasi missing value dan pembersihan outlier untuk 3 polutan (NO2, CO, SO2) berhasil dilakukan!&quot;</span><span class="p">)</span>
@@ -1269,18 +1278,18 @@ Contoh data outlier:
 1. Rentang Tanggal : 2025-08-31 s/d 2026-08-31
 2. Total Hari      : 366 hari (Lengkap 100%)
 3. Missing Values  : {&#39;NO2&#39;: 0, &#39;CO&#39;: 0, &#39;SO2&#39;: 0} (Bebas Missing Value)
-4. Nilai Negatif   : {&#39;NO2&#39;: 0, &#39;CO&#39;: 0, &#39;SO2&#39;: 0} (Bebas Nilai Negatif)
+4. Nilai Negatif   : {&#39;NO2&#39;: 6, &#39;CO&#39;: 0, &#39;SO2&#39;: 36} (Bebas Nilai Negatif)
 
 ========== DESKRIPSI STATISTIK DATA BERSIH ==========
                                 date         NO2          CO         SO2
 count                            366  366.000000  366.000000  366.000000
-mean   2026-03-01 12:00:00.000000256    0.000025    0.028164    0.000139
-min              2025-08-31 00:00:00    0.000003    0.022439    0.000001
-25%              2025-11-30 06:00:00    0.000020    0.026369    0.000073
-50%              2026-03-01 12:00:00    0.000026    0.028084    0.000127
-75%              2026-05-31 18:00:00    0.000031    0.029698    0.000194
-max              2026-08-31 00:00:00    0.000047    0.036297    0.000364
-std                              NaN    0.000008    0.002542    0.000081
+mean   2026-03-01 12:00:00.000000256    0.000028    0.028259    0.000161
+min              2025-08-31 00:00:00   -0.000010    0.017286   -0.000465
+25%              2025-11-30 06:00:00    0.000018    0.026225    0.000050
+50%              2026-03-01 12:00:00    0.000025    0.028120    0.000128
+75%              2026-05-31 18:00:00    0.000036    0.030187    0.000250
+max              2026-08-31 00:00:00    0.000075    0.039410    0.001039
+std                              NaN    0.000014    0.003350    0.000200
 
 Dataset sempurna berhasil disimpan ke:
 - &#39;Polutan_Bangkalan.csv&#39; (Gabungan 3 Polutan)
@@ -1305,17 +1314,17 @@ Dataset sempurna berhasil disimpan ke:
         date       NO2        CO       SO2
 0 2025-08-31  0.000015  0.027910  0.000087
 1 2025-09-01  0.000015  0.025494  0.000051
-2 2025-09-02  0.000014  0.026148  0.000053
-3 2025-09-03  0.000013  0.027818  0.000055
-4 2025-09-04  0.000004  0.025908  0.000058
+2 2025-09-02  0.000018  0.026148  0.000026
+3 2025-09-03  0.000013  0.027818  0.000011
+4 2025-09-04  0.000004  0.025908  0.000018
 
 ========== 5 BARIS TERAKHIR DATA SEMPURNA ==========
           date       NO2        CO       SO2
-361 2026-08-27  0.000043  0.031348  0.000111
-362 2026-08-28  0.000027  0.036297  0.000111
-363 2026-08-29  0.000027  0.033375  0.000111
-364 2026-08-30  0.000027  0.030453  0.000111
-365 2026-08-31  0.000027  0.030453  0.000111
+361 2026-08-27  0.000043  0.025510  0.000111
+362 2026-08-28  0.000027  0.025890  0.000111
+363 2026-08-29  0.000010  0.027537  0.000111
+364 2026-08-30  0.000004  0.030453  0.000111
+365 2026-08-31  0.000004  0.030453  0.000111
 </pre></div>
 </div>
 </div>
@@ -1324,7 +1333,7 @@ Dataset sempurna berhasil disimpan ke:
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="tahap-4-persiapan-data-untuk-tsfel">
 <h1>Tahap 4: Persiapan Data untuk TSFEL<a class="headerlink" href="#tahap-4-persiapan-data-untuk-tsfel" title="Link to this heading">#</a></h1>
-<p><em>Instalasi pustaka TSFEL (Time Series Feature Extraction Library), penyiapan sinyal 1D dengan frekuensi sampling harian (fs=1), dan penentuan daftar konfigurasi 69 fitur time series.</em></p>
+<p><em>Instalasi pustaka TSFEL (Time Series Feature Extraction Library), penyiapan sinyal 1D dengan frekuensi sampling harian (fs=1), dan penentuan daftar konfigurasi 68 fitur time series.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>tsfel
@@ -1385,7 +1394,7 @@ Requirement already satisfied: wrapt&gt;=1.0 in C:\Users\HYPE AMD\AppData\Local\
 <hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="tahap-5-eksekusi-tsfel-dan-penyimpanan-hasil">
 <h1>Tahap 5: Eksekusi TSFEL dan Penyimpanan Hasil<a class="headerlink" href="#tahap-5-eksekusi-tsfel-dan-penyimpanan-hasil" title="Link to this heading">#</a></h1>
-<p><em>Eksekusi ekstraksi 69 fitur TSFEL untuk ketiga polutan (NO2, CO, SO2), penyimpanan hasil ke CSV individual, serta penggabungan seluruh fitur ke dalam satu tabel dataset ‘Polutan_TanahMerah_TSFEL_all.csv’.</em></p>
+<p><em>Eksekusi ekstraksi 68 fitur TSFEL untuk ketiga polutan (NO2, CO, SO2), penyimpanan hasil ke CSV individual, serta penggabungan seluruh fitur ke dalam satu tabel dataset ‘Polutan_TanahMerah_TSFEL_all.csv’.</em></p>
 <section id="no2">
 <h2>NO2<a class="headerlink" href="#no2" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -1418,7 +1427,7 @@ Requirement already satisfied: wrapt&gt;=1.0 in C:\Users\HYPE AMD\AppData\Local\
 <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
 
 <span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
@@ -1510,7 +1519,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk NO2: 68
 <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
 
 <span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
@@ -1602,7 +1611,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk CO: 68
 <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">target_pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;polynomial&#39;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
 
 <span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">target_pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
@@ -1783,218 +1792,218 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
     <tr>
       <th>0</th>
       <td>NO2</td>
-      <td>2.608035e-07</td>
-      <td>0.009258</td>
-      <td>4.0</td>
-      <td>7.145301e-10</td>
-      <td>170.256154</td>
-      <td>0.000047</td>
+      <td>3.534137e-07</td>
+      <td>0.010205</td>
+      <td>5.0</td>
+      <td>9.682567e-10</td>
+      <td>150.130363</td>
+      <td>0.000072</td>
+      <td>0.000028</td>
       <td>0.000025</td>
-      <td>0.000026</td>
-      <td>0.000004</td>
-      <td>0.000008</td>
-      <td>6.979190e-11</td>
-      <td>1.146748</td>
+      <td>-0.000010</td>
+      <td>0.000014</td>
+      <td>1.943945e-10</td>
+      <td>1.067338</td>
       <td>365.000000</td>
       <td>0.015027</td>
-      <td>0.000025</td>
+      <td>0.000027</td>
       <td>182.5</td>
-      <td>52791.115530</td>
-      <td>0.996792</td>
+      <td>23012.230927</td>
+      <td>0.998717</td>
       <td>0.002732</td>
-      <td>1.847039</td>
+      <td>1.815344</td>
       <td>0.000027</td>
       <td>0.0</td>
-      <td>0.823100</td>
+      <td>0.831652</td>
+      <td>0.000018</td>
+      <td>0.685007</td>
+      <td>0.169399</td>
+      <td>0.697851</td>
+      <td>0.385246</td>
+      <td>43.444932</td>
+      <td>-2.542079</td>
       <td>0.000011</td>
-      <td>-0.155950</td>
-      <td>0.163934</td>
-      <td>0.737113</td>
-      <td>0.426230</td>
-      <td>55.971131</td>
-      <td>-2.721974</td>
-      <td>0.000007</td>
-      <td>0.000004</td>
-      <td>3.165045e-08</td>
       <td>0.000005</td>
-      <td>0.000002</td>
-      <td>-1.386292e-07</td>
-      <td>0.057377</td>
-      <td>20.297615</td>
-      <td>1.044248</td>
-      <td>52.0</td>
-      <td>12.0</td>
-      <td>1.018922</td>
-      <td>0.000043</td>
-      <td>52.0</td>
-      <td>0.297814</td>
-      <td>0.000027</td>
-      <td>-0.038668</td>
-      <td>-1.669431e-08</td>
-      <td>0.122597</td>
-      <td>-2.420345</td>
-      <td>-1.443360</td>
-      <td>0.739665</td>
-      <td>2.787968</td>
-      <td>54.0</td>
-      <td>0.426230</td>
+      <td>-2.934635e-08</td>
+      <td>0.000008</td>
+      <td>0.000004</td>
+      <td>-2.134099e-07</td>
+      <td>0.054645</td>
+      <td>-1.100188</td>
+      <td>1.253324</td>
+      <td>57.0</td>
+      <td>14.0</td>
+      <td>1.020810</td>
+      <td>0.000082</td>
+      <td>58.0</td>
+      <td>0.177596</td>
+      <td>0.000031</td>
+      <td>0.595017</td>
+      <td>-3.878050e-08</td>
+      <td>0.102878</td>
+      <td>-1.790753</td>
+      <td>-2.227997</td>
+      <td>0.677849</td>
+      <td>3.873507</td>
+      <td>55.0</td>
+      <td>0.385246</td>
       <td>0.0</td>
-      <td>1.026317</td>
-      <td>-0.032876</td>
-      <td>0.145286</td>
-      <td>0.362940</td>
-      <td>9.636304e-11</td>
-      <td>0.001437</td>
+      <td>1.348428</td>
+      <td>-0.037965</td>
+      <td>0.126101</td>
+      <td>0.302752</td>
+      <td>2.626597e-10</td>
+      <td>0.001971</td>
       <td>0.000001</td>
-      <td>0.000012</td>
-      <td>2.140520</td>
-      <td>0.000012</td>
-      <td>1.625591e-10</td>
-      <td>0.0</td>
+      <td>0.000021</td>
+      <td>2.142310</td>
+      <td>0.000021</td>
+      <td>4.621635e-10</td>
+      <td>4.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>CO</td>
-      <td>2.911110e-01</td>
-      <td>10.255066</td>
-      <td>2.0</td>
-      <td>7.975643e-04</td>
-      <td>181.116771</td>
-      <td>0.034373</td>
-      <td>0.028099</td>
-      <td>0.028084</td>
-      <td>0.022439</td>
-      <td>0.002414</td>
-      <td>5.829262e-06</td>
-      <td>1.085734</td>
-      <td>365.000890</td>
+      <td>2.964312e-01</td>
+      <td>10.315394</td>
+      <td>3.0</td>
+      <td>8.121403e-04</td>
+      <td>177.024420</td>
+      <td>0.039318</td>
+      <td>0.028264</td>
+      <td>0.028120</td>
+      <td>0.018199</td>
+      <td>0.003328</td>
+      <td>1.107511e-05</td>
+      <td>0.910950</td>
+      <td>365.001192</td>
       <td>0.015027</td>
-      <td>0.028007</td>
+      <td>0.028127</td>
       <td>182.5</td>
-      <td>174.160782</td>
+      <td>120.963912</td>
       <td>0.999358</td>
       <td>0.002732</td>
-      <td>1.937289</td>
-      <td>0.027810</td>
+      <td>1.928618</td>
+      <td>0.027703</td>
       <td>0.0</td>
-      <td>0.715703</td>
-      <td>0.003151</td>
-      <td>-0.339628</td>
-      <td>0.188525</td>
-      <td>0.923514</td>
-      <td>0.377049</td>
-      <td>30.985686</td>
-      <td>-0.121116</td>
-      <td>0.001915</td>
-      <td>0.001444</td>
-      <td>6.968048e-06</td>
-      <td>0.001624</td>
-      <td>0.000795</td>
-      <td>1.066208e-04</td>
+      <td>0.731005</td>
+      <td>0.003962</td>
+      <td>0.312543</td>
+      <td>0.193989</td>
+      <td>0.903566</td>
+      <td>0.371585</td>
+      <td>27.299719</td>
+      <td>0.008341</td>
+      <td>0.002563</td>
+      <td>0.001822</td>
+      <td>6.967941e-06</td>
+      <td>0.002019</td>
+      <td>0.001330</td>
+      <td>3.720868e-05</td>
       <td>0.000000</td>
-      <td>11.130850</td>
-      <td>1.083979</td>
-      <td>60.0</td>
-      <td>17.0</td>
-      <td>1.021493</td>
-      <td>0.011934</td>
-      <td>60.0</td>
-      <td>0.346995</td>
-      <td>0.028203</td>
-      <td>0.179874</td>
-      <td>-1.875167e-06</td>
-      <td>0.071995</td>
-      <td>-9.220950</td>
-      <td>-1095.822272</td>
-      <td>0.803764</td>
-      <td>4.968198</td>
-      <td>54.0</td>
-      <td>0.377049</td>
+      <td>9.021666</td>
+      <td>1.343498</td>
+      <td>65.0</td>
+      <td>16.0</td>
+      <td>1.023025</td>
+      <td>0.021119</td>
+      <td>64.0</td>
+      <td>0.215847</td>
+      <td>0.028459</td>
+      <td>0.110188</td>
+      <td>-6.736443e-06</td>
+      <td>0.074195</td>
+      <td>-7.023643</td>
+      <td>-1217.770214</td>
+      <td>0.775503</td>
+      <td>5.129500</td>
+      <td>55.0</td>
+      <td>0.371585</td>
       <td>0.0</td>
-      <td>1.761035</td>
-      <td>-0.045934</td>
-      <td>0.125644</td>
-      <td>0.672813</td>
-      <td>9.559477e-06</td>
-      <td>0.527192</td>
-      <td>0.001672</td>
-      <td>0.006981</td>
-      <td>2.138830</td>
-      <td>0.006754</td>
-      <td>5.223887e-05</td>
+      <td>1.737652</td>
+      <td>-0.045366</td>
+      <td>0.119821</td>
+      <td>0.601624</td>
+      <td>1.950520e-05</td>
+      <td>0.664869</td>
+      <td>0.001661</td>
+      <td>0.007732</td>
+      <td>2.156869</td>
+      <td>0.007523</td>
+      <td>6.304082e-05</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>SO2</td>
-      <td>9.503999e-06</td>
-      <td>0.050930</td>
-      <td>3.0</td>
-      <td>2.603835e-08</td>
-      <td>196.353496</td>
-      <td>0.000364</td>
-      <td>0.000139</td>
-      <td>0.000127</td>
-      <td>0.000001</td>
-      <td>0.000081</td>
-      <td>6.528693e-09</td>
-      <td>1.207029</td>
+      <td>2.247609e-05</td>
+      <td>0.067915</td>
+      <td>4.0</td>
+      <td>6.157833e-08</td>
+      <td>134.312719</td>
+      <td>0.000943</td>
+      <td>0.000160</td>
+      <td>0.000128</td>
+      <td>-0.000422</td>
+      <td>0.000189</td>
+      <td>3.581966e-08</td>
+      <td>1.461930</td>
       <td>365.000001</td>
       <td>0.015027</td>
-      <td>0.000137</td>
+      <td>0.000157</td>
       <td>182.5</td>
-      <td>3723.179892</td>
+      <td>2065.852199</td>
       <td>0.995024</td>
-      <td>0.002732</td>
-      <td>1.865624</td>
-      <td>0.000056</td>
+      <td>0.005464</td>
+      <td>1.815850</td>
+      <td>0.000055</td>
       <td>0.0</td>
-      <td>0.828914</td>
-      <td>0.000121</td>
-      <td>-0.488843</td>
-      <td>0.161202</td>
-      <td>0.546784</td>
-      <td>0.442623</td>
-      <td>16.857441</td>
-      <td>-1.642716</td>
-      <td>0.000067</td>
-      <td>0.000038</td>
+      <td>0.791399</td>
+      <td>0.000199</td>
+      <td>3.528358</td>
+      <td>0.177596</td>
+      <td>0.517405</td>
+      <td>0.319672</td>
+      <td>24.617191</td>
+      <td>-1.379428</td>
+      <td>0.000134</td>
+      <td>0.000065</td>
       <td>6.592545e-08</td>
-      <td>0.000061</td>
-      <td>0.000022</td>
-      <td>-3.105608e-06</td>
-      <td>0.084699</td>
-      <td>8.987572</td>
-      <td>1.076029</td>
-      <td>43.0</td>
-      <td>15.0</td>
-      <td>1.015454</td>
-      <td>0.000363</td>
-      <td>42.0</td>
-      <td>0.333333</td>
-      <td>0.000161</td>
-      <td>0.534693</td>
-      <td>8.595377e-08</td>
-      <td>0.137989</td>
-      <td>-1.314973</td>
-      <td>-11.055151</td>
-      <td>0.809250</td>
-      <td>2.780851</td>
-      <td>59.0</td>
-      <td>0.442623</td>
+      <td>0.000093</td>
+      <td>0.000049</td>
+      <td>-3.429130e-06</td>
+      <td>0.057377</td>
+      <td>-26.727972</td>
+      <td>1.172462</td>
+      <td>48.0</td>
+      <td>17.0</td>
+      <td>1.017193</td>
+      <td>0.001365</td>
+      <td>47.0</td>
+      <td>0.158470</td>
+      <td>0.000248</td>
+      <td>0.907860</td>
+      <td>-1.935722e-07</td>
+      <td>0.091545</td>
+      <td>-0.742973</td>
+      <td>-27.100980</td>
+      <td>0.727633</td>
+      <td>5.919383</td>
+      <td>61.0</td>
+      <td>0.319672</td>
       <td>0.0</td>
-      <td>0.964624</td>
-      <td>-0.028904</td>
-      <td>0.142720</td>
-      <td>0.559084</td>
-      <td>1.142124e-08</td>
-      <td>0.013802</td>
-      <td>0.000007</td>
-      <td>0.000146</td>
-      <td>2.134211</td>
-      <td>0.000146</td>
-      <td>2.318051e-08</td>
-      <td>0.0</td>
+      <td>1.723522</td>
+      <td>-0.040889</td>
+      <td>0.102176</td>
+      <td>0.301673</td>
+      <td>6.431298e-08</td>
+      <td>0.023552</td>
+      <td>0.000008</td>
+      <td>0.000344</td>
+      <td>2.135189</td>
+      <td>0.000344</td>
+      <td>1.317837e-07</td>
+      <td>22.0</td>
     </tr>
   </tbody>
 </table>
@@ -2095,7 +2104,7 @@ Berhasil! Jumlah fitur yang dihasilkan untuk SO2: 68
 date
 2025-08-31    0.000015
 2025-09-01    0.000015
-2025-09-02    0.000014
+2025-09-02    0.000018
 2025-09-03    0.000013
 2025-09-04    0.000004
 Freq: D, Name: NO2, dtype: float64
@@ -2125,13 +2134,13 @@ Freq: D, Name: CO, dtype: float64
 date
 2025-08-31    0.000087
 2025-09-01    0.000051
-2025-09-02    0.000053
-2025-09-03    0.000055
-2025-09-04    0.000058
+2025-09-02    0.000026
+2025-09-03    0.000011
+2025-09-04    0.000018
 Freq: D, Name: SO2, dtype: float64
 </pre></div>
 </div>
-<img alt="_images/6b30f13376c240ef0efcac874aa808d20d4ec3c3ae8555b14b0fb003c13eb69e.png" src="_images/6b30f13376c240ef0efcac874aa808d20d4ec3c3ae8555b14b0fb003c13eb69e.png" />
+<img alt="_images/daca1455972629a62f68551a9db02597bc082ca7080a6012701ccd9982abf88b.png" src="_images/daca1455972629a62f68551a9db02597bc082ca7080a6012701ccd9982abf88b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>======================================================================
 📋 5 BARIS PERTAMA TIME SERIES MULTIVARIAT (GABUNGAN 3 POLUTAN):
 ======================================================================
@@ -2181,54 +2190,255 @@ Freq: D, Name: SO2, dtype: float64
     </tr>
     <tr>
       <th>2025-09-02</th>
-      <td>0.000014</td>
+      <td>0.000018</td>
       <td>0.026148</td>
-      <td>0.000053</td>
+      <td>0.000026</td>
     </tr>
     <tr>
       <th>2025-09-03</th>
       <td>0.000013</td>
       <td>0.027818</td>
-      <td>0.000055</td>
+      <td>0.000011</td>
     </tr>
     <tr>
       <th>2025-09-04</th>
       <td>0.000004</td>
       <td>0.025908</td>
-      <td>0.000058</td>
+      <td>0.000018</td>
     </tr>
     <tr>
       <th>2025-09-05</th>
       <td>0.000017</td>
-      <td>0.026314</td>
+      <td>0.024249</td>
       <td>0.000060</td>
     </tr>
     <tr>
       <th>2025-09-06</th>
       <td>0.000028</td>
-      <td>0.026720</td>
+      <td>0.023967</td>
       <td>0.000133</td>
     </tr>
     <tr>
       <th>2025-09-07</th>
       <td>0.000028</td>
       <td>0.027126</td>
-      <td>0.000158</td>
+      <td>0.000217</td>
     </tr>
     <tr>
       <th>2025-09-08</th>
       <td>0.000027</td>
       <td>0.033273</td>
-      <td>0.000183</td>
+      <td>0.000308</td>
     </tr>
     <tr>
       <th>2025-09-09</th>
       <td>0.000047</td>
-      <td>0.032723</td>
-      <td>0.000208</td>
+      <td>0.037633</td>
+      <td>0.000408</td>
     </tr>
   </tbody>
 </table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tsfel_features</span>
+
+<span class="c1"># ---------- 1. Muat 1 file CSV utama yang berisi semua polutan ----------</span>
+<span class="c1"># Sesuaikan nama file jika berbeda (misal: &#39;mystorage/Kerek-Clean.csv&#39;)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./Polutan_Bangkalan.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">pollutants</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;NO2&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2&#39;</span><span class="p">,</span> <span class="s1">&#39;CO&#39;</span><span class="p">]</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># ---------- 2. Daftar PERSIS 68 fitur yang diminta ----------</span>
+<span class="n">FEATURE_LIST</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;abs_energy auc autocorr average_power calc_centroid calc_max calc_mean</span>
+<span class="s2">calc_median calc_min calc_std calc_var dfa distance ecdf ecdf_percentile ecdf_percentile_count</span>
+<span class="s2">ecdf_slope entropy fundamental_frequency higuchi_fractal_dimension hist_mode human_range_energy</span>
+<span class="s2">hurst_exponent interq_range kurtosis lempel_ziv lpcc max_frequency max_power_spectrum</span>
+<span class="s2">maximum_fractal_length mean_abs_deviation mean_abs_diff mean_diff median_abs_deviation</span>
+<span class="s2">median_abs_diff median_diff median_frequency mfcc mse negative_turning neighbourhood_peaks</span>
+<span class="s2">petrosian_fractal_dimension pk_pk_distance positive_turning power_bandwidth rms skewness slope</span>
+<span class="s2">spectral_centroid spectral_decrease spectral_distance spectral_entropy spectral_kurtosis</span>
+<span class="s2">spectral_positive_turning spectral_roll_off spectral_roll_on spectral_skewness spectral_slope</span>
+<span class="s2">spectral_spread spectral_variation spectrogram_mean_coeff sum_abs_diff wavelet_abs_mean</span>
+<span class="s2">wavelet_energy wavelet_entropy wavelet_std wavelet_var zero_cross&quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah fitur per polutan: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total target fitur keseluruhan: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">FEATURE_LIST</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">pollutants</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;values&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tsfel_features</span><span class="p">,</span> <span class="n">fn_name</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+    <span class="k">if</span> <span class="s2">&quot;fs&quot;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">to_scalar</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+
+<span class="c1"># Dictionary untuk menampung seluruh hasil ekstraksi dari semua polutan</span>
+<span class="n">combined_row</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># ---------- 3. Looping untuk membersihkan dan mengekstraksi tiap polutan ----------</span>
+<span class="k">for</span> <span class="n">pollutant</span> <span class="ow">in</span> <span class="n">pollutants</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Memproses polutan: </span><span class="si">{</span><span class="n">pollutant</span><span class="si">}</span><span class="s2"> ---&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Buat copy dataframe agar tidak saling menimpa</span>
+    <span class="n">df_poly</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">pollutant</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># Paksa kolom target jadi numerik</span>
+    <span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">n_missing_before</span> <span class="o">=</span> <span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah NaN/non-numerik pada </span><span class="si">{</span><span class="n">pollutant</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">n_missing_before</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Handling outlier dengan IQR</span>
+    <span class="n">Q1</span> <span class="o">=</span> <span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">Q3</span> <span class="o">=</span> <span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+    <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+    <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+    <span class="n">df_poly</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df_poly</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">upper_bound</span><span class="p">),</span> <span class="n">pollutant</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+    <span class="c1"># Interpolasi waktu dan cleaning</span>
+    <span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_poly</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span><span class="o">.</span><span class="n">bfill</span><span class="p">()</span>
+    <span class="n">signal_1d</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">pollutant</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="c1"># Ekstraksi fitur dan beri prefix nama polutan (misal: NO2_abs_energy)</span>
+    <span class="k">for</span> <span class="n">fn_name</span> <span class="ow">in</span> <span class="n">FEATURE_LIST</span><span class="p">:</span>
+        <span class="n">feature_key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pollutant</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">fn_name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">combined_row</span><span class="p">[</span><span class="n">feature_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">extract_one</span><span class="p">(</span><span class="n">fn_name</span><span class="p">,</span> <span class="n">signal_1d</span><span class="p">,</span> <span class="n">fs</span><span class="p">)</span>
+
+<span class="c1"># ---------- 4. Simpan ke DataFrame final (1 baris, 204 kolom) ----------</span>
+<span class="n">extracted_features_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">combined_row</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Berhasil! Total kolom akhir yang dihasilkan: </span><span class="si">{</span><span class="n">extracted_features_final</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">output_filename</span> <span class="o">=</span> <span class="s1">&#39;All-Pollutants-TanahMerah-TSFEL.csv&#39;</span>
+<span class="n">extracted_features_final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File berhasil disimpan sebagai: </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah fitur per polutan: 68
+Total target fitur keseluruhan: 204
+
+--- Memproses polutan: NO2 ---
+Jumlah NaN/non-numerik pada NO2: 0
+
+--- Memproses polutan: SO2 ---
+Jumlah NaN/non-numerik pada SO2: 0
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\HYPE AMD\AppData\Local\Programs\Python\Python313\Lib\site-packages\tsfel\feature_extraction\features_utils.py:534: RuntimeWarning: invalid value encountered in divide
+  rs = np.divide(r, s)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Memproses polutan: CO ---
+Jumlah NaN/non-numerik pada CO: 0
+
+Berhasil! Total kolom akhir yang dihasilkan: 204
+File berhasil disimpan sebagai: All-Pollutants-TanahMerah-TSFEL.csv
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df_feat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;All-Pollutants-TanahMerah-TSFEL.csv&quot;</span><span class="p">)</span>
+<span class="n">df_feat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NO2_abs_energy</th>
+      <th>NO2_auc</th>
+      <th>NO2_autocorr</th>
+      <th>NO2_average_power</th>
+      <th>NO2_calc_centroid</th>
+      <th>NO2_calc_max</th>
+      <th>NO2_calc_mean</th>
+      <th>NO2_calc_median</th>
+      <th>NO2_calc_min</th>
+      <th>NO2_calc_std</th>
+      <th>...</th>
+      <th>CO_spectral_spread</th>
+      <th>CO_spectral_variation</th>
+      <th>CO_spectrogram_mean_coeff</th>
+      <th>CO_sum_abs_diff</th>
+      <th>CO_wavelet_abs_mean</th>
+      <th>CO_wavelet_energy</th>
+      <th>CO_wavelet_entropy</th>
+      <th>CO_wavelet_std</th>
+      <th>CO_wavelet_var</th>
+      <th>CO_zero_cross</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3.416984e-07</td>
+      <td>0.010107</td>
+      <td>5.0</td>
+      <td>9.361601e-10</td>
+      <td>152.897322</td>
+      <td>0.000061</td>
+      <td>0.000028</td>
+      <td>0.000025</td>
+      <td>-0.000007</td>
+      <td>0.000013</td>
+      <td>...</td>
+      <td>0.121092</td>
+      <td>0.61006</td>
+      <td>0.000018</td>
+      <td>0.653302</td>
+      <td>0.001642</td>
+      <td>0.007459</td>
+      <td>2.156057</td>
+      <td>0.007248</td>
+      <td>0.000059</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 204 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -2264,22 +2474,13 @@ Freq: D, Name: SO2, dtype: float64
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Preprocessing_dan_Ekstraksi_Fitur_Data_Polutan_di_Kecamatan_Tanah_Merah.html"
+       href="Data_Preprocessing_dan_Ekstraksi_Fitur_Interpolasi_Linear.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Preprocessing dan Ekstraksi Fitur Data Polutan di Kecamatan Tanah Merah, Bangkalan</p>
+        <p class="prev-next-title">Data Preprocessing dan Ekstraksi Fitur (Interpolasi Linear)</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="clustering_k-means.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Clustering Polutan Menggunakan K-Means</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -2299,7 +2500,10 @@ Freq: D, Name: SO2, dtype: float64
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">ANALISIS POLUTAN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data Preprocessing dan Ekstraksi Fitur (Interpolasi Polinomial)</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-penanganan-outlier-dan-interpolasi-polinomial">Preprocessing: Penanganan Outlier dan Interpolasi Polinomial</a></li>
+</ul>
+</li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-1-ekstraksi-fitur-no2-co-so2">Tahap 1: Ekstraksi Fitur NO2, CO, SO2</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-dan-autentikasi">1. Persiapan Lingkungan dan Autentikasi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-area-aoi-dan-pemanggilan-dataset">2. Definisi Area (AOI) dan Pemanggilan Dataset</a></li>
