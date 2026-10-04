@@ -5,10 +5,10 @@ title: My sample book
 author: Mohammad Aziz Huzaini
 logo: logo.png
 
-# Force re-execution of notebooks on each build.
+# Do not re-execute notebooks on build; use saved outputs from VS Code
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
+  execute_notebooks: 'off'
 
 # Define the name of the latex output file for PDF builds
 latex:
