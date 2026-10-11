@@ -1,4 +1,5 @@
 from pathlib import Path
+import joblib
 import json
 import warnings
 
@@ -24,6 +25,11 @@ except Exception:
     LGBMClassifier = None
 
 BASE_DIR = Path(__file__).parent
+MODEL_PATH = BASE_DIR / "best_model_lulc.joblib"
+
+@st.cache_resource
+def load_saved_model():
+    return joblib.load(MODEL_PATH)
 FEATURES = ["B02", "B03", "B04", "B08", "B11", "NDVI", "NDWI", "MNDWI", "NDBI"]
 CLASS_NAMES = {
     0: "sawah", 1: "bangunan", 2: "danau",
@@ -190,13 +196,21 @@ with tab_model:
     st.subheader("Prediksi data baru dari CSV")
     st.write("CSV prediksi harus memiliki lima kolom band: B02, B03, B04, B08, B11.")
     pred_file = st.file_uploader("Unggah CSV untuk diprediksi", type=["csv"], key="predict_csv")
-    model = st.session_state.get("lulc_model")
+    if not MODEL_PATH.exists():
+        st.error("File best_model_lulc.joblib tidak ditemukan.")
+        st.stop()
+
+    try:
+        model = load_saved_model()
+    except Exception as e:
+        st.error(f"Gagal memuat model: {e}")
+        st.stop()
     if pred_file is not None:
         try:
             new_df = pd.read_csv(pred_file)
             prepared = add_indices(new_df)
             if model is None:
-                st.warning("Latih model di atas terlebih dahulu pada sesi ini. Alternatifnya, gunakan model tersimpan melalui pengembangan lanjutan.")
+                st.error("Model LULC belum berhasil dimuat. Periksa file best_model_lulc.joblib.")
             else:
                 valid = prepared.dropna(subset=FEATURES).copy()
                 predictions = model.predict(valid[FEATURES])

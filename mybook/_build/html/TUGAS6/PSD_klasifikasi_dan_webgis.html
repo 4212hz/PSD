@@ -486,7 +486,8 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-raster-klasifikasi-lulc-jawa-timur-titik-sampel">6.1 Peta Raster Klasifikasi LULC Jawa Timur &amp; Titik Sampel</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-rekomendasi">Kesimpulan &amp; Rekomendasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">streamlit</a></li>
 </ul>
             </nav>
         </div>
@@ -3282,13 +3283,42 @@ Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in C:\Users\HYPE AMD\App
 </section>
 </section>
 <hr class="docutils" />
-<section id="kesimpulan-rekomendasi">
-<h2>Kesimpulan &amp; Rekomendasi<a class="headerlink" href="#kesimpulan-rekomendasi" title="Link to this heading">#</a></h2>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan seluruh tahapan analisis klasifikasi tutupan lahan (<em>Land Use and Land Cover</em> / LULC) Provinsi Jawa Timur yang telah dilakukan pada program ini, dapat disimpulkan bahwa:</p>
 <ol class="arabic simple">
-<li><p><strong>Peningkatan Fitur Spektral</strong>: Penambahan indeks spektral (<strong>NDVI, NDWI, MNDWI, NDBI</strong>) sangat efektif dalam mempertajam pemisahan antara kelas vegetasi (sawah, mangrove, lahan hijau), kelas tubuh air (danau vs laut), dan lahan terbangun (bangunan).</p></li>
-<li><p><strong>Kinerja Model</strong>: Algoritma Ensemble Tree (<strong>XGBoost / LightGBM</strong>) mampu memberikan skor Cross Validation tertinggi (~74% - 76%) pada dataset 300 sampel poligon representatif.</p></li>
-<li><p><strong>Web GIS</strong>: Visualisasi spasial berbasis Folium dengan Google Maps Satellite memberikan representasi tutupan lahan yang jelas, interaktif, dan siap diintegrasikan ke dalam evaluasi Rencana Tata Ruang Wilayah (RTRW) Provinsi Jawa Timur.</p></li>
+<li><p><strong>Efektivitas Ekstraksi Fitur &amp; Indeks Spektral</strong>:
+Pemanfaatan data citra multispektral Sentinel-2A (band B02, B03, B04, B08, B11, dan B12) yang diperkaya dengan 4 indeks spektral (<strong>NDVI</strong>, <strong>NDWI</strong>, <strong>MNDWI</strong>, dan <strong>NDBI</strong>) terbukti sangat efektif dalam memperkuat daya pisah spektral (<em>spectral separability</em>) antar 6 kelas tutupan lahan. Fitur indeks ini mempermudah diskriminasi karakteristik biofisik antara vegetasi berklorofil, badan air (tawar dan laut), serta lahan terbangun.</p></li>
+<li><p><strong>Kinerja dan Pemilihan Model Machine Learning</strong>:
+Dari hasil evaluasi komparatif tiga algoritma <em>Ensemble Tree</em> (<em>Random Forest</em>, <em>XGBoost</em>, dan <em>LightGBM</em>) menggunakan pengujian 5-Fold Cross Validation, model <strong>XGBoost Classifier</strong> terpilih sebagai model terbaik dengan rata-rata <strong>CV Score tertinggi sebesar 74.00%</strong> (0.7400). Model terbaik ini telah disimpan ke dalam format biner <code class="docutils literal notranslate"><span class="pre">best_model_lulc.joblib</span></code> untuk kebutuhan inferensi operasional.</p></li>
+<li><p><strong>Karakteristik Klasifikasi per Kelas</strong>:</p>
+<ul class="simple">
+<li><p>Model menunjukkan akurasi dan separabilitas sangat tinggi pada kelas <strong>Laut</strong> (<em>precision</em> 83%, <em>recall</em> 100%, F1-score 0.91) dan <strong>Mangrove</strong> (<em>precision</em> 75%, <em>recall</em> 90%, F1-score 0.82) karena kontras spektral yang tegas pada kanal inframerah dekat (NIR) dan <em>shortwave infrared</em> (SWIR).</p></li>
+<li><p>Kelas <strong>Bangunan</strong> dan <strong>Danau</strong> berhasil dikenali dengan baik dengan F1-score masing-masing 0.70 dan 0.71.</p></li>
+<li><p>Terdapat tantangan pemisahan spektral (<em>spectral confusion</em>) antara kelas vegetasi sejenis, yakni <strong>Sawah</strong> (F1-score 0.55) dan <strong>Lahan Hijau</strong> (F1-score 0.35), yang disebabkan oleh kemiripan kurva pantulan spektral kanopi vegetasi pada citra optik <em>single-date</em>.</p></li>
+</ul>
+</li>
+<li><p><strong>Integrasi dan Visualisasi Web GIS Interaktif</strong>:
+Program berhasil mengimplementasikan visualisasi geospasial interaktif berbasis web (<strong>Web GIS</strong>) menggunakan Folium (<code class="docutils literal notranslate"><span class="pre">peta_lulc_jatim_webgis.html</span></code>). Sistem peta ini menyajikan:</p>
+<ul class="simple">
+<li><p>Overlay raster klasifikasi tutupan lahan regional seluruh daratan Jawa Timur dengan transparansi proporsional di atas basemap resolusi tinggi <em>Google Satellite</em>.</p></li>
+<li><p>Kontrol layer interaktif (<em>LayerControl</em>) dengan kemampuan filter tematik per kelas tutupan lahan serta penayangan titik-titik sampel ROI representatif.</p></li>
+<li><p>Komponen kartografis lengkap seperti legenda interaktif, kontrol skala, dan alat ukur jarak/luas (<em>Measure Control</em>) yang memudahkan analisis dan verifikasi spasial tutupan lahan Jawa Timur.</p></li>
+</ul>
+</li>
 </ol>
+</section>
+<section id="streamlit">
+<h2>streamlit<a class="headerlink" href="#streamlit" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://azizhuzaini4212.streamlit.app/">https://azizhuzaini4212.streamlit.app/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
+<span class="n">files</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;best_model_lulc.joblib&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -3374,7 +3404,8 @@ Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in C:\Users\HYPE AMD\App
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peta-raster-klasifikasi-lulc-jawa-timur-titik-sampel">6.1 Peta Raster Klasifikasi LULC Jawa Timur &amp; Titik Sampel</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-rekomendasi">Kesimpulan &amp; Rekomendasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit">streamlit</a></li>
 </ul>
   </nav></div>
 
