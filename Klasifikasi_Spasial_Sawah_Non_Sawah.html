@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Klasifikasi Spasial Sawah dan Non-Sawah Berbasis Citra Sentinel-2A &#8212; My sample book</title>
+    <title>Pemetaan Sawah dan Non-Sawah Berbasis Citra Sentinel-2A &#8212; My sample book</title>
   
   
   
@@ -66,6 +66,7 @@
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Proyek Klasifikasi Tutupan Lahan (LULC) Provinsi Jawa Timur" href="TUGAS6/PSD_klasifikasi_dan_webgis.html" />
     <link rel="prev" title="Eksperimen Reduksi Dimensi, Analisis Silhouette, dan Pemetaan Segmentasi Wilayah Multi-Polutan Menggunakan KNIME" href="Ekstraksi_Fitur_TSFEL_pada_3_Polutan.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -266,7 +267,9 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="Ekstraksi_Fitur_TSFEL_pada_3_Polutan.html">Eksperimen Reduksi Dimensi, Analisis Silhouette, dan Pemetaan Segmentasi Wilayah Multi-Polutan Menggunakan KNIME</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Klasifikasi Spasial Sawah dan Non-Sawah Berbasis Citra Sentinel-2A</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pemetaan Sawah dan Non-Sawah Berbasis Citra Sentinel-2A</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="TUGAS6/PSD_klasifikasi_dan_webgis.html">Proyek Klasifikasi Tutupan Lahan (LULC) Provinsi Jawa Timur</a></li>
 </ul>
 
     </div>
@@ -449,7 +452,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Klasifikasi Spasial Sawah dan Non-Sawah Berbasis Citra Sentinel-2A</h1>
+    <h1>Pemetaan Sawah dan Non-Sawah Berbasis Citra Sentinel-2A</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -459,14 +462,21 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pemetaan Sawah dan Non-Sawah Berbasis Citra Sentinel-2A</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalasi-library">Instalasi Library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyusunan-data-referensi-spasial">1. Penyusunan Data Referensi Spasial</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sentinel-2a">Sentinel 2A</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyediaan-citra-dan-pembentukan-variabel-spektral">2. Penyediaan Citra dan Pembentukan Variabel Spektral</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabel-yang-digunakan">Variabel yang digunakan:</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pelatihan-pengujian-dan-penyajian-peta-kelas">3. Pelatihan, Pengujian, dan Penyajian Peta Kelas</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -477,8 +487,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-spasial-sawah-dan-non-sawah-berbasis-citra-sentinel-2a">
-<h1>Klasifikasi Spasial Sawah dan Non-Sawah Berbasis Citra Sentinel-2A<a class="headerlink" href="#klasifikasi-spasial-sawah-dan-non-sawah-berbasis-citra-sentinel-2a" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="pemetaan-sawah-dan-non-sawah-berbasis-citra-sentinel-2a">
+<h1>Pemetaan Sawah dan Non-Sawah Berbasis Citra Sentinel-2A<a class="headerlink" href="#pemetaan-sawah-dan-non-sawah-berbasis-citra-sentinel-2a" title="Link to this heading">#</a></h1>
 <p>Notebook ini menyajikan alur kerja klasifikasi tutupan lahan menjadi dua kategori, yaitu <strong>Sawah</strong> dan <strong>Non-Sawah</strong>. Proses dimulai dari penggunaan data sampel berlabel, pengunduhan komposit Sentinel-2 Level-2A dalam format GeoTIFF melalui <strong>openEO</strong>, pembentukan variabel spektral, kemudian penerapan model klasifikasi biner.</p>
 <p>Data referensi terdiri atas 100 sampel: 50 sampel sawah dan 50 sampel non-sawah. Pelabelan sampel sebelumnya dilakukan di QGIS.</p>
 <section id="instalasi-library">
@@ -652,6 +662,12 @@ Note: you may need to restart the kernel to use updated packages.
 </table>
 </div>
 <p>Pada langkah yang sama, batas koordinat seluruh sampel dihitung dan diperluas sedikit sebagai area pengambilan citra.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="sentinel-2a">
+<h1>Sentinel 2A<a class="headerlink" href="#sentinel-2a" title="Link to this heading">#</a></h1>
+<p>sentinel 2a mendeskripsikan fitur
+B02, B03, B04, B08, B11, NDVI, NDWI, Longitude, Latitude, Kelas, Target</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
@@ -738,7 +754,6 @@ Berhasil diunduh: sentinel2_sawah_nonsawah.tif
 </div>
 </div>
 </div>
-</section>
 <section id="penyediaan-citra-dan-pembentukan-variabel-spektral">
 <h2>2. Penyediaan Citra dan Pembentukan Variabel Spektral<a class="headerlink" href="#penyediaan-citra-dan-pembentukan-variabel-spektral" title="Link to this heading">#</a></h2>
 <p>Citra diperoleh dari koleksi <strong><code class="docutils literal notranslate"><span class="pre">SENTINEL2_L2A</span></code></strong> dengan cakupan area berdasarkan batas gabungan sampel. Proses meminta kanal yang diperlukan, membatasi tutupan awan hingga 10%, lalu membentuk nilai tengah temporal menggunakan <code class="docutils literal notranslate"><span class="pre">median_time()</span></code>. Hasilnya disimpan sebagai berkas <strong>GeoTIFF (<code class="docutils literal notranslate"><span class="pre">.tif</span></code>)</strong> untuk digunakan pada tahap ekstraksi piksel dan pemetaan.</p>
@@ -1151,6 +1166,15 @@ Note: you may need to restart the kernel to use updated packages.
         <p class="prev-next-title">Eksperimen Reduksi Dimensi, Analisis Silhouette, dan Pemetaan Segmentasi Wilayah Multi-Polutan Menggunakan KNIME</p>
       </div>
     </a>
+    <a class="right-next"
+       href="TUGAS6/PSD_klasifikasi_dan_webgis.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proyek Klasifikasi Tutupan Lahan (LULC) Provinsi Jawa Timur</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1169,14 +1193,21 @@ Note: you may need to restart the kernel to use updated packages.
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pemetaan Sawah dan Non-Sawah Berbasis Citra Sentinel-2A</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalasi-library">Instalasi Library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyusunan-data-referensi-spasial">1. Penyusunan Data Referensi Spasial</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sentinel-2a">Sentinel 2A</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penyediaan-citra-dan-pembentukan-variabel-spektral">2. Penyediaan Citra dan Pembentukan Variabel Spektral</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variabel-yang-digunakan">Variabel yang digunakan:</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pelatihan-pengujian-dan-penyajian-peta-kelas">3. Pelatihan, Pengujian, dan Penyajian Peta Kelas</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
